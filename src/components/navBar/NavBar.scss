@@ -1,0 +1,15 @@
+@import '../../sass/variables.scss';
+
+.NavBarContainer {
+    margin-left: 20%;
+    gap: 10px;
+    display: none;
+
+    @include desde($large) {
+        display: block;
+    }
+    .NavBarContainerFlex {
+        display: flex;
+        gap: 3em;
+    }
+}

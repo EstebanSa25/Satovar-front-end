@@ -1,0 +1,28 @@
+//breakpoints
+$small: 480px;
+$medium: 768px;
+$large: 1025px;
+$x-large: 1400px;
+//Font
+$font-text: 'Poppins', sans-serif;
+$font-title: 'Poppins', sans-serif;
+
+$size-fonts: (
+    light: 300,
+    normal: 400,
+    bold: 700,
+);
+//Page colors
+$page-colors: (
+    c-black: #1e1e1e,
+    c-white: #fff,
+    c-orange: #f35525,
+    c-rojo: #ee626b,
+);
+
+//Media querie method
+@mixin desde($size) {
+    @media screen and (min-width: $size) {
+        @content;
+    }
+}

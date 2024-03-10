@@ -1,0 +1,78 @@
+@import '/src/sass/variables';
+.banner {
+    position: relative;
+    &__img {
+        display: block;
+        width: 100%;
+        height: 17em;
+        @include desde($medium) {
+            height: 25em;
+        }
+        @include desde($large) {
+            height: 100vh;
+        }
+    }
+
+    &__copy {
+        color: map-get($page-colors, c-white);
+
+        display: flex;
+        flex-direction: column;
+        z-index: 50;
+        position: absolute;
+        top: 50%;
+        left: 35%;
+        transform: translate(-50%, -50%);
+        color: white;
+        align-items: self-start;
+        @include desde($large) {
+            font-size: 1.5em;
+        }
+        .banner__title {
+            color: map-get($map: $page-colors, $key: c-white);
+        }
+    }
+    .fa-angle-left {
+        background-color: rgba(0, 0, 0, 0.2);
+        border-radius: 50%;
+        padding: 0.3em;
+        position: absolute;
+        top: 50%;
+        left: 5%;
+        transform: translateY(-50%);
+        font-size: 2em;
+        color: map-get($map: $page-colors, $key: c-white);
+        cursor: pointer;
+        @include desde($large) {
+            font-size: 3em;
+        }
+        z-index: 90;
+    }
+    .fa-angle-right {
+        z-index: 100;
+        background-size: 10em;
+        background-color: rgba(0, 0, 0, 0.2);
+        border-radius: 50%;
+        padding: 0.3em;
+        position: absolute;
+        top: 50%;
+        right: 5%;
+        transform: translateY(-50%);
+        font-size: 2em;
+        color: map-get($map: $page-colors, $key: c-white);
+        cursor: pointer;
+        @include desde($large) {
+            font-size: 3em;
+        }
+    }
+}
+.category {
+    padding: 0.5em 1em 0.5em 1em;
+    color: map-get($map: $page-colors, $key: c-black);
+    background: map-get($map: $page-colors, $key: c-white);
+    font-size: 1em;
+    font-weight: map-get($map: $size-fonts, $key: bold);
+}
+.bold-Orange {
+    color: map-get($map: $page-colors, $key: c-orange);
+}
