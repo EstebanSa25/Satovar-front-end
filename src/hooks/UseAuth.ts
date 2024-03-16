@@ -71,12 +71,13 @@ export const UseAuth = () => {
             );
             dispatch(onLogin(user));
         } catch (error) {
+            const axiosError = error as AxiosError;
             const errorCode = error?.toJSON().status;
             dispatch(onLogout('Credenciales incorrectas'));
             ErrorSweetAlert(
                 errorCode,
                 'Credenciales incorrectas',
-                'Verifique su correo y contraseña'
+                axiosError.response.data.error
             );
             setTimeout(() => {
                 dispatch(clearErrorMessage());

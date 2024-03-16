@@ -20,6 +20,7 @@ export const FormItem = ({ input, button, children = null }: FormProps) => {
                                 id={item.id}
                                 name={item.id}
                                 value={item.id === 'email' ? email : password}
+                                valu
                                 className='form-control mx-auto text-center w-50'
                             />
                             <label className='form-label' htmlFor={item.id}>
