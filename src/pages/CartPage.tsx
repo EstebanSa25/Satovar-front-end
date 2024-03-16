@@ -6,7 +6,10 @@ import { ProductShop } from '../interfaces';
 export const CartPage = () => {
     const { products } = UseShoppinCart();
     return (
-        <section className='h-100 h-custom' style={{ backgroundColor: '#eee' }}>
+        <section
+            className='h-100 h-custom animate__animated animate__fadeIn'
+            style={{ backgroundColor: '#eee' }}
+        >
             <div className='container py-5 h-100'>
                 <div className='row d-flex justify-content-center align-items-center h-100'>
                     <div className='col'>
@@ -75,6 +78,7 @@ export const CartPage = () => {
                                             {products.map(
                                                 (product: ProductShop) => (
                                                     <CardItem
+                                                        key={product.id}
                                                         id={product.id}
                                                         nombre={product.nombre}
                                                         precio={product.precio}

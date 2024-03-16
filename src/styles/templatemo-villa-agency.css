@@ -1428,6 +1428,17 @@ Page Header Style
 --------------------------------------------- 
 */
 
+.swal2-confirm {
+    border-color: #f35525 !important;
+    background-color: #f35525 !important; /* Cambia el color de fondo del botón Confirmar */
+    color: white; /* Cambia el color del texto del botón Confirmar */
+}
+.swal2-cancel {
+    background-color: black !important; /* Cambia el color de fondo del botón Cancelar */
+    background-color: black !important; /* Cambia el color de fondo del botón Cancelar */
+    color: white; /* Cambia el color del texto del botón Cancelar */
+}
+
 .page-heading {
     background-image: url(../assets/images/measures-a-man-hand-for-clothes.jpg);
     background-position: center bottom;

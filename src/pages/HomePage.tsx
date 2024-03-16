@@ -5,10 +5,12 @@ import { Feature } from '../components/feature/Feature';
 export const HomePage = () => {
     return (
         <>
-            <Banner />
-            <Feature />
-            <Video />
-            <Facts />
+            <div className='animate__animated animate__fadeIn'>
+                <Banner />
+                <Feature />
+                <Video />
+                <Facts />
+            </div>
         </>
     );
 };

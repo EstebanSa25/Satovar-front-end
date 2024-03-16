@@ -4,3 +4,5 @@ export * from './LoginPage.tsx';
 export * from './RentPage.tsx';
 export * from './MakingPage.tsx';
 export * from './CartPage.tsx';
+export * from './Contact.tsx';
+export * from './RegisterPage.tsx';

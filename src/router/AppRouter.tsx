@@ -1,7 +1,16 @@
 import { Navigate, Route, Routes } from 'react-router-dom';
 
 import { Layout } from '../layout';
-import { BuyPage, CartPage, HomePage, MakingPage, RentPage } from '../pages';
+import {
+    BuyPage,
+    CartPage,
+    Contact,
+    HomePage,
+    LoginPage,
+    MakingPage,
+    RegisterPage,
+    RentPage,
+} from '../pages';
 export const AppRouter = () => {
     //Todo: Status db from redux
     const status = 'not-authenticated';
@@ -21,9 +30,16 @@ export const AppRouter = () => {
                     //TODO: add routes
                     status === 'not-authenticated' ? (
                         <>
+                            <Route path='/auth/login' element={<LoginPage />} />
                             <Route path='/compra' element={<BuyPage />} />
                             <Route path='/carrito' element={<CartPage />} />
                             <Route path='/alquiler' element={<RentPage />} />
+                            <Route path='/contacto' element={<Contact />} />
+                            <Route
+                                path='/auth/registro'
+                                element={<RegisterPage />}
+                            />
+
                             <Route
                                 path='/confeccion'
                                 element={<MakingPage />}

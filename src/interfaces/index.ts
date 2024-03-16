@@ -5,3 +5,5 @@ export * from './SimpleBanner.interface';
 export * from './FilterItem.interface';
 export * from './Product.interface';
 export * from './AccordionItem.interface';
+export * from './Form.interface';
+export * from './User.interface';

@@ -11,10 +11,10 @@ export const BuyPage = () => {
     return (
         <>
             <SimpleBanner Title='Comprar' />
-            <div className='section properties'>
+            <div className='section properties animate__animated animate__fadeIn'>
                 <div className='container'>
                     <Filter />
-                    <div className='row properties-box'>
+                    <div className='row properties-box '>
                         {products.map((product: Product) => (
                             <Card key={product.id} {...product}></Card>
                         ))}

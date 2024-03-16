@@ -4,7 +4,7 @@ export const Banner = () => {
     const { image, changeImage } = UseBanner();
     const { imagen, titulo, categoria } = image;
     return (
-        <div className='banner'>
+        <div className='banner animate__animated animate__fadeInLeft'>
             <img src={imagen} alt={titulo} className='banner__img' />
             <i
                 onClick={() => changeImage()}

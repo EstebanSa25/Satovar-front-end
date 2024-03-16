@@ -2,14 +2,14 @@ export const MakingPage = () => {
     return (
         <div className='section best-deal'>
             <div className='container'>
-                <div className='row'>
+                <div className='row animate__animated animate__fadeIn'>
                     <div className='col-lg-4'>
                         <div className='section-heading'>
                             <h6>| CONFECCIÓN</h6>
                             <h2>Hacemos tu estilo!</h2>
                         </div>
                     </div>
-                    <div className='col-lg-12'>
+                    <div className='col-lg-12 '>
                         <div className='tabs-content'>
                             <div className='row'>
                                 <div className='nav-wrapper '>

@@ -13,7 +13,7 @@ export const RentPage = () => {
                             </div>
                         </div>
                     </div>
-                    <div className='row'>
+                    <div className='row animate__animated animate__fadeIn'>
                         <LargeCard />
                     </div>
                 </div>
