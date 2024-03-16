@@ -7,11 +7,9 @@ export const Layout = ({ children }: ChildrenProp) => {
     if (isLoading) return <Loader />;
     return (
         <>
-            <div className='animate__animated animate__fadeIn'>
-                <Header />
-                {children}
-                <Footer />
-            </div>
+            <Header />
+            {children}
+            <Footer />
         </>
     );
 };

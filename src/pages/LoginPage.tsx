@@ -8,26 +8,24 @@ export const LoginPage = () => {
 
     return (
         <>
-            <div className='animate__animated animate__fadeIn'>
-                <BannerForm />
-                <Form
-                    input={inputLogin}
-                    button={buttonLogin}
-                    title={'Inicio sesion'}
-                    children={
-                        <Button
-                            title='Registrarse'
-                            type={InputColorButton.grey}
-                            onClick={(
-                                e: React.MouseEvent<HTMLButtonElement>
-                            ) => {
-                                e.preventDefault();
-                                navigate('/auth/registro');
-                            }}
-                        />
-                    }
-                />
-            </div>
+            {/* <div className='animate__animated animate__fadeIn'> */}
+            <BannerForm />
+            <Form
+                input={inputLogin}
+                button={buttonLogin}
+                title={'Inicio sesion'}
+                children={
+                    <Button
+                        title='Registrarse'
+                        type={InputColorButton.grey}
+                        onClick={(e: React.MouseEvent<HTMLButtonElement>) => {
+                            e.preventDefault();
+                            navigate('/auth/registro');
+                        }}
+                    />
+                }
+            />
+            {/* </div> */}
         </>
     );
 };
