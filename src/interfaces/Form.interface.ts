@@ -46,5 +46,5 @@ export interface RegisterForm {
     Correo: string;
     Direccion: string;
     Telefono: string;
-    Clave: string;
+    Clave?: string;
 }

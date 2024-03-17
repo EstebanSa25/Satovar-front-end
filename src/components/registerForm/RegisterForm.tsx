@@ -2,9 +2,32 @@ import { UseForm } from '../../hooks';
 import { UseAuth } from '../../hooks/UseAuth';
 
 export const RegisterForm = () => {
-    const { onInputChange, formState } = UseForm();
-    const { startCreateUser } = UseAuth();
-    console.log(formState);
+    const { userGoogle, startCreateUser } = UseAuth();
+    const initialForm = {
+        Nombre: userGoogle?.Nombre || '',
+        Apellido1: userGoogle?.Apellido1 || '',
+        Apellido2: userGoogle?.Apellido2 || '',
+        Correo: userGoogle?.Correo || '',
+        Cedula: '',
+        Direccion: '',
+        Telefono: '',
+        Clave: '',
+    };
+    const {
+        formState = {} as typeof initialForm,
+        Clave,
+        Direccion,
+        Cedula,
+        Correo,
+        Apellido2,
+        Apellido1,
+        Nombre,
+        Telefono,
+        onInputChange,
+        onResetForm,
+    } = UseForm(initialForm);
+    // console.log(userGoogle);
+
     return (
         <form>
             {/* <!--nombre input--> */}
@@ -15,6 +38,7 @@ export const RegisterForm = () => {
                         onChange={onInputChange}
                         type='text'
                         className='form-control'
+                        value={Nombre}
                         id='Nombre'
                         name='Nombre'
                         required
@@ -30,6 +54,7 @@ export const RegisterForm = () => {
                         type='text'
                         className='form-control'
                         id='Apellido1'
+                        value={Apellido1}
                         required
                         name='Apellido1'
                     />
@@ -44,6 +69,7 @@ export const RegisterForm = () => {
                         type='text'
                         className='form-control'
                         id='Apellido2'
+                        value={Apellido2}
                         name='Apellido2'
                     ></input>{' '}
                     <label className='form-label' htmlFor='apellido2'>
@@ -57,6 +83,7 @@ export const RegisterForm = () => {
                     onChange={onInputChange}
                     type='text'
                     id='Cedula'
+                    value={Cedula}
                     name='Cedula'
                     className='form-control'
                 />
@@ -70,6 +97,7 @@ export const RegisterForm = () => {
                     onChange={onInputChange}
                     type='text'
                     id='Telefono'
+                    value={Telefono}
                     name='Telefono'
                     className='form-control'
                 />
@@ -83,6 +111,7 @@ export const RegisterForm = () => {
                     onChange={onInputChange}
                     type='text'
                     id='Direccion'
+                    value={Direccion}
                     name='Direccion'
                     className='form-control'
                 />
@@ -97,6 +126,7 @@ export const RegisterForm = () => {
                     type='email'
                     id='Correo'
                     name='Correo'
+                    value={Correo}
                     className='form-control'
                 />
                 <label className='form-label' htmlFor='email'>
@@ -110,15 +140,23 @@ export const RegisterForm = () => {
                     type='password'
                     id='Clave'
                     name='Clave'
-                    className='form-control'
+                    value={Clave}
+                    className={
+                        userGoogle
+                            ? `d-none form-control`
+                            : `d-block form-control`
+                    }
                 />
-                <label className='form-label' htmlFor='password'>
+                <label
+                    className={userGoogle ? `d-none` : `d-block form-label`}
+                    htmlFor='password'
+                >
                     Contraseña
                 </label>
             </div>
 
             <button
-                onClick={(e) => startCreateUser(formState, e)}
+                onClick={(e) => startCreateUser(formState, e, onResetForm)}
                 type='submit'
                 className='btn btn-secondary btn-block mb-4'
             >

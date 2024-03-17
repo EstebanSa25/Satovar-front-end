@@ -5,7 +5,7 @@ import { FormProperties, FormProps } from '../../interfaces';
 
 export const FormItem = ({ input, button, children = null }: FormProps) => {
     const { onInputChange, formState } = UseForm();
-    const { startLogin } = UseAuth();
+    const { startLogin, startGoogleSignIn } = UseAuth();
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const { email = '', password = '' } = formState as any;
     return (
@@ -20,7 +20,6 @@ export const FormItem = ({ input, button, children = null }: FormProps) => {
                                 id={item.id}
                                 name={item.id}
                                 value={item.id === 'email' ? email : password}
-                                valu
                                 className='form-control mx-auto text-center w-50'
                             />
                             <label className='form-label' htmlFor={item.id}>
@@ -35,6 +34,17 @@ export const FormItem = ({ input, button, children = null }: FormProps) => {
                     onClick={(e) => startLogin(email, password, e)}
                 />
                 <br />
+                <div className='text-center'>
+                    <p>o ingrese con:</p>
+
+                    <button
+                        onClick={startGoogleSignIn}
+                        type='button'
+                        className='btn btn-link btn-floating mx-1'
+                    >
+                        <i className='fab fa-google'></i>
+                    </button>
+                </div>
                 {children}
             </form>
         </>
