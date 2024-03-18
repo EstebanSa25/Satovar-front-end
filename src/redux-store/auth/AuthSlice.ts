@@ -39,7 +39,7 @@ export const AuthSlice = createSlice({
         },
         onLoginGoogle: (state, { payload }) => {
             state.isLoading = false;
-            state.status = 'authenticated';
+            state.status = 'not-authenticated';
             state.userGoogle = payload;
             state.errorMessage = undefined;
         },

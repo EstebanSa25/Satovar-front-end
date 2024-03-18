@@ -1,7 +1,9 @@
+import { UseAuth } from '../../hooks/UseAuth';
 import { NavBarItem } from './NavBarItem';
 import { Link } from 'react-router-dom';
 
 export const NavBar = () => {
+    const { status, startLogout } = UseAuth();
     return (
         <ul className='nav'>
             <NavBarItem url='/' title='Inicio'></NavBarItem>
@@ -12,9 +14,14 @@ export const NavBar = () => {
             <NavBarItem url='/carrito' title='Carrito'></NavBarItem>
             <li>
                 {' '}
-                <Link to='/auth/login'>
+                <Link
+                    onClick={
+                        status === 'authenticated' ? startLogout : () => {}
+                    }
+                    to={status === 'not-authenticated' ? '/auth/login' : ''}
+                >
                     <i className='fas fa-sign-in-alt'></i>
-                    Login
+                    {status === 'not-authenticated' ? 'Login' : 'Salir'}
                 </Link>
             </li>
         </ul>

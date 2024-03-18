@@ -81,6 +81,7 @@ export const UseAuth = () => {
                 'token-init-date',
                 new Date().getTime().toString()
             );
+            navigate('/');
             dispatch(onLogin(user));
         } catch (error) {
             const axiosError = error as AxiosError;
@@ -131,7 +132,31 @@ export const UseAuth = () => {
             }
         }
     };
-    const startLogout = () => {};
+    const startCheckAuthToken = async () => {
+        const token = localStorage.getItem('token');
+        if (!token) {
+            dispatch(onLogout(''));
+            return;
+        }
+        try {
+            const { data } = await satovarApi.get('/auth/renew');
+            localStorage.setItem('token', data.token);
+            localStorage.setItem(
+                'token-init-date',
+                new Date().getTime().toString()
+            );
+            const { user } = data;
+            dispatch(onLogin(user));
+        } catch (error) {
+            localStorage.clear();
+            dispatch(onLogout('Token invalido'));
+        }
+    };
+    const startLogout = () => {
+        localStorage.clear();
+        dispatch(onLogout(''));
+        navigate('/');
+    };
     return {
         // Valores
         status,
@@ -144,5 +169,6 @@ export const UseAuth = () => {
         startGoogleSignIn,
         startLogout,
         startCreateUser,
+        startCheckAuthToken,
     };
 };

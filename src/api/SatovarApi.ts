@@ -7,12 +7,17 @@ const satovarApi = axios.create({
 });
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-satovarApi.interceptors.request.use((config: any) => {
-    config.headers = {
-        ...config.headers,
-        Authorization: localStorage.getItem('token') || '',
-    };
-    return config;
-});
+satovarApi.interceptors.request.use(
+    (config) => {
+        const token = localStorage.getItem('token');
+        if (token) {
+            config.headers.Authorization = `Bearer ${token}`;
+        }
+        return config;
+    },
+    (error) => {
+        return Promise.reject(error);
+    }
+);
 
 export default satovarApi;

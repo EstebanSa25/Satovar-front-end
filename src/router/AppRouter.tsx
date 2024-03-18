@@ -11,9 +11,11 @@ import {
     RegisterPage,
     RentPage,
 } from '../pages';
+import { UseAuth } from '../hooks/UseAuth';
+import { useEffect } from 'react';
 export const AppRouter = () => {
     //Todo: Status db from redux
-    const status = 'not-authenticated';
+
     // const { checkAuthToken, status } = useAuth();
     // useEffect(() => {
     //     checkAuthToken();
@@ -23,12 +25,18 @@ export const AppRouter = () => {
     // if (status === 'checking') {
     //     return <h3>Cargando...</h3>;
     // }
+    const { startCheckAuthToken, status, user } = UseAuth();
+    useEffect(() => {
+        startCheckAuthToken();
+        console.log('Estoy validando el token');
+    }, []);
+
     return (
         <Layout>
             <Routes>
                 {
                     //TODO: add routes
-                    status === 'not-authenticated' ? (
+                    user?.CI_ID_ROL === 2 || status === 'not-authenticated' ? (
                         <>
                             <Route path='/auth/login' element={<LoginPage />} />
                             <Route path='/compra' element={<BuyPage />} />
@@ -44,7 +52,6 @@ export const AppRouter = () => {
                                 path='/confeccion'
                                 element={<MakingPage />}
                             />
-                            <Route path='/*' element={<HomePage />} />
                             {/* <Route
                             path='/*'
                             element={<Navigate to={'/auth/login'} />}
@@ -53,10 +60,11 @@ export const AppRouter = () => {
                     ) : (
                         <>
                             {/* <Route path='/' element={<CalendarPage />} /> */}
-                            <Route path='/*' element={<Navigate to={'/'} />} />
+                            {/* <Route path='/*' element={<Navigate to={'/'} />} /> */}
                         </>
                     )
                 }
+                <Route path='/*' element={<HomePage />} />
             </Routes>
         </Layout>
     );
