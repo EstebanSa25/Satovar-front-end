@@ -1,4 +1,21 @@
+import { Link } from 'react-router-dom';
+import {
+    MeasureDetailsShirt,
+    MeasureLargeShirt,
+    MeasureTopShirt,
+} from '../components';
+import { UseAuth } from '../hooks/UseAuth';
+import { UseMeasureShirt } from '../hooks';
+import { useEffect } from 'react';
+
 export const MakingPage = () => {
+    const { status } = UseAuth();
+    const { CreateMeasureShirt, startGetMeasureShirt } = UseMeasureShirt();
+
+    useEffect(() => {
+        startGetMeasureShirt();
+    }, []);
+
     return (
         <div className='section best-deal'>
             <div className='container'>
@@ -153,98 +170,7 @@ export const MakingPage = () => {
                                                             data-bs-parent='#accordion'
                                                         >
                                                             <div className='accordion-body'>
-                                                                <form>
-                                                                    <div className='mb-3'>
-                                                                        <label
-                                                                            htmlFor='headingTopShirt'
-                                                                            className='form-label'
-                                                                        >
-                                                                            Pecho:
-                                                                        </label>
-                                                                        <input
-                                                                            type='number'
-                                                                            className='form-control'
-                                                                            id='cinturacamisa'
-                                                                            name='cinturaCamisa'
-                                                                            required
-                                                                        />
-                                                                    </div>
-                                                                    <div className='mb-3'>
-                                                                        <label
-                                                                            htmlFor='headingTopShirt'
-                                                                            className='form-label'
-                                                                        >
-                                                                            Cintura:
-                                                                        </label>
-                                                                        <input
-                                                                            type='number'
-                                                                            className='form-control'
-                                                                            id='cinturacamisa'
-                                                                            name='cinturaCamisa'
-                                                                            required
-                                                                        />
-                                                                    </div>
-                                                                    <div className='mb-3'>
-                                                                        <label
-                                                                            htmlFor='headingTopShirt'
-                                                                            className='form-label'
-                                                                        >
-                                                                            Cadera:
-                                                                        </label>
-                                                                        <input
-                                                                            type='number'
-                                                                            className='form-control'
-                                                                            id='caderacamisa'
-                                                                            name='caderaCamisa'
-                                                                            required
-                                                                        />
-                                                                    </div>
-                                                                    <div className='mb-3'>
-                                                                        <label
-                                                                            htmlFor='headingTopShirt'
-                                                                            className='form-label'
-                                                                        >
-                                                                            Espalda:
-                                                                        </label>
-                                                                        <input
-                                                                            type='number'
-                                                                            className='form-control'
-                                                                            id='espaldaCamisa'
-                                                                            name='espaldaCamisa'
-                                                                            required
-                                                                        />
-                                                                    </div>
-                                                                    <div className='mb-3'>
-                                                                        <label
-                                                                            htmlFor='headingTopShirt'
-                                                                            className='form-label'
-                                                                        >
-                                                                            Hombro:
-                                                                        </label>
-                                                                        <input
-                                                                            type='number'
-                                                                            className='form-control'
-                                                                            id='hombrocamisa'
-                                                                            name='hombroCamisa'
-                                                                            required
-                                                                        />
-                                                                    </div>
-                                                                    <div className='mb-3'>
-                                                                        <label
-                                                                            htmlFor='headingTopShirt'
-                                                                            className='form-label'
-                                                                        >
-                                                                            Cuello:
-                                                                        </label>
-                                                                        <input
-                                                                            type='number'
-                                                                            className='form-control'
-                                                                            id='cuelloCamisa'
-                                                                            name='cuelloCamisa'
-                                                                            required
-                                                                        />
-                                                                    </div>
-                                                                </form>
+                                                                <MeasureTopShirt />
                                                             </div>
                                                         </div>
                                                     </div>
@@ -272,70 +198,7 @@ export const MakingPage = () => {
                                                             data-bs-parent='#accordion'
                                                         >
                                                             <div className='accordion-body'>
-                                                                <form>
-                                                                    <div className='mb-3'>
-                                                                        <label
-                                                                            htmlFor='LargoMangaCamisa'
-                                                                            className='form-label'
-                                                                        >
-                                                                            Largo
-                                                                            manga:
-                                                                        </label>
-                                                                        <input
-                                                                            type='number'
-                                                                            className='form-control'
-                                                                            id='LargoMangaCamisa'
-                                                                            name='LargoMangaCamisa'
-                                                                            required
-                                                                        />
-                                                                    </div>
-                                                                    <div className='mb-3'>
-                                                                        <label
-                                                                            htmlFor='LargoTotalCamisa'
-                                                                            className='form-label'
-                                                                        >
-                                                                            Largo
-                                                                            total:
-                                                                        </label>
-                                                                        <input
-                                                                            type='number'
-                                                                            className='form-control'
-                                                                            id='LargoTotalCamisa'
-                                                                            name='LargoTotalCamisa'
-                                                                            required
-                                                                        />
-                                                                    </div>
-                                                                    <div className='mb-3'>
-                                                                        <label
-                                                                            htmlFor='Brazo'
-                                                                            className='form-label'
-                                                                        >
-                                                                            Brazo:
-                                                                        </label>
-                                                                        <input
-                                                                            type='number'
-                                                                            className='form-control'
-                                                                            id='Brazo'
-                                                                            name='Brazo'
-                                                                            required
-                                                                        />
-                                                                    </div>
-                                                                    <div className='mb-3'>
-                                                                        <label
-                                                                            htmlFor='Pu;oCamisa'
-                                                                            className='form-label'
-                                                                        >
-                                                                            Puño:
-                                                                        </label>
-                                                                        <input
-                                                                            type='number'
-                                                                            className='form-control'
-                                                                            id='Pu;oCamisa'
-                                                                            name='Pu;oCamisa'
-                                                                            required
-                                                                        />
-                                                                    </div>
-                                                                </form>
+                                                                <MeasureLargeShirt />
                                                             </div>
                                                         </div>
                                                     </div>
@@ -364,32 +227,29 @@ export const MakingPage = () => {
                                                             data-bs-parent='#accordion'
                                                         >
                                                             <div className='accordion-body'>
-                                                                <form>
-                                                                    <div className='mb-3'>
-                                                                        <label
-                                                                            htmlFor='DetallesCamisa'
-                                                                            className='form-label'
-                                                                        >
-                                                                            Detalles
-                                                                            Adicionales:
-                                                                        </label>
-                                                                        <textarea
-                                                                            className='form-control'
-                                                                            id='DetallesCamisa'
-                                                                            name='DetallesCamisa'
-                                                                            rows='4'
-                                                                        ></textarea>
-                                                                    </div>
-                                                                </form>
+                                                                <MeasureDetailsShirt />
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                                 <div className='icon-button'>
-                                                    <a href='login.html'>
+                                                    <Link
+                                                        onClick={
+                                                            status ===
+                                                            'authenticated'
+                                                                ? CreateMeasureShirt
+                                                                : () => {}
+                                                        }
+                                                        to={
+                                                            status ===
+                                                            'not-authenticated'
+                                                                ? '/auth/login'
+                                                                : ''
+                                                        }
+                                                    >
                                                         <i className='fa fa-calendar'></i>{' '}
                                                         Guardar Medidas
-                                                    </a>
+                                                    </Link>
                                                 </div>
                                             </div>
                                         </div>

@@ -20,3 +20,6 @@ export * from './map/Map';
 export * from './forms/BannerForm';
 export * from './registerForm/RegisterForm';
 export * from './loader/Loader';
+export * from './makingForm/MeasureTop';
+export * from './makingForm/MeasureLarge';
+export * from './makingForm/MeasureDetailsShirt';

@@ -1,10 +1,18 @@
 import { Link } from 'react-router-dom';
 import { CardItem } from '../components/CartItem/CardItem';
-import { UseShoppinCart } from '../hooks';
+import { UseForm, UseShoppinCart } from '../hooks';
 import { ProductShop } from '../interfaces';
-
+import { UseAuth } from '../hooks/UseAuth';
+const initialForm = {
+    NOMBRE: '',
+    NUM_TARJETA: '',
+    EXPIRA: '',
+    CVV: '',
+};
 export const CartPage = () => {
     const { products } = UseShoppinCart();
+    const { user } = UseAuth();
+    const { onInputChange, formState } = UseForm(initialForm);
     return (
         <section
             className='h-100 h-custom animate__animated animate__fadeIn'
@@ -151,6 +159,14 @@ export const CartPage = () => {
                                                             id='typeName'
                                                             className='form-control form-control-lg'
                                                             size={17}
+                                                            onChange={
+                                                                onInputChange
+                                                            }
+                                                            value={
+                                                                formState.NOMBRE ||
+                                                                ''
+                                                            }
+                                                            name='NOMBRE'
                                                             placeholder='Nombre Completo'
                                                         />
                                                         <label
@@ -171,6 +187,14 @@ export const CartPage = () => {
                                                             placeholder='xxxx xxxx xxxx xxxx'
                                                             minLength={19}
                                                             maxLength={19}
+                                                            name='NUM_TARJETA'
+                                                            value={
+                                                                formState.NUM_TARJETA ||
+                                                                ''
+                                                            }
+                                                            onChange={
+                                                                onInputChange
+                                                            }
                                                         />
                                                         <label
                                                             className='form-label'
@@ -196,6 +220,14 @@ export const CartPage = () => {
                                                                     maxLength={
                                                                         7
                                                                     }
+                                                                    name='EXPIRA'
+                                                                    value={
+                                                                        formState.EXPIRA ||
+                                                                        ''
+                                                                    }
+                                                                    onChange={
+                                                                        onInputChange
+                                                                    }
                                                                 />
                                                                 <label
                                                                     className='form-label'
@@ -218,6 +250,14 @@ export const CartPage = () => {
                                                                     }
                                                                     maxLength={
                                                                         3
+                                                                    }
+                                                                    name='CVV'
+                                                                    value={
+                                                                        formState.CVV ||
+                                                                        ''
+                                                                    }
+                                                                    onChange={
+                                                                        onInputChange
                                                                     }
                                                                 />
                                                                 <label
@@ -267,18 +307,18 @@ export const CartPage = () => {
                                                         backgroundColor:
                                                             '#6BD699',
                                                     }}
-                                                    data-bs-toggle='modal'
-                                                    data-bs-target='#myModal'
+                                                    // data-bs-toggle='modal'
+                                                    // data-bs-target='#myModal'
                                                 >
                                                     <div className='d-flex justify-content-between'>
                                                         <span>$0.00</span>
                                                         <span>
-                                                            Validar{' '}
+                                                            Comprar{' '}
                                                             <i className='fas fa-long-arrow-alt-right ms-2'></i>
                                                         </span>
                                                     </div>
                                                 </button>
-                                                <div
+                                                {/* <div
                                                     className='modal fade'
                                                     id='myModal'
                                                     tabIndex={-1}
@@ -328,7 +368,7 @@ export const CartPage = () => {
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </div>
+                                                </div> */}
                                             </div>
                                         </div>
                                     </div>
