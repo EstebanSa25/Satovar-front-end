@@ -14,6 +14,7 @@ export interface Product {
     descripcion: string;
     cantidad: Cantidad;
     color: string;
+    tallas: [];
     fecha?: Date;
 }
 
@@ -24,4 +25,5 @@ export interface ProductShop {
     imagen: string;
     descripcion: string;
     cantidad: number;
+    talla?: number;
 }

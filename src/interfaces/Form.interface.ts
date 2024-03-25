@@ -1,3 +1,5 @@
+import { ChangeEvent } from 'react';
+
 export enum InputType {
     text = 'text',
     password = 'password',
@@ -47,4 +49,28 @@ export interface RegisterForm {
     Direccion: string;
     Telefono: string;
     Clave?: string;
+}
+export interface RegisterFormState {
+    Nombre: string;
+    Apellido1: string;
+    Apellido2: string;
+    Cedula: string;
+    Correo: string;
+    Direccion: string;
+    Telefono: string;
+    Clave?: string;
+}
+
+export interface TopShirtMeasure {
+    cinturacamisa: number;
+    pechocamisa: number;
+    caderacamisa: number;
+    espaldaCamisa: number;
+    hombroCamisa: number;
+    cuelloCamisa: number;
+}
+
+export interface formStateTopShirt {
+    formState: TopShirtMeasure;
+    onInputChange: (event: ChangeEvent<HTMLInputElement>) => void;
 }

@@ -1,6 +1,6 @@
 import { UseForm } from '../../hooks';
 import { UseAuth } from '../../hooks/UseAuth';
-
+import { RegisterFormState } from '../../interfaces';
 export const RegisterForm = () => {
     const { userGoogle, startCreateUser } = UseAuth();
     const initialForm = {
@@ -12,17 +12,9 @@ export const RegisterForm = () => {
         Direccion: '',
         Telefono: '',
         Clave: '',
-    };
+    } as RegisterFormState;
     const {
         formState = {} as typeof initialForm,
-        Clave,
-        Direccion,
-        Cedula,
-        Correo,
-        Apellido2,
-        Apellido1,
-        Nombre,
-        Telefono,
         onInputChange,
         onResetForm,
     } = UseForm(initialForm);
@@ -38,7 +30,7 @@ export const RegisterForm = () => {
                         onChange={onInputChange}
                         type='text'
                         className='form-control'
-                        value={Nombre}
+                        value={formState.Nombre}
                         id='Nombre'
                         name='Nombre'
                         required
@@ -54,7 +46,7 @@ export const RegisterForm = () => {
                         type='text'
                         className='form-control'
                         id='Apellido1'
-                        value={Apellido1}
+                        value={formState.Apellido1}
                         required
                         name='Apellido1'
                     />
@@ -69,7 +61,7 @@ export const RegisterForm = () => {
                         type='text'
                         className='form-control'
                         id='Apellido2'
-                        value={Apellido2}
+                        value={formState.Apellido2}
                         name='Apellido2'
                     ></input>{' '}
                     <label className='form-label' htmlFor='apellido2'>
@@ -83,7 +75,7 @@ export const RegisterForm = () => {
                     onChange={onInputChange}
                     type='text'
                     id='Cedula'
-                    value={Cedula}
+                    value={formState.Cedula}
                     name='Cedula'
                     className='form-control'
                 />
@@ -97,7 +89,7 @@ export const RegisterForm = () => {
                     onChange={onInputChange}
                     type='text'
                     id='Telefono'
-                    value={Telefono}
+                    value={formState.Telefono}
                     name='Telefono'
                     className='form-control'
                 />
@@ -111,7 +103,7 @@ export const RegisterForm = () => {
                     onChange={onInputChange}
                     type='text'
                     id='Direccion'
-                    value={Direccion}
+                    value={formState.Direccion}
                     name='Direccion'
                     className='form-control'
                 />
@@ -126,7 +118,7 @@ export const RegisterForm = () => {
                     type='email'
                     id='Correo'
                     name='Correo'
-                    value={Correo}
+                    value={formState.Correo}
                     className='form-control'
                 />
                 <label className='form-label' htmlFor='email'>
@@ -140,7 +132,7 @@ export const RegisterForm = () => {
                     type='password'
                     id='Clave'
                     name='Clave'
-                    value={Clave}
+                    value={formState.Clave}
                     className={
                         userGoogle
                             ? `d-none form-control`
@@ -156,7 +148,22 @@ export const RegisterForm = () => {
             </div>
 
             <button
-                onClick={(e) => startCreateUser(formState, e, onResetForm)}
+                onClick={(e) =>
+                    startCreateUser(
+                        {
+                            Nombre: formState.Nombre,
+                            Apellido1: formState.Apellido1,
+                            Apellido2: formState.Apellido2,
+                            Cedula: formState.Cedula,
+                            Correo: formState.Correo,
+                            Direccion: formState.Direccion,
+                            Telefono: formState.Telefono,
+                            Clave: formState.Clave,
+                        },
+                        e,
+                        onResetForm
+                    )
+                }
                 type='submit'
                 className='btn btn-secondary btn-block mb-4'
             >

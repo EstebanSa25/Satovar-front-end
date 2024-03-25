@@ -10,6 +10,7 @@ import satovarApi from '../api/SatovarApi';
 import Swal from 'sweetalert2';
 import { ErrorSweetAlert } from '../helpers';
 import axios, { AxiosError } from 'axios';
+import { AxiosErrorData } from '../interfaces';
 
 export const UseMeasureShirt = () => {
     const dispatch = useDispatch();
@@ -36,7 +37,7 @@ export const UseMeasureShirt = () => {
     };
     const CreateMeasureShirt = async () => {
         try {
-            const { data } = await satovarApi.post('/measure/shirt', {
+            await satovarApi.post('/measure/shirt', {
                 id: user.CI_ID_USUARIO,
                 pecho: measureShirtTop.pechocamisa,
                 cintura: measureShirtTop.cinturaCamisa,
@@ -59,15 +60,12 @@ export const UseMeasureShirt = () => {
         } catch (error) {
             if (axios.isAxiosError(error)) {
                 const axiosError = error as AxiosError;
-                const errorCode = axiosError?.toJSON().status;
+                const errorCode = axiosError.response?.status as number;
+                const errorString = axiosError.response?.data as AxiosErrorData;
                 ErrorSweetAlert(
                     errorCode,
                     'Error al guardar medida de camisa',
-                    `${
-                        axiosError.response.data.error ||
-                        axiosError.response.data.message ||
-                        ''
-                    }`
+                    `${errorString.error || errorString.message || ''}`
                 );
             }
         }
@@ -78,6 +76,7 @@ export const UseMeasureShirt = () => {
             const { data } = await satovarApi.get(
                 `/measure/shirt/${user.CI_ID_USUARIO}`
             );
+            console.log(data);
         } catch (error) {
             console.log(error);
         }

@@ -1,16 +1,17 @@
 import { useEffect } from 'react';
 import { UseForm, UseMeasureShirt } from '../../hooks';
+import { TopShirtMeasure } from '../../interfaces';
 const initialForm = {
-    cinturacamisa: '',
-    pechocamisa: '',
-    caderacamisa: '',
-    espaldaCamisa: '',
-    hombroCamisa: '',
-    cuelloCamisa: '',
-};
+    cinturacamisa: 0,
+    pechocamisa: 0,
+    caderacamisa: 0,
+    espaldaCamisa: 0,
+    hombroCamisa: 0,
+    cuelloCamisa: 0,
+} as TopShirtMeasure;
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const MeasureTopShirt = () => {
-    const { startSaveMeasureShirtTop, startGetMeasureShirt, measureShirt } =
+    const { startSaveMeasureShirtTop, startGetMeasureShirt } =
         UseMeasureShirt();
     useEffect(() => {
         startGetMeasureShirt();

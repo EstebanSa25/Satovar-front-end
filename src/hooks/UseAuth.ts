@@ -9,7 +9,7 @@ import {
 } from '../redux-store';
 import satovarApi from '../api/SatovarApi';
 import Swal from 'sweetalert2';
-import { RegisterForm } from '../interfaces';
+import { AxiosErrorData, RegisterForm } from '../interfaces';
 import {
     CampoVacioSweetAlert,
     ErrorSweetAlert,
@@ -53,13 +53,14 @@ export const UseAuth = () => {
             onResetForm();
         } catch (error) {
             const axiosError = error as AxiosError;
+            const errorCode = axiosError.response?.status as number;
+            const errorString = axiosError.response?.data as AxiosErrorData;
 
-            const errorCode = error?.toJSON().status;
             // console.log(error?.toJSON().error);
             ErrorSweetAlert(
                 errorCode,
                 'Error al crear usuario',
-                `${axiosError.response.data.error || ''}`
+                `${errorString.error || errorString.message || ''}`
             );
         }
     };
@@ -85,12 +86,13 @@ export const UseAuth = () => {
             dispatch(onLogin(user));
         } catch (error) {
             const axiosError = error as AxiosError;
-            const errorCode = error?.toJSON().status;
+            const errorCode = axiosError.response?.status as number;
+            const errorString = axiosError.response?.data as AxiosErrorData;
             dispatch(onLogout('Credenciales incorrectas'));
             ErrorSweetAlert(
                 errorCode,
                 'Error al iniciar sesion',
-                axiosError.response.data.error
+                errorString.error || errorString.message || ''
             );
             setTimeout(() => {
                 dispatch(clearErrorMessage());

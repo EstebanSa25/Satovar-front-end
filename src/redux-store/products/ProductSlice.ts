@@ -5,6 +5,7 @@ const initialState = {
     products: [] as Product[],
     activeProduct: null as Product | null,
     isLoadingProduct: false as boolean,
+    CategoryActive: 'Mostrar todo' as string,
 };
 
 export const ProductSlice = createSlice({
@@ -40,7 +41,7 @@ export const ProductSlice = createSlice({
                 state.activeProduct = null;
             }
         },
-        onLoadProducts: (state, { payload = [] }) => {
+        onLoadProducts: (state, { payload }) => {
             state.isLoadingProduct = true;
             // state.events = payload;
             payload.forEach((product: Product) => {
@@ -49,8 +50,21 @@ export const ProductSlice = createSlice({
                 );
                 if (!exists) {
                     state.products.push(product);
+                } else {
+                    state.products = state.products.map((dbProduct) => {
+                        if (dbProduct.id === product.id) {
+                            return product;
+                        }
+                        return dbProduct;
+                    });
                 }
             });
+        },
+        onCategoryActive: (state, { payload }) => {
+            state.CategoryActive = payload;
+        },
+        onResetCategoryActive: (state) => {
+            state.CategoryActive = '';
         },
     },
 });
@@ -61,4 +75,6 @@ export const {
     onUpdateProduct,
     onDeleteProduct,
     onLoadProducts,
+    onCategoryActive,
+    onResetCategoryActive,
 } = ProductSlice.actions;

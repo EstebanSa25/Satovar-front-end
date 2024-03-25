@@ -704,7 +704,9 @@ export const MakingPage = () => {
                                                                             className='form-control'
                                                                             id='DetallesCamisa'
                                                                             name='DetallesCamisa'
-                                                                            rows='4'
+                                                                            rows={
+                                                                                4
+                                                                            }
                                                                         ></textarea>
                                                                     </div>
                                                                 </form>

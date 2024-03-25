@@ -5,3 +5,4 @@ export * from './Forms';
 export * from './ValidarCamposVacios';
 export * from './SweetAlert';
 export * from './ValidarCorreo';
+export * from './IsAxiosError';

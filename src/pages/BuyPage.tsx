@@ -2,12 +2,14 @@ import { useEffect } from 'react';
 import { Card, Filter, SimpleBanner } from '../components';
 import { UseProduct } from '../hooks';
 import { Product } from '../interfaces';
-import { productsExample } from '../helpers';
 export const BuyPage = () => {
-    const { products = [], startCreateProduct } = UseProduct();
+    const { products = [], startGetProduct, CategoryActive } = UseProduct();
+
     useEffect(() => {
-        productsExample.map((product) => startCreateProduct(product));
-    }, []);
+        console.log(products);
+        startGetProduct();
+        // productsExample.map((product) => startCreateProduct(product));
+    }, [CategoryActive]);
     return (
         <>
             <SimpleBanner Title='Comprar' />
@@ -15,9 +17,15 @@ export const BuyPage = () => {
                 <div className='container'>
                     <Filter />
                     <div className='row properties-box '>
-                        {products.map((product: Product) => (
-                            <Card key={product.id} {...product}></Card>
-                        ))}
+                        {products.map((product: Product) =>
+                            CategoryActive === 'Mostrar todo' ? (
+                                <Card key={product.id} {...product}></Card>
+                            ) : (
+                                product.nombre.includes(CategoryActive) && (
+                                    <Card key={product.id} {...product}></Card>
+                                )
+                            )
+                        )}
                     </div>
                 </div>
             </div>

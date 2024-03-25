@@ -1,15 +1,50 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useDispatch, useSelector } from 'react-redux';
-import { Product } from '../interfaces';
-import { onAddNewProduct } from '../redux-store';
+import { Product, ProductInterfaceAPI } from '../interfaces';
+import {
+    onAddNewProduct,
+    onCategoryActive,
+    onLoadProducts,
+} from '../redux-store';
+import satovarApi from '../api/SatovarApi';
 export const UseProduct = () => {
-    const { products, activeProduct, isLoadingProduct } = useSelector(
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        (state: any) => state.Product
-    );
+    const { products, activeProduct, isLoadingProduct, CategoryActive } =
+        useSelector(
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            (state: any) => state.Product
+        );
     const dispatch = useDispatch();
 
     const startCreateProduct = (product: Product) => {
         dispatch(onAddNewProduct(product));
+    };
+
+    const startGetProduct = async () => {
+        const { data } = await satovarApi.get<ProductInterfaceAPI[]>(
+            '/Products?size=true'
+        );
+        const products = data.map((product: ProductInterfaceAPI) => {
+            return {
+                id: product.CI_ID_PRODUCTO,
+                nombre: product.CV_NOMBRE,
+                precio: product.CD_PRECIO,
+                imagen: product.CV_FOTO,
+                descripcion: '',
+                cantidad: {
+                    Pantalon: 1,
+                    Saco: 2,
+                    Chaleco: 3,
+                    Corbata: 4,
+                    camisa: 5,
+                },
+                color: product.T_TELA.CV_NOMBRE,
+                tallas: product.T_PRODUCTO_X_TALLA,
+            };
+        }) as unknown as Product[];
+        dispatch(onLoadProducts(products));
+    };
+    const startCategoryActive = (category: string) => {
+        dispatch(onCategoryActive(category));
     };
 
     return {
@@ -17,7 +52,10 @@ export const UseProduct = () => {
         products,
         activeProduct,
         isLoadingProduct,
+        CategoryActive,
         //Metodos
         startCreateProduct,
+        startGetProduct,
+        startCategoryActive,
     };
 };

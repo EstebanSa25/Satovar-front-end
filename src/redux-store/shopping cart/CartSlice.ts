@@ -5,6 +5,7 @@ const initialState = {
     products: [] as ProductShop[],
     subtotal: 0 as number,
     envio: 0 as number,
+    impuesto: 0 as number,
     total: 0 as number,
 };
 
@@ -32,7 +33,33 @@ export const CartSlice = createSlice({
                 (product) => product.id !== payload
             );
         },
+        onAddSize: (state, { payload }) => {
+            state.products.map((product) => {
+                if (product.id === payload.id) {
+                    product.talla = payload.talla;
+                }
+            });
+        },
+        onBuyCart: (state) => {
+            state.products = [];
+            state.subtotal = 0;
+            state.envio = 0;
+            state.impuesto = 0;
+            state.total = 0;
+        },
+        onCalculateMount: (state, { payload }) => {
+            state.subtotal = payload.subtotal;
+            state.envio = payload.envio;
+            state.impuesto = payload.impuesto;
+            state.total = state.subtotal + state.envio + state.impuesto;
+        },
     },
 });
 
-export const { OnProductAdd, OnProductDelete } = CartSlice.actions;
+export const {
+    OnProductAdd,
+    OnProductDelete,
+    onAddSize,
+    onBuyCart,
+    onCalculateMount,
+} = CartSlice.actions;

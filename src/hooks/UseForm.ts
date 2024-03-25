@@ -1,6 +1,9 @@
 import { useState } from 'react';
+interface FormState {
+    [key: string]: string;
+}
 export const UseForm = (initialForm = {}) => {
-    const [formState, setFormState] = useState(initialForm);
+    const [formState, setFormState] = useState<FormState>(initialForm);
     const onInputChange = ({ target }: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = target;
         setFormState({

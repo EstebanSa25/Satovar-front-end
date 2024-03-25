@@ -2,7 +2,8 @@ import { Link } from 'react-router-dom';
 import { CardItem } from '../components/CartItem/CardItem';
 import { UseForm, UseShoppinCart } from '../hooks';
 import { ProductShop } from '../interfaces';
-import { UseAuth } from '../hooks/UseAuth';
+import { useEffect } from 'react';
+
 const initialForm = {
     NOMBRE: '',
     NUM_TARJETA: '',
@@ -10,9 +11,20 @@ const initialForm = {
     CVV: '',
 };
 export const CartPage = () => {
-    const { products } = UseShoppinCart();
-    const { user } = UseAuth();
+    const {
+        products,
+        startShoppinCart,
+        starCalculateMount,
+        subtotal,
+        impuesto,
+        total,
+    } = UseShoppinCart();
+
     const { onInputChange, formState } = UseForm(initialForm);
+    useEffect(() => {
+        starCalculateMount();
+    }, []);
+
     return (
         <section
             className='h-100 h-custom animate__animated animate__fadeIn'
@@ -278,7 +290,7 @@ export const CartPage = () => {
                                                         Subtotal
                                                     </p>
                                                     <p className='mb-2'>
-                                                        $0.00
+                                                        ₡{subtotal}
                                                     </p>
                                                 </div>
 
@@ -287,7 +299,9 @@ export const CartPage = () => {
                                                         Envío
                                                     </p>
                                                     <p className='mb-2'>
-                                                        $00.00
+                                                        {products.length > 0
+                                                            ? '₡3000'
+                                                            : '₡0'}
                                                     </p>
                                                 </div>
 
@@ -296,11 +310,15 @@ export const CartPage = () => {
                                                         Total(Incl. impuestos)
                                                     </p>
                                                     <p className='mb-2'>
-                                                        $0.00
+                                                        ₡{total}
                                                     </p>
                                                 </div>
 
                                                 <button
+                                                    onClick={startShoppinCart}
+                                                    disabled={
+                                                        products.length <= 0
+                                                    }
                                                     type='button'
                                                     className='btn btn-info btn-block btn-lg'
                                                     style={{
@@ -311,7 +329,9 @@ export const CartPage = () => {
                                                     // data-bs-target='#myModal'
                                                 >
                                                     <div className='d-flex justify-content-between'>
-                                                        <span>$0.00</span>
+                                                        <span className='me-2'>
+                                                            ₡{total}{' '}
+                                                        </span>
                                                         <span>
                                                             Comprar{' '}
                                                             <i className='fas fa-long-arrow-alt-right ms-2'></i>

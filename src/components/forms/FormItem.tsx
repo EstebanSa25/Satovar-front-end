@@ -6,7 +6,6 @@ import { FormProperties, FormProps } from '../../interfaces';
 export const FormItem = ({ input, button, children = null }: FormProps) => {
     const { onInputChange, formState } = UseForm();
     const { startLogin, startGoogleSignIn } = UseAuth();
-    console.log(formState);
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const { email = '', password = '' } = formState as any;
     return (
