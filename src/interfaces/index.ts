@@ -9,3 +9,5 @@ export * from './Form.interface';
 export * from './User.interface';
 export * from './AxiosError.interface';
 export * from './Api.interface';
+export * from './CardSales.interface';
+export * from './Chart.interface';

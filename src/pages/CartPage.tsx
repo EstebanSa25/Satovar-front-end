@@ -128,12 +128,12 @@ export const CartPage = () => {
                                             >
                                                 <div className='d-flex justify-content-between align-items-center mb-4'>
                                                     <h5 className='mb-0'>
-                                                        Detalles de Tarjeta
+                                                        Detalles de tarjeta
                                                     </h5>
                                                 </div>
 
                                                 <p className='small mb-2'>
-                                                    Tipo de Tarjetas
+                                                    Tipo de tarjetas
                                                 </p>
                                                 <a
                                                     href='#!'
@@ -212,7 +212,7 @@ export const CartPage = () => {
                                                             className='form-label'
                                                             htmlFor='typeText'
                                                         >
-                                                            Numero de Tarjeta
+                                                            Numero de tarjeta
                                                         </label>
                                                     </div>
 

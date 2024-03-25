@@ -3,7 +3,7 @@ export const SectionHeading = () => {
         <div className='col-lg-5'>
             <div className='section-heading'>
                 <h6>| Diseña</h6>
-                <h2>Estilo Exclusivo y Elegancia Personalizada</h2>
+                <h2>Estilo exclusivo y elegancia personalizada.</h2>
             </div>
             <div className='accordion' id='accordionExample'>
                 <div className='accordion-item'>
@@ -16,7 +16,7 @@ export const SectionHeading = () => {
                             aria-expanded='false'
                             aria-controls='collapseTwo'
                         >
-                            ¿Porqué elegirnos?
+                            ¿Por qué elegirnos?
                         </button>
                     </h2>
                     <div

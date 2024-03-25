@@ -13,7 +13,7 @@ export const Contact = () => {
                                 <div className='section-heading'>
                                     <h6>| Contactenos</h6>
                                     <h2>
-                                        Pongase en contacto con nuestros agentes
+                                        Póngase en contacto con nuestros agentes
                                     </h2>
                                 </div>
                                 <p>
@@ -50,7 +50,7 @@ export const Contact = () => {
                                             <h6>
                                                 cotizar@SATOVAR.co
                                                 <br />
-                                                <span>Correo Empresarial</span>
+                                                <span>Correo empresarial</span>
                                             </h6>
                                         </div>
                                     </div>

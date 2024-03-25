@@ -17,7 +17,7 @@ export const ContactForm = () => {
                 </div>
                 <div className='col-lg-12'>
                     <fieldset>
-                        <label htmlFor='email'>Direccion de correo</label>
+                        <label htmlFor='email'>Dirección de correo</label>
                         <input
                             type='text'
                             name='email'
@@ -57,7 +57,7 @@ export const ContactForm = () => {
                             id='form-submit'
                             className='orange-button'
                         >
-                            Enviar Mensaje
+                            Enviar mensaje
                         </button>
                     </fieldset>
                 </div>

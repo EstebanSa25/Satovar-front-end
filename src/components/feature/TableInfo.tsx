@@ -9,7 +9,7 @@ export const TableInfo = () => {
                         style={{ maxWidth: '52px' }}
                     />
                     <h4>
-                        Amplia Variedad de Estilos y Tallas
+                        Amplia variedad de estilos y tallas.
                         <br />
                         <span>
                             Descubre trajes únicos que expresan tu
@@ -24,7 +24,7 @@ export const TableInfo = () => {
                         style={{ maxWidth: '52px' }}
                     />
                     <h4>
-                        Confección a Medida
+                        Confección a medida
                         <br />
                         <span>
                             {' '}
@@ -40,7 +40,7 @@ export const TableInfo = () => {
                         style={{ maxWidth: '52px' }}
                     />
                     <h4>
-                        Diseños Exclusivos
+                        Diseños exclusivos
                         <br />
                         <span>
                             Colección única: clásicos y tendencias. ¡Viste la

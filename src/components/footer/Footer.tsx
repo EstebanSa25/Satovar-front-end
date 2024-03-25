@@ -4,7 +4,8 @@ export const Footer = () => {
             <div className='container'>
                 <div className='col-lg-8'>
                     <p>
-                        Copyright © 2023 SATOVAR Co., Ltd. All rights reserved.
+                        Copyright © 2023 SATOVAR Co., Ltd. Todos los derechos
+                        reservados.
                     </p>
                 </div>
             </div>

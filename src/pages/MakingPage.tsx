@@ -23,7 +23,7 @@ export const MakingPage = () => {
                     <div className='col-lg-4'>
                         <div className='section-heading'>
                             <h6>| CONFECCIÓN</h6>
-                            <h2>Hacemos tu estilo!</h2>
+                            <h2>¡Hacemos tu estilo!</h2>
                         </div>
                     </div>
                     <div className='col-lg-12 '>
@@ -117,12 +117,12 @@ export const MakingPage = () => {
                                                             nivel <span></span>
                                                         </li>
                                                         <li>
-                                                            Estilo Personalizado{' '}
+                                                            Estilo personalizado{' '}
                                                             <span></span>
                                                         </li>
                                                         <li>
                                                             Durabilidad y
-                                                            Frescura{' '}
+                                                            frescura{' '}
                                                             <span></span>
                                                         </li>
                                                         <li>
@@ -139,7 +139,7 @@ export const MakingPage = () => {
                                                 />
                                             </div>
                                             <div className='col-lg-3'>
-                                                <h4>Medidas para Camisa</h4>
+                                                <h4>Medidas para camisa</h4>
 
                                                 <div
                                                     id='accordion'
@@ -187,8 +187,8 @@ export const MakingPage = () => {
                                                                 aria-expanded='true'
                                                                 aria-controls='collapseLengthPant'
                                                             >
-                                                                Medidas de Largo
-                                                                Camisa
+                                                                Medidas de largo
+                                                                camisa
                                                             </button>
                                                         </h2>
                                                         <div
@@ -248,7 +248,7 @@ export const MakingPage = () => {
                                                         }
                                                     >
                                                         <i className='fa fa-calendar'></i>{' '}
-                                                        Guardar Medidas
+                                                        Guardar medidas
                                                     </Link>
                                                 </div>
                                             </div>
@@ -266,20 +266,20 @@ export const MakingPage = () => {
                                                 <div className='info-table'>
                                                     <ul>
                                                         <li>
-                                                            TElegancia Adicional{' '}
+                                                            Elegancia adicional{' '}
                                                             <span></span>
                                                         </li>
                                                         <li>
-                                                            Ajuste y Comodidad{' '}
+                                                            Ajuste y comodidad{' '}
                                                             <span></span>
                                                         </li>
                                                         <li>
-                                                            Estilo Versatil{' '}
+                                                            Estilo versatil{' '}
                                                             <span></span>
                                                         </li>
                                                         <li>
                                                             Detalles
-                                                            Sofisticados
+                                                            sofisticados
                                                             <span></span>
                                                         </li>
                                                     </ul>
@@ -292,7 +292,7 @@ export const MakingPage = () => {
                                                 />
                                             </div>
                                             <div className='col-lg-3'>
-                                                <h4>Medidas Chaleco</h4>
+                                                <h4>Medidas para chaleco</h4>
                                                 <div
                                                     id='accordion'
                                                     className='accordion'
@@ -385,8 +385,8 @@ export const MakingPage = () => {
                                                                 aria-expanded='true'
                                                                 aria-controls='collapseLengthPant'
                                                             >
-                                                                Medidas de Largo
-                                                                Chaleco
+                                                                Medidas de largo
+                                                                chaleco
                                                             </button>
                                                         </h2>
                                                         <div
@@ -466,7 +466,7 @@ export const MakingPage = () => {
                                                 <div className='icon-button'>
                                                     <a href='login.html'>
                                                         <i className='fa fa-calendar'></i>{' '}
-                                                        Guardar Medidas
+                                                        Guardar medidas
                                                     </a>
                                                 </div>
                                             </div>
@@ -484,21 +484,21 @@ export const MakingPage = () => {
                                                 <div className='info-table'>
                                                     <ul>
                                                         <li>
-                                                            Elegancia a Medida{' '}
+                                                            Elegancia a medida{' '}
                                                             <span></span>
                                                         </li>
                                                         <li>
-                                                            Telas Premium
+                                                            Telas premium
                                                             <span></span>
                                                         </li>
                                                         <li>
                                                             Detalles
-                                                            Personalizados{' '}
+                                                            personalizados{' '}
                                                             <span></span>
                                                         </li>
                                                         <li>
                                                             Versatilidad
-                                                            Estilizada{' '}
+                                                            estilizada{' '}
                                                             <span></span>
                                                         </li>
                                                     </ul>
@@ -511,7 +511,7 @@ export const MakingPage = () => {
                                                 />
                                             </div>
                                             <div className='col-lg-3'>
-                                                <h4>Medidas Pantalón</h4>
+                                                <h4>Medidas para pantalón</h4>
                                                 <div
                                                     id='accordion'
                                                     className='accordion'
@@ -634,8 +634,8 @@ export const MakingPage = () => {
                                                                 aria-expanded='true'
                                                                 aria-controls='collapseLengthPant'
                                                             >
-                                                                Medidas de Largo
-                                                                Pantalón
+                                                                Medidas de largo
+                                                                de pantalón
                                                             </button>
                                                         </h2>
                                                         <div
@@ -717,7 +717,7 @@ export const MakingPage = () => {
                                                 <div className='icon-button'>
                                                     <a href='login.html'>
                                                         <i className='fa fa-save'></i>{' '}
-                                                        Guardar Medidas
+                                                        Guardar medidas
                                                     </a>
                                                 </div>
                                             </div>
@@ -735,21 +735,21 @@ export const MakingPage = () => {
                                                 <div className='info-table'>
                                                     <ul>
                                                         <li>
-                                                            Elegancia a Medida{' '}
+                                                            Elegancia a medida{' '}
                                                             <span></span>
                                                         </li>
                                                         <li>
-                                                            Telas Premium
+                                                            Telas premium
                                                             <span></span>
                                                         </li>
                                                         <li>
                                                             Detalles
-                                                            Personalizados{' '}
+                                                            personalizados{' '}
                                                             <span></span>
                                                         </li>
                                                         <li>
                                                             Versatilidad
-                                                            Estilizada{' '}
+                                                            estilizada{' '}
                                                             <span></span>
                                                         </li>
                                                     </ul>
@@ -762,7 +762,7 @@ export const MakingPage = () => {
                                                 />
                                             </div>
                                             <div className='col-lg-3'>
-                                                <h4>Medidas Saco</h4>
+                                                <h4>Medidas para saco</h4>
 
                                                 <div
                                                     id='accordion'
@@ -870,8 +870,8 @@ export const MakingPage = () => {
                                                                 aria-expanded='true'
                                                                 aria-controls='collapseLengthPant'
                                                             >
-                                                                Medidas de Largo
-                                                                saco
+                                                                Medidas de largo
+                                                                de saco
                                                             </button>
                                                         </h2>
                                                         <div
@@ -999,7 +999,7 @@ export const MakingPage = () => {
                                                 <div className='icon-button'>
                                                     <a href='login.html'>
                                                         <i className='fa fa-save'></i>{' '}
-                                                        Guardar Medidas
+                                                        Guardar medidas
                                                     </a>
                                                 </div>
                                             </div>

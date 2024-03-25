@@ -10,6 +10,7 @@ import {
     MakingPage,
     RegisterPage,
     RentPage,
+    SalesPage,
 } from '../pages';
 import { UseAuth } from '../hooks/UseAuth';
 import { useEffect } from 'react';
@@ -59,6 +60,7 @@ export const AppRouter = () => {
                         </>
                     ) : (
                         <>
+                            <Route path='/ventas' element={<SalesPage />} />
                             {/* <Route path='/' element={<CalendarPage />} /> */}
                             {/* <Route path='/*' element={<Navigate to={'/'} />} /> */}
                         </>

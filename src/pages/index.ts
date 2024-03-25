@@ -6,3 +6,4 @@ export * from './MakingPage.tsx';
 export * from './CartPage.tsx';
 export * from './Contact.tsx';
 export * from './RegisterPage.tsx';
+export * from './SalesPage.tsx';

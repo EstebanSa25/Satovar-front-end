@@ -811,7 +811,7 @@ Banner Style
 }
 
 .main-banner .item-2 {
-    background-image: url(../assets/images/images/photo-boda-re.jpg);
+    background-image: url(../assets/images/photo-boda-re.jpg);
 }
 
 .main-banner .item span.category {
@@ -1278,7 +1278,7 @@ Contact Style
 */
 
 .contact {
-    background-image: url(../images/contact-bg.jpg);
+    background-image: url(../assets/images/contact-bg.jpg);
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center center;
@@ -1424,21 +1424,319 @@ footer p a:hover {
 
 /* 
 ---------------------------------------------
-Page Header Style
+Panel page Style
 --------------------------------------------- 
 */
 
-.swal2-confirm {
-    border-color: #f35525 !important;
-    background-color: #f35525 !important; /* Cambia el color de fondo del botón Confirmar */
-    color: white; /* Cambia el color del texto del botón Confirmar */
+.team-grid {
+    color: #313437;
+    background-color: #fff;
 }
-.swal2-cancel {
-    background-color: black !important; /* Cambia el color de fondo del botón Cancelar */
-    background-color: black !important; /* Cambia el color de fondo del botón Cancelar */
-    color: white; /* Cambia el color del texto del botón Cancelar */
+.team-grid .container {
+    text-align: center;
+}
+.team-grid p {
+    color: #7d8285;
+}
+.people {
+    display: flex;
+    justify-content: center;
 }
 
+.team-grid h2 {
+    font-weight: bold;
+    margin-bottom: 40px;
+    padding-top: 40px;
+    color: inherit;
+}
+
+@media (max-width: 767px) {
+    .team-grid h2 {
+        margin-bottom: 25px;
+        padding-top: 25px;
+        font-size: 24px;
+    }
+}
+
+.team-grid .intro {
+    font-size: 16px;
+    max-width: 500px;
+    margin: 0 auto !important;
+}
+
+.team-grid .intro p {
+    margin-bottom: 0;
+}
+
+.team-grid .people {
+    padding: 50px 0;
+}
+
+.team-grid .item {
+    margin-bottom: 30px;
+}
+
+.team-grid .item .box {
+    border-radius: 20px;
+    text-align: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    height: 280px;
+    position: relative;
+    overflow: hidden;
+}
+
+.Fechas {
+    display: flex;
+    justify-content: center;
+}
+
+.container-Graficas {
+    display: flex; /* Activa Flexbox */
+    justify-content: center; /* Centra los elementos horizontalmente */
+    flex-wrap: wrap; /* Permite que los elementos se envuelvan en varias líneas si no hay suficiente espacio */
+    padding: 20px;
+}
+
+.container-fluid {
+    flex: 1; /* Los contenedores de gráficos crecen de manera uniforme */
+    max-width: 50%; /* Cada contenedor de gráficos puede ocupar hasta la mitad del ancho del contenedor padre */
+    padding: 20px; /* Añade algo de espacio alrededor de los gráficos */
+    padding: 0 10px;
+}
+
+.Fechas .btn {
+    margin: 20px;
+}
+
+.box-color1 {
+    background-color: rgb(243, 85, 37, 0.6);
+}
+
+.box-color1:hover {
+    background-color: rgb(243, 85, 37, 0.9);
+}
+
+.box-color2 {
+    background-color: rgb(243, 85, 37, 0.6);
+}
+
+.box-color2:hover {
+    background-color: rgb(243, 85, 37, 0.9);
+}
+
+.box-color3 {
+    background-color: rgb(243, 85, 37, 0.6);
+}
+
+.box-color3:hover {
+    background-color: rgb(243, 85, 37, 0.9);
+}
+
+.team-grid .item .cover {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transition: opacity 0.15s ease-in;
+    padding-top: 80px;
+    color: #fff;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.15);
+}
+
+.team-grid .item:hover .cover {
+    opacity: 1;
+    background-color: rgba(0, 0, 0, 0, o.5);
+}
+
+.team-grid .item .name {
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+.team-grid .item .title {
+    text-transform: uppercase;
+    font-weight: bold;
+    color: #bbd8fb;
+    letter-spacing: 2px;
+    font-size: 13px;
+    margin-bottom: 20px;
+}
+
+.team-grid .social {
+    font-size: 18px;
+}
+
+.team-grid .social a {
+    color: inherit;
+    margin: 0 10px;
+    display: inline-block;
+    opacity: 0.7;
+}
+
+.team-grid .social a:hover {
+    opacity: 1;
+}
+
+/* 
+---------------------------------------------
+Page Panel Pedidos
+--------------------------------------------- 
+*/
+.pedidos {
+    text-align: center;
+    margin: 6rem 30px 0 30px;
+    border-radius: 20px;
+    padding: 20px 20px 0;
+}
+
+.scrollable-container {
+    max-height: 500px; /* Ajusta esto a la altura que desees */
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.container-pedidos {
+    padding-left: 0;
+    padding-right: 0;
+    margin: 0 12px 0;
+}
+
+.container-pedidos .col {
+    margin: 0px 12px 0px;
+}
+
+.tabla-proceso {
+    border-radius: 20px;
+    background-color: rgb(255, 140, 0, 0.4);
+}
+
+.tabla-terminado {
+    border-radius: 20px;
+    background-color: rgba(29, 214, 85, 0.2);
+}
+
+/* 
+---------------------------------------------
+Page Panel Admin
+--------------------------------------------- 
+*/
+.container-ingreso {
+    color: white;
+    background-image: url(../assets/images/measures-a-man-hand-for-clothes.jpg);
+    width: 600px;
+    height: auto;
+    padding: 20px;
+    border: solid;
+    border-color: #df610d;
+    border-radius: 20px;
+    width: auto; /* Ajusta el ancho automáticamente al contenido */
+    margin: 0 auto; /* Centrar el contenedor si es necesario */
+    box-sizing: border-box; /* Incluye el padding y el borde en el cálculo del ancho */
+}
+
+/* Asegúrate de que los elementos del formulario no sean más anchos que el contenedor */
+.form-ingreso {
+    width: calc(100% - 40px); /* 100% menos el padding horizontal total */
+    box-sizing: border-box; /* Incluye el padding y el borde en el cálculo del ancho */
+}
+
+/* 
+---------------------------------------------
+Page Perfil-Usuario
+--------------------------------------------- 
+*/
+.container-usuario {
+    margin: 10px 200px;
+    background-color: #f35525;
+
+    h1 {
+        color: white;
+    }
+}
+
+.container-foto {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%; /* Adjust the height as needed */
+}
+
+.container-foto img {
+    max-width: 400px;
+    max-height: 400px;
+}
+
+.medidas-usuario .input-group-text {
+    min-width: 120px; /* O cualquier otro ancho que prefieras */
+    text-align: right; /* Si prefieres que el texto esté alineado a la derecha */
+}
+
+.datos-medidas .border {
+    margin: 5px;
+    border-radius: 10px;
+}
+
+.container-medidas {
+    justify-content: space-around;
+    /*background-image: url(../images/measures-a-man-hand-for-clothes.jpg);*/
+}
+
+.cantidad-talla {
+    height: 20px;
+    width: 50px;
+    border-radius: 20px;
+}
+
+.datos-medidas {
+    padding: 50px;
+
+    .no .form-control {
+        text-decoration-line: line-through;
+    }
+}
+
+.container-medidas .col-md-3 {
+    display: flex;
+    flex-direction: column; /* Esto orienta los hijos (input-group y botones) en una columna */
+    height: 100%;
+}
+
+/* Asegúrate de que los botones siempre se peguen al fondo */
+.container-medidas .botones {
+    margin-top: auto;
+}
+
+/* Para los textarea, si quieres que sean un poco más grandes por defecto: */
+.container-medidas textarea {
+    min-height: 150px; /* Ajusta esto a lo que necesites */
+}
+
+.botones .btn {
+    justify-content: end;
+}
+
+.med-saco,
+.med-camisa,
+.med-pantalon,
+.med-chaleco {
+    background-color: rgba(11, 124, 48, 0.4);
+    display: flex; /* Habilita flexbox */
+    flex-direction: column; /* Stack los elementos verticalmente */
+    justify-content: space-between; /* Espacio entre el contenido y los botones */
+    height: 100%; /* Ocupa el alto total del contenedor padre */
+}
+
+/* 
+---------------------------------------------
+Page Header Style
+--------------------------------------------- 
+*/
+.container-graficas {
+    margin: 0 auto;
+}
 .page-heading {
     background-image: url(../assets/images/measures-a-man-hand-for-clothes.jpg);
     background-position: center bottom;

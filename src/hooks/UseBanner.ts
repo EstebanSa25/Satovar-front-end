@@ -3,12 +3,12 @@ const images = [
     {
         imagen: '/src/assets/images/traje-para-eventos-de-noche-re.jpg',
         categoria: 'Smoking',
-        titulo: 'Satovar! por que la primera impresión es la que vale',
+        titulo: 'Satovar ¡Por qué la primera impresión es la que vale!',
     },
     {
         imagen: '/src/assets/images/photo-boda-re.jpg',
         categoria: 'Exterior',
-        titulo: 'Sientete bien en un diá tan especial',
+        titulo: 'Siéntete bien en un día tan especial',
     },
 ];
 export const UseBanner = () => {
