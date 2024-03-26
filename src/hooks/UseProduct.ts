@@ -37,6 +37,7 @@ export const UseProduct = () => {
                     Corbata: 4,
                     camisa: 5,
                 },
+                catalogo: product.T_CATALOGO.CI_ID_CATALOGO,
                 color: product.T_TELA.CV_NOMBRE,
                 tallas: product.T_PRODUCTO_X_TALLA,
             };

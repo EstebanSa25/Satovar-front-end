@@ -29,3 +29,4 @@ export * from './chart/ChartSales';
 export * from './chart/ChartContainer';
 export * from './chart/EchartsPie';
 export * from './chart/EchartsPieRose';
+export * from './tables/OrdesTable';

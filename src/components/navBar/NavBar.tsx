@@ -27,6 +27,11 @@ export const NavBar = () => {
                 // ADMIN
                 <>
                     <NavBarItem url='/ventas' title='Ventas'></NavBarItem>
+                    <NavBarItem url='/pedidos' title='Pedidos'></NavBarItem>
+                    <NavBarItem
+                        url='/producto/crear'
+                        title='Crear producto'
+                    ></NavBarItem>
                 </>
             )}
 

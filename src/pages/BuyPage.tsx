@@ -1,12 +1,11 @@
 import { useEffect } from 'react';
 import { Card, Filter, SimpleBanner } from '../components';
 import { UseProduct } from '../hooks';
-import { Product } from '../interfaces';
+import { CatalogoType, Product } from '../interfaces';
 export const BuyPage = () => {
     const { products = [], startGetProduct, CategoryActive } = UseProduct();
 
     useEffect(() => {
-        console.log(products);
         startGetProduct();
         // productsExample.map((product) => startCreateProduct(product));
     }, [CategoryActive]);
@@ -18,6 +17,7 @@ export const BuyPage = () => {
                     <Filter />
                     <div className='row properties-box '>
                         {products.map((product: Product) =>
+                            product.catalogo === CatalogoType.Venta &&
                             CategoryActive === 'Mostrar todo' ? (
                                 <Card key={product.id} {...product}></Card>
                             ) : (

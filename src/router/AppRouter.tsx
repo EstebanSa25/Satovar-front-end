@@ -1,4 +1,4 @@
-import { Route, Routes } from 'react-router-dom';
+import { Navigate, Route, Routes } from 'react-router-dom';
 
 import { Layout } from '../layout';
 import {
@@ -8,6 +8,8 @@ import {
     HomePage,
     LoginPage,
     MakingPage,
+    OrdersPage,
+    ProductCreatePage,
     RegisterPage,
     RentPage,
     SalesPage,
@@ -61,8 +63,15 @@ export const AppRouter = () => {
                     ) : (
                         <>
                             <Route path='/ventas' element={<SalesPage />} />
-                            {/* <Route path='/' element={<CalendarPage />} /> */}
-                            {/* <Route path='/*' element={<Navigate to={'/'} />} /> */}
+                            <Route path='/pedidos' element={<OrdersPage />} />
+                            <Route
+                                path='/producto/crear'
+                                element={<ProductCreatePage />}
+                            />
+                            <Route
+                                path='/*'
+                                element={<Navigate to={'/ventas'} />}
+                            />
                         </>
                     )
                 }

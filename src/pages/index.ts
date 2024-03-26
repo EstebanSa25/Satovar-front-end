@@ -7,3 +7,5 @@ export * from './CartPage.tsx';
 export * from './Contact.tsx';
 export * from './RegisterPage.tsx';
 export * from './SalesPage.tsx';
+export * from './OrdersPage.tsx';
+export * from './ProductCreatePage.tsx';

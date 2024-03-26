@@ -6,6 +6,11 @@ interface Cantidad {
     camisa: number;
 }
 
+export enum CatalogoType {
+    Venta = 1,
+    Alquiler = 2,
+}
+
 export interface Product {
     id: number;
     nombre: string;
@@ -15,6 +20,7 @@ export interface Product {
     cantidad: Cantidad;
     color: string;
     tallas: [];
+    catalogo: CatalogoType | number;
     fecha?: Date;
 }
 
