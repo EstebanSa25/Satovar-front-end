@@ -6,6 +6,7 @@ import {
     onAddSize,
     onBuyCart,
     onCalculateMount,
+    onLoading,
 } from '../redux-store';
 import satovarApi from '../api/SatovarApi';
 import { useNavigate } from 'react-router-dom';
@@ -16,10 +17,11 @@ import { UseProduct } from '.';
 
 export const UseShoppinCart = () => {
     const dispatch = useDispatch();
-    const { products, subtotal, envio, impuesto, total } = useSelector(
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        (state: any) => state.Cart
-    );
+    const { products, subtotal, envio, impuesto, total, isLoading } =
+        useSelector(
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            (state: any) => state.Cart
+        );
     const { startGetProduct } = UseProduct();
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const { status } = useSelector((state: any) => state.Auth);
@@ -68,6 +70,7 @@ export const UseShoppinCart = () => {
             };
         });
         try {
+            dispatch(onLoading(true));
             await satovarApi.post('/buy/products', {
                 subtotal: subtotal,
                 impuestos: impuesto,
@@ -75,15 +78,16 @@ export const UseShoppinCart = () => {
                 total: total,
                 productos: productShop,
             });
+            dispatch(onLoading(false));
+            navigate('/');
             Swal.fire({
                 icon: 'success',
                 title: 'Compra realizada con exito',
                 text: 'Gracias por su compra',
-                showConfirmButton: false,
-                timer: 1800,
+                showConfirmButton: true,
+                timer: 3000,
             });
             dispatch(onBuyCart());
-            navigate('/');
         } catch (error) {
             const axiosError = error as AxiosError;
             const errorCode = axiosError.response?.status as number;
@@ -102,6 +106,7 @@ export const UseShoppinCart = () => {
         envio,
         impuesto,
         total,
+        isLoading,
         //Metodos
         startAddProduct,
         startProductDelete,

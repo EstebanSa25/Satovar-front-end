@@ -7,6 +7,7 @@ const initialState = {
     envio: 0 as number,
     impuesto: 0 as number,
     total: 0 as number,
+    isLoading: false as boolean,
 };
 
 export const CartSlice = createSlice({
@@ -41,6 +42,7 @@ export const CartSlice = createSlice({
             });
         },
         onBuyCart: (state) => {
+            state.isLoading = false;
             state.products = [];
             state.subtotal = 0;
             state.envio = 0;
@@ -53,6 +55,9 @@ export const CartSlice = createSlice({
             state.impuesto = payload.impuesto;
             state.total = state.subtotal + state.envio + state.impuesto;
         },
+        onLoading: (state, { payload }) => {
+            state.isLoading = payload;
+        },
     },
 });
 
@@ -62,4 +67,5 @@ export const {
     onAddSize,
     onBuyCart,
     onCalculateMount,
+    onLoading,
 } = CartSlice.actions;

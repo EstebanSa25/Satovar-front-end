@@ -123,6 +123,7 @@ export const UseAuth = () => {
                 'token-init-date',
                 new Date().getTime().toString()
             );
+            navigate('/');
             dispatch(onLogin(user));
         } catch (error) {
             const axiosError = error as AxiosError;

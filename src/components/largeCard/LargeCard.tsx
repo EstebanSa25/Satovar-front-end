@@ -55,8 +55,7 @@ export const LargeCard = ({
                                 }
                                 to=''
                             >
-                                <i className='fa fa-shopping-cart'></i> Anadir
-                                al carrito
+                                <i className='fa fa-shopping-cart'></i> Alquilar
                             </Link>
                         </div>
                     ) : (

@@ -21,7 +21,8 @@ export const BuyPage = () => {
                             CategoryActive === 'Mostrar todo' ? (
                                 <Card key={product.id} {...product}></Card>
                             ) : (
-                                product.nombre.includes(CategoryActive) && (
+                                product.nombre.includes(CategoryActive) &&
+                                product.catalogo === CatalogoType.Venta && (
                                     <Card key={product.id} {...product}></Card>
                                 )
                             )

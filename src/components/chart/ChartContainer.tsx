@@ -32,7 +32,7 @@ export const ChartContainer = () => {
                 </div>
                 <div className='col'>
                     <EchartsGeneric
-                        title='Ventas por anio'
+                        title='Ventas por año'
                         xAxis={['2020', '2021', '2022', '2023', '2024']}
                         series={{
                             name: 'Ventas',
@@ -57,13 +57,13 @@ export const ChartContainer = () => {
                 </div>
                 <div className='col'>
                     <EchartsPieRose
-                        title='Productos que mas se venden'
+                        title='Telas que mas se utilizan'
                         data={[
-                            { value: 400, name: 'Producto 1' },
-                            { value: 500, name: 'Producto 2' },
-                            { value: 600, name: 'Producto 3' },
-                            { value: 700, name: 'Producto 4' },
-                            { value: 800, name: 'Producto 5' },
+                            { value: 400, name: 'Tela 1' },
+                            { value: 500, name: 'Tela 2' },
+                            { value: 600, name: 'Tela 3' },
+                            { value: 700, name: 'Tela 4' },
+                            { value: 800, name: 'Tela 5' },
                         ]}
                     />
                 </div>
