@@ -1,19 +1,25 @@
 import { Link } from 'react-router-dom';
 import {
     MeasureDetailsShirt,
+    MeasureDetailsWaistcoat,
     MeasureLargeShirt,
+    MeasureLargeWaistcoat,
     MeasureTopShirt,
+    MeasureUpperWaistcoat,
 } from '../components';
 import { UseAuth } from '../hooks/UseAuth';
-import { UseMeasureShirt } from '../hooks';
+import { UseMeasureShirt, UseMeasureWaistcoat } from '../hooks';
 import { useEffect } from 'react';
 
 export const MakingPage = () => {
     const { status } = UseAuth();
     const { CreateMeasureShirt, startGetMeasureShirt } = UseMeasureShirt();
+    const { CreateMeasureWaistcoat, startGetMeasureWaistcoat } =
+        UseMeasureWaistcoat();
 
     useEffect(() => {
         startGetMeasureShirt();
+        startGetMeasureWaistcoat();
     }, []);
 
     return (
@@ -322,53 +328,8 @@ export const MakingPage = () => {
                                                             data-bs-parent='#accordion'
                                                         >
                                                             <div className='accordion-body'>
-                                                                <form>
-                                                                    <div className='mb-3'>
-                                                                        <label
-                                                                            htmlFor='headingTopShirt'
-                                                                            className='form-label'
-                                                                        >
-                                                                            Pecho:
-                                                                        </label>
-                                                                        <input
-                                                                            type='number'
-                                                                            className='form-control'
-                                                                            id='cinturacamisa'
-                                                                            name='cinturaCamisa'
-                                                                            required
-                                                                        />
-                                                                    </div>
-                                                                    <div className='mb-3'>
-                                                                        <label
-                                                                            htmlFor='headingTopShirt'
-                                                                            className='form-label'
-                                                                        >
-                                                                            Cintura:
-                                                                        </label>
-                                                                        <input
-                                                                            type='number'
-                                                                            className='form-control'
-                                                                            id='caderacamisa'
-                                                                            name='caderaCamisa'
-                                                                            required
-                                                                        />
-                                                                    </div>
-                                                                    <div className='mb-3'>
-                                                                        <label
-                                                                            htmlFor='headingTopShirt'
-                                                                            className='form-label'
-                                                                        >
-                                                                            Cadera:
-                                                                        </label>
-                                                                        <input
-                                                                            type='number'
-                                                                            className='form-control'
-                                                                            id='espaldaCamisa'
-                                                                            name='espaldaCamisa'
-                                                                            required
-                                                                        />
-                                                                    </div>
-                                                                </form>
+                                                                {/*  */}
+                                                                <MeasureUpperWaistcoat />
                                                             </div>
                                                         </div>
                                                     </div>
@@ -396,24 +357,8 @@ export const MakingPage = () => {
                                                             data-bs-parent='#accordion'
                                                         >
                                                             <div className='accordion-body'>
-                                                                <form>
-                                                                    <div className='mb-3'>
-                                                                        <label
-                                                                            htmlFor='LargoTotalCamisa'
-                                                                            className='form-label'
-                                                                        >
-                                                                            Largo
-                                                                            total:
-                                                                        </label>
-                                                                        <input
-                                                                            type='number'
-                                                                            className='form-control'
-                                                                            id='LargoTotalCamisa'
-                                                                            name='LargoTotalCamisa'
-                                                                            required
-                                                                        />
-                                                                    </div>
-                                                                </form>
+                                                                {/*  */}
+                                                                <MeasureLargeWaistcoat />
                                                             </div>
                                                         </div>
                                                     </div>
@@ -442,32 +387,30 @@ export const MakingPage = () => {
                                                             data-bs-parent='#accordion'
                                                         >
                                                             <div className='accordion-body'>
-                                                                <form>
-                                                                    <div className='mb-3'>
-                                                                        <label
-                                                                            htmlFor='DetallesCamisa'
-                                                                            className='form-label'
-                                                                        >
-                                                                            Detalles
-                                                                            Adicionales:
-                                                                        </label>
-                                                                        <input
-                                                                            type='text'
-                                                                            className='form-control'
-                                                                            id='DetallesCamisa'
-                                                                            name='DetallesCamisa'
-                                                                        />
-                                                                    </div>
-                                                                </form>
+                                                                {/*  */}
+                                                                <MeasureDetailsWaistcoat />
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                                 <div className='icon-button'>
-                                                    <a href='login.html'>
+                                                    <Link
+                                                        to={
+                                                            status ===
+                                                            'not-authenticated'
+                                                                ? '/auth/login'
+                                                                : ''
+                                                        }
+                                                        onClick={
+                                                            status ===
+                                                            'authenticated'
+                                                                ? CreateMeasureWaistcoat
+                                                                : () => {}
+                                                        }
+                                                    >
                                                         <i className='fa fa-calendar'></i>{' '}
                                                         Guardar medidas
-                                                    </a>
+                                                    </Link>
                                                 </div>
                                             </div>
                                         </div>

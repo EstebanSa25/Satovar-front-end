@@ -3,7 +3,7 @@ import { UseForm, UseMeasureShirt } from '../../hooks';
 
 export const MeasureLargeShirt = () => {
     const { formState, onInputChange } = UseForm();
-    const { startSaveMeasureShirtLarge } = UseMeasureShirt();
+    const { startSaveMeasureShirtLarge, measureShirt } = UseMeasureShirt();
     useEffect(() => {
         startSaveMeasureShirtLarge(formState);
     }, [formState]);
@@ -15,10 +15,15 @@ export const MeasureLargeShirt = () => {
                     Largo manga:
                 </label>
                 <input
+                    disabled={measureShirt.medida.CI_L_MANGA ? true : false}
                     type='number'
                     className='form-control'
                     onChange={onInputChange}
-                    value={formState.LargoMangaCamisa}
+                    value={
+                        measureShirt.medida.CI_L_MANGA
+                            ? measureShirt.medida.CI_L_MANGA
+                            : formState.LargoMangaCamisa
+                    }
                     id='LargoMangaCamisa'
                     name='LargoMangaCamisa'
                     required
@@ -29,12 +34,17 @@ export const MeasureLargeShirt = () => {
                     Largo total:
                 </label>
                 <input
+                    disabled={measureShirt.medida.CI_L_TOTAL ? true : false}
                     type='number'
                     className='form-control'
                     id='LargoTotalCamisa'
                     onChange={onInputChange}
                     name='LargoTotalCamisa'
-                    value={formState.LargoTotalCamisa}
+                    value={
+                        measureShirt.medida.CI_L_TOTAL
+                            ? measureShirt.medida.CI_L_TOTAL
+                            : formState.LargoTotalCamisa
+                    }
                     required
                 />
             </div>
@@ -43,12 +53,17 @@ export const MeasureLargeShirt = () => {
                     Brazo:
                 </label>
                 <input
+                    disabled={measureShirt.medida.CI_BRAZO ? true : false}
                     type='number'
                     className='form-control'
                     id='BrazoCamisa'
                     onChange={onInputChange}
                     name='BrazoCamisa'
-                    value={formState.BrazoCamisa}
+                    value={
+                        measureShirt.medida.CI_BRAZO
+                            ? measureShirt.medida.CI_BRAZO
+                            : formState.BrazoCamisa
+                    }
                     required
                 />
             </div>
@@ -57,12 +72,17 @@ export const MeasureLargeShirt = () => {
                     Puño:
                 </label>
                 <input
+                    disabled={measureShirt.medida.CI_PUNO ? true : false}
                     type='number'
                     className='form-control'
                     id='PunoCamisa'
                     onChange={onInputChange}
                     name='PunoCamisa'
-                    value={formState.PunoCamisa}
+                    value={
+                        measureShirt.medida.CI_PUNO
+                            ? measureShirt.medida.CI_PUNO
+                            : formState.PunoCamisa
+                    }
                     required
                 />
             </div>

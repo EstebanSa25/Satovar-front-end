@@ -5,6 +5,7 @@ import {
     onCreateMeasureShirtDetails,
     onCreateMeasureShirtLarge,
     onCreateMeasureShirtTop,
+    onGetMeasureShirt,
 } from '../redux-store';
 import satovarApi from '../api/SatovarApi';
 import Swal from 'sweetalert2';
@@ -76,6 +77,7 @@ export const UseMeasureShirt = () => {
             const { data } = await satovarApi.get(
                 `/measure/shirt/${user.CI_ID_USUARIO}`
             );
+            dispatch(onGetMeasureShirt(data));
             console.log(data);
         } catch (error) {
             console.log(error);

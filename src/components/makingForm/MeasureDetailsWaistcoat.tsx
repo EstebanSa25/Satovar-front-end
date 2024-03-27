@@ -1,15 +1,16 @@
 import { useEffect, useState } from 'react';
-import { UseMeasureShirt } from '../../hooks';
+import { UseMeasureWaistcoat } from '../../hooks';
 
-export const MeasureDetailsShirt = () => {
+export const MeasureDetailsWaistcoat = () => {
     const [formState, setFormState] = useState('');
 
-    const { startSaveMeasureShirtDetails, measureShirt } = UseMeasureShirt();
+    const { startSaveMeasureWaistcoatDetails, measureWaistcoat } =
+        UseMeasureWaistcoat();
     useEffect(() => {
-        startSaveMeasureShirtDetails(formState);
+        startSaveMeasureWaistcoatDetails(formState);
     }, [formState]);
 
-    const onChange = ({ target }: React.ChangeEvent<HTMLTextAreaElement>) => {
+    const onChange = ({ target }: React.ChangeEvent<HTMLInputElement>) => {
         const { value } = target;
         setFormState(value);
     };
@@ -19,19 +20,17 @@ export const MeasureDetailsShirt = () => {
                 <label htmlFor='DetallesCamisa' className='form-label'>
                     Detalles Adicionales:
                 </label>
-                <textarea
-                    disabled={measureShirt.medida.CV_DETALLES ? true : false}
-                    value={
-                        measureShirt.medida.CV_DETALLES
-                            ? measureShirt.medida.CV_DETALLES
-                            : formState
+                <input
+                    disabled={
+                        measureWaistcoat.medida.CV_DETALLES ? true : false
                     }
                     onChange={onChange}
+                    value={measureWaistcoat.medida.CV_DETALLES || formState}
+                    type='text'
                     className='form-control'
                     id='DetallesCamisa'
                     name='DetallesCamisa'
-                    rows={4}
-                ></textarea>
+                />
             </div>
         </form>
     );

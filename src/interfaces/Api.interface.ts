@@ -36,3 +36,17 @@ export interface Category {
     CI_ID_CATEGORIA: number;
     CV_DESCRIPCION: string;
 }
+
+//obtener medidas de chaleco del usuario
+
+export interface MeasureWaistcoatInterfaceAPI {
+    medida: Medida;
+}
+interface Medida {
+    CI_ID_CHALECO: number;
+    CI_PECHO: number;
+    CI_CINTURA: number;
+    CI_CADERA: number;
+    CI_L_TOTAL: number;
+    CV_DETALLES: string;
+}

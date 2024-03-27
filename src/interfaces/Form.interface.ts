@@ -62,12 +62,12 @@ export interface RegisterFormState {
 }
 
 export interface TopShirtMeasure {
-    cinturacamisa: number;
-    pechocamisa: number;
-    caderacamisa: number;
-    espaldaCamisa: number;
-    hombroCamisa: number;
-    cuelloCamisa: number;
+    cinturaCamisa: number | string;
+    pechocamisa: number | string;
+    caderaCamisa: number | string;
+    espaldaCamisa: number | string;
+    hombroCamisa: number | string;
+    cuelloCamisa: number | string;
 }
 
 export interface formStateTopShirt {

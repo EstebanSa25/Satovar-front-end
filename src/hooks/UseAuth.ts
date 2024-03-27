@@ -6,6 +6,7 @@ import {
     onLogin,
     onLogout,
     onLoginGoogle,
+    onResetMeasure,
 } from '../redux-store';
 import satovarApi from '../api/SatovarApi';
 import Swal from 'sweetalert2';
@@ -158,6 +159,7 @@ export const UseAuth = () => {
     const startLogout = () => {
         localStorage.clear();
         dispatch(onLogout(''));
+        dispatch(onResetMeasure());
         navigate('/');
     };
     return {
