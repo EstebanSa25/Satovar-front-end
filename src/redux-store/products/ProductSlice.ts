@@ -17,6 +17,8 @@ export const ProductSlice = createSlice({
         },
         onAddNewProduct: (state, { payload }) => {
             //Validar si el producto ya existe
+            state.isLoadingProduct = false;
+            state.activeProduct = null;
             const exists = state.products.some(
                 (product) => product.id === payload.id
             );
@@ -43,6 +45,7 @@ export const ProductSlice = createSlice({
         },
         onLoadProducts: (state, { payload }) => {
             state.isLoadingProduct = true;
+            state.activeProduct = null;
             // state.events = payload;
             payload.forEach((product: Product) => {
                 const exists = state.products.some(
@@ -66,6 +69,9 @@ export const ProductSlice = createSlice({
         onResetCategoryActive: (state) => {
             state.CategoryActive = '';
         },
+        onResetProductActive: (state) => {
+            state.activeProduct = null;
+        },
     },
 });
 
@@ -77,4 +83,5 @@ export const {
     onLoadProducts,
     onCategoryActive,
     onResetCategoryActive,
+    onResetProductActive,
 } = ProductSlice.actions;

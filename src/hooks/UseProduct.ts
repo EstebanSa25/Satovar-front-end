@@ -15,10 +15,6 @@ export const UseProduct = () => {
         );
     const dispatch = useDispatch();
 
-    const startCreateProduct = (product: Product) => {
-        dispatch(onAddNewProduct(product));
-    };
-
     const startGetProduct = async () => {
         const { data } = await satovarApi.get<ProductInterfaceAPI[]>(
             '/Products?size=true'
@@ -48,6 +44,9 @@ export const UseProduct = () => {
         dispatch(onCategoryActive(category));
     };
 
+    const startCreateProduct = (product: Product) => {
+        dispatch(onAddNewProduct(product));
+    };
     return {
         //Valores
         products,

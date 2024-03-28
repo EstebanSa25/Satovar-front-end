@@ -24,7 +24,7 @@ export interface Product {
     fecha?: Date;
 }
 export interface ProductAdd {
-    Id: number;
+    Id?: number;
     Nombre: string;
     Foto: string;
     Tela: number;

@@ -3,8 +3,13 @@ import { UseProductCrud } from '../hooks';
 import { RegisterUpdateProduct } from '../components';
 
 export const ProductCreatePage = () => {
-    const { startGetProductsAll, products, startSetActiveProduct } =
-        UseProductCrud();
+    const {
+        startGetProductsAll,
+        products,
+        startSetActiveProduct,
+        startResetProductActive,
+        startDeleteProduct,
+    } = UseProductCrud();
     useEffect(() => {
         startGetProductsAll();
     }, []);
@@ -16,9 +21,11 @@ export const ProductCreatePage = () => {
                     <h1>Gestión de Productos</h1>
                 </div>
                 <button
-                    data-mdb-toggle='modal'
-                    data-mdb-target='#staticBackdrop2'
-                    className='btn btn-primary btn-nueva'
+                    onClick={() => startResetProductActive()}
+                    type='button'
+                    className='btn btn-dark'
+                    data-toggle='modal'
+                    data-target='#register-update-product'
                 >
                     <b>+</b> Añadir producto
                 </button>
@@ -31,6 +38,7 @@ export const ProductCreatePage = () => {
                             <th>Tela</th>
                             <th>Catalogo</th>
                             <th>Categoria</th>
+                            <th>Estado</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -41,6 +49,17 @@ export const ProductCreatePage = () => {
                                 <td>{product.T_TELA.CV_NOMBRE} </td>
                                 <td>{product.T_CATALOGO.CV_DESCRIPCION} </td>
                                 <td>{product.T_CATEGORIA.CV_DESCRIPCION} </td>
+                                <td
+                                    className={
+                                        product.CB_ESTADO === true
+                                            ? 'text-success'
+                                            : 'text-danger'
+                                    }
+                                >
+                                    {product.CB_ESTADO === true
+                                        ? 'Activo'
+                                        : 'Inactivo'}{' '}
+                                </td>
                                 <td>
                                     <button
                                         type='button'
@@ -53,7 +72,14 @@ export const ProductCreatePage = () => {
                                     >
                                         Editar
                                     </button>
-                                    <button className='btn btn-secondary  m-1'>
+                                    <button
+                                        onClick={() =>
+                                            startDeleteProduct(
+                                                product.CI_ID_PRODUCTO
+                                            )
+                                        }
+                                        className='btn btn-secondary  m-1'
+                                    >
                                         Borrar
                                     </button>{' '}
                                 </td>

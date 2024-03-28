@@ -4,7 +4,11 @@ interface FormState {
 }
 export const UseForm = (initialForm = {}) => {
     const [formState, setFormState] = useState<FormState>(initialForm);
-    const onInputChange = ({ target }: React.ChangeEvent<HTMLInputElement>) => {
+    const onInputChange = ({
+        target,
+    }:
+        | React.ChangeEvent<HTMLInputElement>
+        | React.ChangeEvent<HTMLSelectElement>) => {
         const { name, value } = target;
         setFormState({
             ...formState,
