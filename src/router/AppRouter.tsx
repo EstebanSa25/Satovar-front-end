@@ -65,7 +65,7 @@ export const AppRouter = () => {
                             <Route path='/ventas' element={<SalesPage />} />
                             <Route path='/pedidos' element={<OrdersPage />} />
                             <Route
-                                path='/producto/crear'
+                                path='/producto'
                                 element={<ProductCreatePage />}
                             />
                             <Route

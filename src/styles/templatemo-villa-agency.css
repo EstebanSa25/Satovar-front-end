@@ -2188,3 +2188,11 @@ body {
 * {
     text-transform: none !important;
 }
+.title-box {
+    padding: 3rem 1.5rem 2rem;
+    text-align: center;
+}
+
+.btn-nueva {
+    margin: 2px 0 14px 0;
+}

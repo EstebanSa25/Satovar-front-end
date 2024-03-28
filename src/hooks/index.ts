@@ -4,3 +4,4 @@ export * from './UseShoppinCart';
 export * from './UseForm';
 export * from './UseMeasureShirt';
 export * from './UseMeasureWaistcoat';
+export * from './admin/UseProductCrud';

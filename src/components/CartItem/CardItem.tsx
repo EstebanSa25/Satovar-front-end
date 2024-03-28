@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { UseProduct, UseShoppinCart } from '../../hooks';
-import { Product, TProductoXTalla } from '../../interfaces';
+import { Product, C_TProductoXTalla } from '../../interfaces';
 import { ProductShop } from '../../interfaces/Product.interface';
 
 export const CardItem = ({
@@ -52,7 +52,7 @@ export const CardItem = ({
                 >
                     {products.map((product: Product) =>
                         product.id === id
-                            ? product.tallas.map((talla: TProductoXTalla) => (
+                            ? product.tallas.map((talla: C_TProductoXTalla) => (
                                   <option
                                       key={talla.T_TALLA.CI_ID_TALLA}
                                       value={talla.T_TALLA.CI_ID_TALLA}

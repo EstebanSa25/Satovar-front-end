@@ -33,3 +33,4 @@ export * from './tables/OrdesTable';
 export * from './makingForm/MeasureUpperWaistcoat';
 export * from './makingForm/MeasureLargeWaistcoat';
 export * from './makingForm/MeasureDetailsWaistcoat';
+export * from './modals/registerUpdateProduct';
