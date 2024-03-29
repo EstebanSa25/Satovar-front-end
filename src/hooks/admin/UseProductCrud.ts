@@ -19,7 +19,6 @@ import {
 import { useState } from 'react';
 import { AxiosError } from 'axios';
 import { ErrorSweetAlert } from '../../helpers';
-import { Product, ProductAdd } from '../../interfaces/Product.interface';
 import Swal from 'sweetalert2';
 
 interface IState {
@@ -84,20 +83,124 @@ export const UseProductCrud = () => {
         const { data: styleApi } = await satovarApi.get<Style[]>('/style');
         setStyle(styleApi);
     };
-    const startGetEditProduct = async () => {
-        const { data } = await satovarApi.put<ProductInterfaceCRUD>(
-            `/Products/update/${activeProduct.CI_ID_PRODUCTO}`,
-            {
-                Precio: +activeProduct.CD_PRECIO,
-                Categoria: +activeProduct.T_CATEGORIA.CI_ID_CATEGORIA,
-                Catalogo: +activeProduct.T_CATALOGO.CI_ID_CATALOGO,
-                Nombre: activeProduct.CV_NOMBRE,
-                Tela: +activeProduct.T_TELA.CI_ID_TELA,
-                Estado: activeProduct.CB_ESTADO,
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const startGetEditProduct = async (
+        form: any,
+        inputRef: React.RefObject<HTMLElement>
+    ) => {
+        console.log(form);
+        try {
+            const tallas = Object.keys(form)
+                .map((key: string) => {
+                    if (key.includes('Cantidad')) {
+                        return {
+                            Id_talla:
+                                size.find(
+                                    (size) =>
+                                        size.CV_TALLA ===
+                                        key.split('Cantidad ')[1]
+                                )?.CI_ID_TALLA || 0,
+                            Cantidad: parseInt(form[key]),
+                        } as AddTalla;
+                    }
+                })
+                .filter(Boolean) as AddTalla[];
+
+            const estilos = Object.keys(form).filter((key) =>
+                key.startsWith('style-')
+            );
+            const sylesArray = estilos
+                .map((key) => {
+                    return parseInt(form[key]);
+                })
+                .filter(Boolean) as number[];
+            const file = document.getElementById(
+                'FotoProductoUpdate'
+            ) as HTMLInputElement;
+            if (!file.files) return;
+            const image = file.files[0];
+            if (image) {
+                reader.readAsDataURL(image);
+            } else {
+                const productAdd = {
+                    Nombre: form.Nombre,
+                    Foto: activeProduct.CV_FOTO,
+                    Precio: parseFloat(form.Precio),
+                    Categoria: parseInt(form.Categoria),
+                    Catalogo: parseInt(form.Catalogo) || 1,
+                    Tallas: tallas,
+                    Estilos: sylesArray.length > 0 ? sylesArray : '',
+                    Tela: parseInt(form.Tela) || 1,
+                } as ProductAdd;
+                try {
+                    const { data } = await satovarApi.put<ProductInterfaceCRUD>(
+                        `/Products/update/${activeProduct.CI_ID_PRODUCTO}`,
+                        {
+                            ...productAdd,
+                        }
+                    );
+                    dispatch(onUpdateProductCrud(data));
+                    inputRef.current?.click();
+                    Swal.fire({
+                        title: 'Producto editado',
+                        icon: 'success',
+                    });
+                    // startGetProductsAll();
+                } catch (error) {
+                    const axiosError = error as AxiosError;
+                    const errorCode = axiosError.response?.status as number;
+                    const errorString = axiosError.response
+                        ?.data as AxiosErrorData;
+                    console.log(error);
+                    ErrorSweetAlert(
+                        errorCode,
+                        'Error al crear producto',
+                        errorString.error || errorString.message || ''
+                    );
+                }
             }
-        );
-        dispatch(onUpdateProductCrud(data));
-        setEdit(true);
+            reader.onload = async function () {
+                const base64 =
+                    (reader.result as string) || activeProduct.CV_FOTO;
+                const productAdd = {
+                    Nombre: form.Nombre,
+                    Foto: `${base64}` || `${activeProduct.CV_FOTO}`,
+                    Precio: parseFloat(form.Precio),
+                    Categoria: parseInt(form.Categoria),
+                    Catalogo: parseInt(form.Catalogo) || 1,
+                    Tallas: tallas,
+                    Estilos: sylesArray.length > 0 ? sylesArray : '',
+                    Tela: parseInt(form.Tela) || 1,
+                } as ProductAdd;
+                try {
+                    const { data } = await satovarApi.put<ProductInterfaceCRUD>(
+                        `/Products/update/${activeProduct.CI_ID_PRODUCTO}`,
+                        {
+                            ...productAdd,
+                        }
+                    );
+                    inputRef.current?.click();
+                    dispatch(onUpdateProductCrud(data));
+                    Swal.fire({
+                        title: 'Producto editado',
+                        icon: 'success',
+                    });
+                } catch (error) {
+                    const axiosError = error as AxiosError;
+                    const errorCode = axiosError.response?.status as number;
+                    const errorString = axiosError.response
+                        ?.data as AxiosErrorData;
+                    console.log(error);
+                    ErrorSweetAlert(
+                        errorCode,
+                        'Error al crear producto',
+                        errorString.error || errorString.message || ''
+                    );
+                }
+            };
+        } catch (error) {
+            console.log(error);
+        }
     };
     const startSetActiveProduct = (product: ProductInterfaceCRUD) => {
         dispatch(onActiveProductCrud(product));
@@ -105,7 +208,23 @@ export const UseProductCrud = () => {
     const startResetProductActive = () => {
         dispatch(onResetActiveProductCrud());
     };
-    const startCreateProduct = async (product: any) => {
+    const startCreateProduct = async (
+        product: any,
+        onResetForm: () => void
+    ) => {
+        if (
+            !product.Nombre ||
+            !product.Precio ||
+            !product.Categoria ||
+            !product.Catalogo ||
+            !product.Foto
+        ) {
+            return Swal.fire({
+                title: 'Error al crear producto',
+                icon: 'warning',
+                text: 'Todos los campos son obligatorios',
+            });
+        }
         try {
             const tallas = Object.keys(product)
                 .map((key: string) => {
@@ -126,9 +245,11 @@ export const UseProductCrud = () => {
             const estilos = Object.keys(product).filter((key) =>
                 key.startsWith('style-')
             );
-            const sylesArray = estilos.map((key) => {
-                return parseInt(product[key]);
-            });
+            const sylesArray = estilos
+                .map((key) => {
+                    return parseInt(product[key]);
+                })
+                .filter(Boolean) as number[];
             const file = document.getElementById('Foto') as HTMLInputElement;
             if (!file.files) return;
             const image = file.files[0];
@@ -144,22 +265,37 @@ export const UseProductCrud = () => {
                     Categoria: parseInt(product.Categoria),
                     Catalogo: parseInt(product.Catalogo) || 1,
                     Tallas: tallas,
-                    Estilos: sylesArray,
+                    Estilos: sylesArray.length > 0 ? sylesArray : '',
                     Tela: parseInt(product.Tela) || 1,
                 } as ProductAdd;
-                const { data } = await satovarApi.post<ProductInterfaceCRUD>(
-                    '/Products/create',
-                    {
-                        ...productAdd,
-                    }
-                );
-                dispatch(onAddProductCrud(data));
-                dispatch(onSetActiveProduct(data));
+                try {
+                    const { data } =
+                        await satovarApi.post<ProductInterfaceCRUD>(
+                            '/Products/create',
+                            {
+                                ...productAdd,
+                            }
+                        );
+                    dispatch(onAddProductCrud(data));
+                    dispatch(onSetActiveProduct(data));
+                    onResetForm();
+                    Swal.fire({
+                        title: 'Producto creado',
+                        icon: 'success',
+                    });
+                } catch (error) {
+                    const axiosError = error as AxiosError;
+                    const errorCode = axiosError.response?.status as number;
+                    const errorString = axiosError.response
+                        ?.data as AxiosErrorData;
+                    console.log(error);
+                    ErrorSweetAlert(
+                        errorCode,
+                        'Error al crear producto',
+                        errorString.error || errorString.message || ''
+                    );
+                }
             };
-            Swal.fire({
-                title: 'Producto creado',
-                icon: 'success',
-            });
         } catch (error) {
             const axiosError = error as AxiosError;
             const errorCode = axiosError.response?.status as number;
@@ -168,6 +304,27 @@ export const UseProductCrud = () => {
             ErrorSweetAlert(
                 errorCode,
                 'Error al crear producto',
+                errorString.error || errorString.message || ''
+            );
+        }
+    };
+    const startActiveProduct = async (id: number) => {
+        try {
+            await satovarApi.put(`/Products/update/${id}`, {
+                Estado: true,
+            });
+            Swal.fire({
+                title: 'Producto activado',
+                icon: 'success',
+            });
+            startGetProductsAll();
+        } catch (error) {
+            const axiosError = error as AxiosError;
+            const errorCode = axiosError.response?.status as number;
+            const errorString = axiosError.response?.data as AxiosErrorData;
+            ErrorSweetAlert(
+                errorCode,
+                'Error al activar producto',
                 errorString.error || errorString.message || ''
             );
         }
@@ -210,5 +367,6 @@ export const UseProductCrud = () => {
         startResetProductActive,
         startCreateProduct,
         startDeleteProduct,
+        startActiveProduct,
     };
 };

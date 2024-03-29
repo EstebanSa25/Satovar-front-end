@@ -1,36 +1,53 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useEffect } from 'react';
 import { UseForm, UseProductCrud } from '../../hooks';
+const initialForm = {
+    'Cantidad L': '',
+    'Cantidad M': '',
+    'Cantidad S': '',
+    'Cantidad XL': '',
+    'Cantidad XXL': '',
+    Catalogo: 1,
+    Categoria: 1,
+    Foto: '',
+    Nombre: '',
+    Precio: '',
+    Tela: 1,
+    'style-Des': '',
+};
 
-export const RegisterUpdateProduct = () => {
+export const RegisterProduct = () => {
     const {
         startGetInfoProduct,
         size = [],
         category = [],
         style = [],
         fabric = [],
-        edit,
+
         activeProduct,
         startCreateProduct,
     } = UseProductCrud();
     useEffect(() => {
         startGetInfoProduct();
     }, []);
-    const { formState, onInputChange, onResetForm } = UseForm();
+    const { formState, onInputChange, onResetForm } = UseForm(initialForm);
     return (
         <div
-            className='modal fade'
-            id='register-update-product'
+            className='modal fade p-5'
+            id='register-product'
             tabIndex={-1}
             role='dialog'
             aria-labelledby='exampleModalCenterTitle'
             aria-hidden='true'
         >
-            <div className='modal-dialog d-flex justify-content-center p-1'>
+            <div className='modal-dialog d-flex justify-content-center '>
                 <div className='modal-content w-100'>
-                    <div className='modal-header'>
-                        <h5 className='modal-title' id='exampleModalLabel2'>
-                            Sign up
+                    <div className='modal-header text-center'>
+                        <h5
+                            className='modal-title text-center '
+                            id='exampleModalLabel2'
+                        >
+                            Registro de productos
                         </h5>
                         <button
                             type='button'
@@ -42,25 +59,21 @@ export const RegisterUpdateProduct = () => {
 
                     <div className='row justify-content-center'>
                         <div className='col-12 col-md-8 col-lg-6'>
-                            <div className='form-ingreso'>
+                            <div className='form-ingreso p-3'>
                                 <form
                                     onSubmit={(e) => e.preventDefault()}
                                     action=''
                                 >
                                     <div className='mb-3 mt-3'>
                                         <label
-                                            htmlFor='email'
+                                            htmlFor='NombreRegistro'
                                             className='form-label'
                                         >
                                             Nombre:
                                         </label>
                                         <input
                                             onChange={onInputChange}
-                                            value={
-                                                activeProduct.CV_NOMBRE ||
-                                                formState.Nombre ||
-                                                ''
-                                            }
+                                            value={formState.Nombre}
                                             // onChange={onInputChange}
                                             type='text'
                                             className='form-control'
@@ -71,16 +84,17 @@ export const RegisterUpdateProduct = () => {
                                     </div>
                                     <div className='mb-3 mt-3'>
                                         <label
-                                            htmlFor='email'
+                                            htmlFor='FotoRegistro'
                                             className='form-label'
                                         >
                                             Foto
                                         </label>
                                         <input
+                                            value={formState.Foto}
                                             onChange={onInputChange}
                                             type='file'
                                             accept='image/*'
-                                            className='form-control'
+                                            className='form-control-sm'
                                             id='Foto'
                                             placeholder='Arrastre o busque una foto'
                                             name='Foto'
@@ -88,21 +102,14 @@ export const RegisterUpdateProduct = () => {
                                     </div>
                                     <div className='mb-3'>
                                         <label
-                                            htmlFor='pwd'
+                                            htmlFor='CategoriaRegistro'
                                             className='form-label'
                                         >
                                             Categoría:
                                         </label>
                                         <select
                                             onChange={onInputChange}
-                                            value={
-                                                activeProduct?.T_CATEGORIA
-                                                    ?.CI_ID_CATEGORIA !==
-                                                undefined
-                                                    ? activeProduct?.T_CATEGORIA
-                                                          ?.CI_ID_CATEGORIA
-                                                    : formState.Categoría
-                                            }
+                                            value={formState.Categoria}
                                             name='Categoria'
                                         >
                                             {category.map((cat) => (
@@ -117,7 +124,7 @@ export const RegisterUpdateProduct = () => {
                                     </div>
                                     <div className='mb-3 mt-3'>
                                         <label
-                                            htmlFor='email'
+                                            htmlFor='EstiloRegistro'
                                             className='form-label'
                                         >
                                             Estilo:
@@ -128,20 +135,6 @@ export const RegisterUpdateProduct = () => {
                                                 <label key={est.CI_ID_ESTILO}>
                                                     <input
                                                         onChange={onInputChange}
-                                                        checked={
-                                                            formState[
-                                                                `style-${est.CV_DESCRIPCION}`
-                                                            ] === ''
-                                                                ? false
-                                                                : activeProduct.T_ESTILO_X_PRODUCTO?.find(
-                                                                      (e) =>
-                                                                          e
-                                                                              .T_ESTILO
-                                                                              .CI_ID_ESTILO ===
-                                                                          est.CI_ID_ESTILO
-                                                                  ) !==
-                                                                  undefined
-                                                        }
                                                         // onChange={onInputChange}
                                                         type='checkbox'
                                                         name={`style-${est.CV_DESCRIPCION}`}
@@ -155,7 +148,7 @@ export const RegisterUpdateProduct = () => {
                                     </div>
                                     <div className='mb-3'>
                                         <label
-                                            htmlFor='pwd'
+                                            htmlFor='TelaRegistro'
                                             className='form-label'
                                         >
                                             Tela:
@@ -176,7 +169,7 @@ export const RegisterUpdateProduct = () => {
                                     </div>
                                     <div className='mb-3 mt-3'>
                                         <label
-                                            htmlFor='email'
+                                            htmlFor='TallasRegistro'
                                             className='form-label'
                                         >
                                             Tallas Disponibles:
@@ -191,16 +184,9 @@ export const RegisterUpdateProduct = () => {
                                                     <input
                                                         onChange={onInputChange}
                                                         value={
-                                                            activeProduct?.T_PRODUCTO_X_TALLA?.find(
-                                                                (t) =>
-                                                                    t.T_TALLA
-                                                                        .CI_ID_TALLA ===
-                                                                    talla.CI_ID_TALLA
-                                                            )?.CI_CANTIDAD ||
                                                             formState[
                                                                 `Cantidad ${talla.CV_TALLA}`
-                                                            ] ||
-                                                            ''
+                                                            ]
                                                         }
                                                         type='text'
                                                         style={{
@@ -217,18 +203,14 @@ export const RegisterUpdateProduct = () => {
                                     </div>
                                     <div className='mb-3'>
                                         <label
-                                            htmlFor='pwd'
+                                            htmlFor='PrecioRegistro'
                                             className='form-label'
                                         >
                                             Precio:
                                         </label>
                                         <input
                                             onChange={onInputChange}
-                                            value={
-                                                activeProduct.CD_PRECIO ||
-                                                formState.Precio ||
-                                                ''
-                                            }
+                                            value={formState.Precio}
                                             type='text'
                                             className='form-control'
                                             id='Precio'
@@ -238,12 +220,13 @@ export const RegisterUpdateProduct = () => {
                                     </div>
                                     <div className='mb-3'>
                                         <label
-                                            htmlFor='pwd'
+                                            htmlFor='CatalogoRegistro'
                                             className='form-label'
                                         >
                                             Catálogo:
                                         </label>
                                         <select
+                                            value={formState.Catalogo}
                                             name='Catalogo'
                                             onChange={onInputChange}
                                         >
@@ -251,34 +234,7 @@ export const RegisterUpdateProduct = () => {
                                             <option value={1}>Venta</option>
                                         </select>
                                     </div>
-                                    {activeProduct.CI_ID_PRODUCTO !==
-                                        undefined && (
-                                        <div className='mb-3'>
-                                            <label
-                                                htmlFor='pwd'
-                                                className='form-label'
-                                            >
-                                                Estado:
-                                            </label>
-                                            <select
-                                                value={
-                                                    activeProduct.CB_ESTADO ===
-                                                    true
-                                                        ? 1
-                                                        : 0
-                                                }
-                                                name='Estado'
-                                                onChange={onInputChange}
-                                            >
-                                                <option value={1}>
-                                                    Activo
-                                                </option>
-                                                <option value={0}>
-                                                    Inactivo
-                                                </option>
-                                            </select>
-                                        </div>
-                                    )}
+
                                     <button
                                         onClick={
                                             activeProduct.CI_ID_PRODUCTO !==
@@ -286,22 +242,19 @@ export const RegisterUpdateProduct = () => {
                                                 ? () => console.log('object')
                                                 : () => {
                                                       startCreateProduct(
-                                                          formState
+                                                          formState,
+                                                          onResetForm
                                                       );
-                                                      onResetForm();
                                                   }
                                         }
                                         type='submit'
-                                        className='btn btn-primary'
+                                        className='btn btn-primary '
                                         style={{
                                             backgroundColor: '#F35525',
                                             border: '#F35525',
                                         }}
                                     >
-                                        {activeProduct.CI_ID_PRODUCTO !==
-                                        undefined
-                                            ? 'Actualizar Producto'
-                                            : 'Guardar Producto'}
+                                        Guardar Producto
                                     </button>
                                 </form>
                             </div>

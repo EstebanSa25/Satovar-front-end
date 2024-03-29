@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { UseProductCrud } from '../hooks';
-import { RegisterUpdateProduct } from '../components';
+import { RegisterProduct, UpdateProduct } from '../components';
 
 export const ProductCreatePage = () => {
     const {
@@ -9,10 +9,11 @@ export const ProductCreatePage = () => {
         startSetActiveProduct,
         startResetProductActive,
         startDeleteProduct,
+        startActiveProduct,
     } = UseProductCrud();
     useEffect(() => {
         startGetProductsAll();
-    }, []);
+    }, [products]);
 
     return (
         <>
@@ -25,7 +26,7 @@ export const ProductCreatePage = () => {
                     type='button'
                     className='btn btn-dark'
                     data-toggle='modal'
-                    data-target='#register-update-product'
+                    data-target='#register-product'
                 >
                     <b>+</b> Añadir producto
                 </button>
@@ -46,7 +47,7 @@ export const ProductCreatePage = () => {
                             <tr key={product.CI_ID_PRODUCTO}>
                                 <td>{product.CV_NOMBRE}</td>
                                 <td>{product.CD_PRECIO}</td>
-                                <td>{product.T_TELA.CV_NOMBRE} </td>
+                                <td>{product.T_TELA?.CV_NOMBRE} </td>
                                 <td>{product.T_CATALOGO.CV_DESCRIPCION} </td>
                                 <td>{product.T_CATEGORIA.CV_DESCRIPCION} </td>
                                 <td
@@ -65,7 +66,7 @@ export const ProductCreatePage = () => {
                                         type='button'
                                         className='btn btn-dark'
                                         data-toggle='modal'
-                                        data-target='#register-update-product'
+                                        data-target='#update-product'
                                         onClick={() =>
                                             startSetActiveProduct(product)
                                         }
@@ -73,14 +74,22 @@ export const ProductCreatePage = () => {
                                         Editar
                                     </button>
                                     <button
-                                        onClick={() =>
-                                            startDeleteProduct(
-                                                product.CI_ID_PRODUCTO
-                                            )
+                                        onClick={
+                                            product.CB_ESTADO === true
+                                                ? () =>
+                                                      startDeleteProduct(
+                                                          product.CI_ID_PRODUCTO
+                                                      )
+                                                : () =>
+                                                      startActiveProduct(
+                                                          product.CI_ID_PRODUCTO
+                                                      )
                                         }
                                         className='btn btn-secondary  m-1'
                                     >
-                                        Borrar
+                                        {product.CB_ESTADO === false
+                                            ? 'Activar'
+                                            : 'Desactivar'}
                                     </button>{' '}
                                 </td>
                             </tr>
@@ -89,7 +98,8 @@ export const ProductCreatePage = () => {
                 </table>
             </div>
 
-            <RegisterUpdateProduct />
+            <RegisterProduct />
+            <UpdateProduct />
         </>
     );
 };

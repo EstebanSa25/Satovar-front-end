@@ -29,18 +29,36 @@ export const productSliceCrud = createSlice({
             state,
             action: PayloadAction<ProductInterfaceCRUD[]>
         ) => {
-            state.products = action.payload;
+            action.payload.forEach((product: ProductInterfaceCRUD) => {
+                const exists = state.products.some(
+                    (dbProduct) =>
+                        dbProduct.CI_ID_PRODUCTO === product.CI_ID_PRODUCTO
+                );
+                if (!exists) {
+                    state.products.push(product);
+                } else {
+                    state.products = state.products.map((dbProduct) => {
+                        if (
+                            dbProduct.CI_ID_PRODUCTO === product.CI_ID_PRODUCTO
+                        ) {
+                            return product;
+                        }
+                        return dbProduct;
+                    });
+                }
+            });
             state.isLoading = false;
         },
         onUpdateProductCrud: (
             state,
             action: PayloadAction<ProductInterfaceCRUD>
         ) => {
-            state.products = state.products.map((product) =>
-                product.CI_ID_PRODUCTO === action.payload.CI_ID_PRODUCTO
-                    ? action.payload
-                    : product
-            );
+            state.products = state.products.map((product) => {
+                if (product.CI_ID_PRODUCTO === action.payload.CI_ID_PRODUCTO) {
+                    return action.payload;
+                }
+                return product;
+            });
             state.isLoading = false;
         },
         onDeleteProductCrud: (state, action: PayloadAction<number>) => {
