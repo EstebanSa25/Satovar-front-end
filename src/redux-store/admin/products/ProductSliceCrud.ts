@@ -22,7 +22,17 @@ export const productSliceCrud = createSlice({
             state,
             action: PayloadAction<ProductInterfaceCRUD>
         ) => {
-            state.products.push(action.payload);
+            if (
+                !state.products.find(
+                    (product) =>
+                        product.CI_ID_PRODUCTO ===
+                            action.payload.CI_ID_PRODUCTO ||
+                        product.CV_NOMBRE === action.payload.CV_NOMBRE
+                )
+            ) {
+                state.products.push(action.payload);
+            }
+
             state.isLoading = false;
         },
         onGetProductCrud: (

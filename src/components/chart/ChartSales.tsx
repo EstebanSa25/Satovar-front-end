@@ -1,10 +1,10 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import * as echarts from 'echarts';
 import { ChartProp } from '../../interfaces';
 
 export const EchartsGeneric = ({ title, series, xAxis }: ChartProp) => {
     const chartRef = useRef(null);
-
+    // console.log(xAxis);
     useEffect(() => {
         // Create the echarts instance
         const myChart = echarts.init(chartRef.current);
@@ -14,6 +14,7 @@ export const EchartsGeneric = ({ title, series, xAxis }: ChartProp) => {
             title: {
                 text: title,
             },
+
             color: ['#ee626b'],
             toolbox: {
                 show: true,
@@ -24,17 +25,17 @@ export const EchartsGeneric = ({ title, series, xAxis }: ChartProp) => {
             },
             tooltip: {},
             xAxis: {
-                data: xAxis,
+                data: [...xAxis],
             },
             yAxis: {},
             series: [series],
         });
-
+        // window.location.reload();
         // Clean up the chart when component unmounts
         return () => {
             myChart.dispose();
         };
-    }, []); // Empty dependency array to run effect only once
+    }, [series]); // Empty dependency array to run effect only once
 
     return <div ref={chartRef} style={{ width: '100%', height: '400px' }} />;
 };

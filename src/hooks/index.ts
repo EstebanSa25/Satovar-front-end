@@ -5,3 +5,5 @@ export * from './UseForm';
 export * from './UseMeasureShirt';
 export * from './UseMeasureWaistcoat';
 export * from './admin/UseProductCrud';
+export * from './admin/UseDashboard';
+export * from './admin/UseOrders';

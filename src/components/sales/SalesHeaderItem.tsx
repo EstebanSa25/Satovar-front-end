@@ -5,7 +5,9 @@ export const SalesHeaderItem = ({ Title, valor, icon }: CardSalesProps) => {
         <div className='box box-color1' style={{ backgroundImage: 'url()' }}>
             <div className='cover'>
                 <h3 className='name'>{Title}</h3>
-                <p className='title'>₡ {valor}</p>
+                <p className='title'>
+                    {Title.includes('Ingresos') ? '₡' : ''} {valor}
+                </p>
                 <div className='social'>
                     <a href='#'>
                         <i className={icon[0]}></i>

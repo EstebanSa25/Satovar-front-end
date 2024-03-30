@@ -210,7 +210,8 @@ export const UseProductCrud = () => {
     };
     const startCreateProduct = async (
         product: any,
-        onResetForm: () => void
+        onResetForm: () => void,
+        inputRef: React.RefObject<HTMLElement>
     ) => {
         if (
             !product.Nombre ||
@@ -279,6 +280,7 @@ export const UseProductCrud = () => {
                     dispatch(onAddProductCrud(data));
                     dispatch(onSetActiveProduct(data));
                     onResetForm();
+                    inputRef.current?.click();
                     Swal.fire({
                         title: 'Producto creado',
                         icon: 'success',

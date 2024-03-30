@@ -12,3 +12,5 @@ export * from './Rent.interface';
 export * from './SimpleBanner.interface';
 export * from './User.interface';
 export * from './Product.interface';
+export * from './DasboardApi.interface';
+export * from './Orders.Api.interface';

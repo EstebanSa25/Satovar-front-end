@@ -35,3 +35,8 @@ export * from './makingForm/MeasureLargeWaistcoat';
 export * from './makingForm/MeasureDetailsWaistcoat';
 export * from './modals/RegisterProduct';
 export * from './modals/UpdateProduct';
+export * from './userProfile/UserInfo';
+export * from './userProfile/UserMeasureShirt';
+export * from './userProfile/UserSuitJacket';
+export * from './userProfile/UserPant';
+export * from './userProfile/UserWaistcoat';

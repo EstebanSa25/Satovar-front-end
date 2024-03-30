@@ -1,6 +1,22 @@
+import { useEffect } from 'react';
 import { SalesHeaderItem } from '..';
+import { UseDashboard } from '../../hooks';
 
 export const SalesHeader = () => {
+    const {
+        salesTotal,
+        startGetSales,
+        ordersPending,
+        startGetOrdersPending,
+        ordersCompleted,
+        startGetOrdersCompleted,
+    } = UseDashboard();
+    useEffect(() => {
+        startGetSales();
+        startGetOrdersPending();
+        startGetOrdersCompleted();
+    }, []);
+
     return (
         <div className='team-grid'>
             <div className='container'>
@@ -19,22 +35,22 @@ export const SalesHeader = () => {
                         {/*  */}
                         <SalesHeaderItem
                             Title='Ingresos'
-                            valor={50}
+                            valor={+salesTotal.total_ingresos}
                             icon={['fa fa-money', 'fa fa-dollar']}
                         />
                     </div>
                     <div className='col-md-4 col-lg-3 item '>
                         <SalesHeaderItem
                             Title='Pedidos Actuales'
-                            valor={548}
+                            valor={+ordersPending.CantidadPedidos}
                             icon={['fa fa-shopping-cart', 'fa fa-box']}
                         />
                     </div>
                     <div className='col-md-4 col-lg-3 item '>
                         <SalesHeaderItem
-                            Title='Visitantes Online'
-                            valor={95}
-                            icon={['fa fa-users', 'fa fa-globe']}
+                            Title='Pedidos completados'
+                            valor={+ordersCompleted.CantidadPedidos}
+                            icon={['fa fa-check', 'fa fa-shop']}
                         />
                     </div>
                 </div>

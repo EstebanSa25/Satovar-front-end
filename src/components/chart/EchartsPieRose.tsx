@@ -17,6 +17,9 @@ export const EchartsPieRose = ({ data, title }: ChartPropPie) => {
             legend: {
                 top: 'bottom',
             },
+            tooltip: {
+                trigger: 'item',
+            },
             toolbox: {
                 show: true,
                 feature: {
@@ -43,7 +46,7 @@ export const EchartsPieRose = ({ data, title }: ChartPropPie) => {
         return () => {
             myChart.dispose();
         };
-    }, []); // Empty dependency array to run effect only once
+    }, [data]); // Empty dependency array to run effect only once
 
     return <div ref={chartRef} style={{ width: '100%', height: '400px' }} />;
 };

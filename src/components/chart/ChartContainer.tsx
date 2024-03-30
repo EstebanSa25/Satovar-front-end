@@ -1,8 +1,27 @@
+import { useEffect } from 'react';
 import { EchartsPie, EchartsPieRose } from '..';
+import { UseDashboard } from '../../hooks';
 import { ChartType } from '../../interfaces';
 import { EchartsGeneric } from './ChartSales';
 
 export const ChartContainer = () => {
+    const {
+        salesYear,
+        startGetSalesYear,
+        salesMonth,
+        startGetSalesMonth,
+        productMostSale,
+        startGetProductMostSale,
+        startGetFabricMostSale,
+        fabricMostSale,
+    } = UseDashboard();
+    // const ref = useRef(null);
+    useEffect(() => {
+        startGetSalesMonth();
+        startGetSalesYear();
+        startGetProductMostSale();
+        startGetFabricMostSale();
+    }, []);
     return (
         <div className='container-graficas'>
             <div className='row'>
@@ -26,45 +45,52 @@ export const ChartContainer = () => {
                         series={{
                             name: 'Ventas',
                             type: ChartType.line,
-                            data: [5, 20, 36, 10, 10, 20],
+                            data: [
+                                parseFloat(salesMonth.ENERO),
+                                parseFloat(salesMonth.FEBRERO),
+                                parseFloat(salesMonth.MARZO),
+                                parseFloat(salesMonth.ABRIL),
+                                parseFloat(salesMonth.MAYO),
+                                parseFloat(salesMonth.JUNIO),
+                                parseFloat(salesMonth.JULIO),
+                                parseFloat(salesMonth.AGOSTO),
+                                parseFloat(salesMonth.SEPTIEMBRE),
+                                parseFloat(salesMonth.OCTUBRE),
+                                parseFloat(salesMonth.NOVIEMBRE),
+                                parseFloat(salesMonth.DICIEMBRE),
+                            ],
                         }}
                     />
                 </div>
+
                 <div className='col'>
                     <EchartsGeneric
                         title='Ventas por año'
-                        xAxis={['2020', '2021', '2022', '2023', '2024']}
+                        xAxis={[...salesYear.map((sale) => sale.ANIO)]}
                         series={{
                             name: 'Ventas',
                             type: ChartType.bar,
-                            data: [5, 20, 36, 10, 10],
+                            data: [
+                                ...salesYear.map((sale) =>
+                                    parseFloat(sale.VALOR)
+                                ),
+                            ],
                         }}
                     />
                 </div>
             </div>
+
             <div className='row'>
                 <div className='col'>
                     <EchartsPie
                         title='Productos que mas se venden'
-                        data={[
-                            { value: 335, name: 'Producto 1' },
-                            { value: 310, name: 'Producto 2' },
-                            { value: 234, name: 'Producto 3' },
-                            { value: 135, name: 'Producto 4' },
-                            { value: 1548, name: 'Producto 5' },
-                        ]}
+                        data={[...productMostSale]}
                     ></EchartsPie>
                 </div>
                 <div className='col'>
                     <EchartsPieRose
                         title='Telas que mas se utilizan'
-                        data={[
-                            { value: 400, name: 'Tela 1' },
-                            { value: 500, name: 'Tela 2' },
-                            { value: 600, name: 'Tela 3' },
-                            { value: 700, name: 'Tela 4' },
-                            { value: 800, name: 'Tela 5' },
-                        ]}
+                        data={[...fabricMostSale]}
                     />
                 </div>
             </div>

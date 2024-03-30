@@ -4,6 +4,7 @@ import { CartSlice } from './shopping cart/CartSlice';
 import { AuthSlice } from './auth/AuthSlice';
 import { MeasureSlice } from './measure/MeasureSlice';
 import { productSliceCrud } from './admin/products/ProductSliceCrud';
+import { OrderSlice } from './admin/orders/OrderSlice';
 
 export const store = configureStore({
     reducer: {
@@ -12,6 +13,7 @@ export const store = configureStore({
         [AuthSlice.name]: AuthSlice.reducer,
         [MeasureSlice.name]: MeasureSlice.reducer,
         [productSliceCrud.name]: productSliceCrud.reducer,
+        [OrderSlice.name]: OrderSlice.reducer,
     },
     middleware: (getDefaultMiddleware) =>
         getDefaultMiddleware({

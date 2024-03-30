@@ -6,3 +6,4 @@ export * from './ValidarCamposVacios';
 export * from './SweetAlert';
 export * from './ValidarCorreo';
 export * from './IsAxiosError';
+export * from './ClassDateTable';

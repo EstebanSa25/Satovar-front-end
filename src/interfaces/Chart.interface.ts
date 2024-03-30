@@ -22,6 +22,6 @@ export interface ChartPropPie {
 export interface ChartProp {
     title: string;
     series: Series;
-    xAxis: any[];
+    xAxis: number[] | string[];
     yAxis?: string;
 }

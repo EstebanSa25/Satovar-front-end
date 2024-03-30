@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import { UseForm, UseProductCrud } from '../../hooks';
 const initialForm = {
     'Cantidad L': '',
@@ -31,6 +31,7 @@ export const RegisterProduct = () => {
         startGetInfoProduct();
     }, []);
     const { formState, onInputChange, onResetForm } = UseForm(initialForm);
+    const ref = useRef(null);
     return (
         <div
             className='modal fade p-5'
@@ -50,6 +51,7 @@ export const RegisterProduct = () => {
                             Registro de productos
                         </h5>
                         <button
+                            ref={ref}
                             type='button'
                             className='btn-close'
                             data-dismiss='modal'
@@ -66,7 +68,7 @@ export const RegisterProduct = () => {
                                 >
                                     <div className='mb-3 mt-3'>
                                         <label
-                                            htmlFor='NombreRegistro'
+                                            htmlFor='Nombre'
                                             className='form-label'
                                         >
                                             Nombre:
@@ -84,7 +86,7 @@ export const RegisterProduct = () => {
                                     </div>
                                     <div className='mb-3 mt-3'>
                                         <label
-                                            htmlFor='FotoRegistro'
+                                            htmlFor='Foto'
                                             className='form-label'
                                         >
                                             Foto
@@ -102,7 +104,7 @@ export const RegisterProduct = () => {
                                     </div>
                                     <div className='mb-3'>
                                         <label
-                                            htmlFor='CategoriaRegistro'
+                                            htmlFor='Categoria'
                                             className='form-label'
                                         >
                                             Categoría:
@@ -111,6 +113,7 @@ export const RegisterProduct = () => {
                                             onChange={onInputChange}
                                             value={formState.Categoria}
                                             name='Categoria'
+                                            id='Categoria'
                                         >
                                             {category.map((cat) => (
                                                 <option
@@ -124,7 +127,7 @@ export const RegisterProduct = () => {
                                     </div>
                                     <div className='mb-3 mt-3'>
                                         <label
-                                            htmlFor='EstiloRegistro'
+                                            // htmlFor={}
                                             className='form-label'
                                         >
                                             Estilo:
@@ -138,6 +141,7 @@ export const RegisterProduct = () => {
                                                         // onChange={onInputChange}
                                                         type='checkbox'
                                                         name={`style-${est.CV_DESCRIPCION}`}
+                                                        id={`style-${est.CV_DESCRIPCION}`}
                                                         value={est.CI_ID_ESTILO}
                                                     />{' '}
                                                     {est.CV_DESCRIPCION}
@@ -154,6 +158,7 @@ export const RegisterProduct = () => {
                                             Tela:
                                         </label>
                                         <select
+                                            id='TelaRegistro'
                                             onChange={onInputChange}
                                             name='Tela'
                                         >
@@ -169,7 +174,7 @@ export const RegisterProduct = () => {
                                     </div>
                                     <div className='mb-3 mt-3'>
                                         <label
-                                            htmlFor='TallasRegistro'
+                                            // htmlFor='TallasRegistro'
                                             className='form-label'
                                         >
                                             Tallas Disponibles:
@@ -182,6 +187,7 @@ export const RegisterProduct = () => {
                                                         {talla.CV_TALLA}
                                                     </label>
                                                     <input
+                                                        id={`Cantidad ${talla.CV_TALLA}`}
                                                         onChange={onInputChange}
                                                         value={
                                                             formState[
@@ -203,7 +209,7 @@ export const RegisterProduct = () => {
                                     </div>
                                     <div className='mb-3'>
                                         <label
-                                            htmlFor='PrecioRegistro'
+                                            htmlFor='Precio'
                                             className='form-label'
                                         >
                                             Precio:
@@ -228,6 +234,7 @@ export const RegisterProduct = () => {
                                         <select
                                             value={formState.Catalogo}
                                             name='Catalogo'
+                                            id='CatalogoRegistro'
                                             onChange={onInputChange}
                                         >
                                             <option value={2}>Alquiler</option>
@@ -243,7 +250,8 @@ export const RegisterProduct = () => {
                                                 : () => {
                                                       startCreateProduct(
                                                           formState,
-                                                          onResetForm
+                                                          onResetForm,
+                                                          ref
                                                       );
                                                   }
                                         }
