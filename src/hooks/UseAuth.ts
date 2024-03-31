@@ -18,7 +18,7 @@ import {
     validarFormatoCorreo,
 } from '../helpers';
 import { AxiosError } from 'axios';
-import { signInWithGoogle } from '../firebase';
+import { logoutFireBase, signInWithGoogle } from '../firebase';
 import { useNavigate } from 'react-router-dom';
 
 export const UseAuth = () => {
@@ -158,6 +158,7 @@ export const UseAuth = () => {
     };
     const startLogout = () => {
         localStorage.clear();
+        logoutFireBase();
         dispatch(onLogout(''));
         dispatch(onResetMeasure());
         navigate('/');
