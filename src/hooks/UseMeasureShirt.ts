@@ -38,7 +38,7 @@ export const UseMeasureShirt = () => {
     };
     const CreateMeasureShirt = async () => {
         try {
-            await satovarApi.post('/measure/shirt', {
+            const { data } = await satovarApi.post('/measure/shirt', {
                 id: user.CI_ID_USUARIO,
                 pecho: measureShirtTop.pechocamisa,
                 cintura: measureShirtTop.cinturaCamisa,

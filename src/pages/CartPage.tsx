@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import { CardItem } from '../components/CartItem/CardItem';
 import { UseForm, UseShoppinCart } from '../hooks';
 import { ProductShop } from '../interfaces';
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 
 const initialForm = {
     NOMBRE: '',
@@ -11,19 +11,35 @@ const initialForm = {
     CVV: '',
 };
 export const CartPage = () => {
-    const {
-        products,
-        startShoppinCart,
-        starCalculateMount,
-        subtotal,
-        impuesto,
-        total,
-    } = UseShoppinCart();
+    const { products, startShoppinCart, starCalculateMount, subtotal, total } =
+        UseShoppinCart();
 
-    const { onInputChange, formState } = UseForm(initialForm);
+    const { onInputChange, formState, setFormState } = UseForm(initialForm);
     useEffect(() => {
         starCalculateMount();
     }, []);
+    const expireRef = useRef<HTMLInputElement>(null);
+    useEffect(() => {
+        if (formState.EXPIRA.length === 2 && !formState.EXPIRA.includes('/')) {
+            setFormState({
+                ...formState,
+                EXPIRA: formState.EXPIRA + '/',
+            });
+        } else if (formState.EXPIRA.length === 5) {
+            if (formState.EXPIRA.charAt(2) !== '/') {
+                setFormState({
+                    ...formState,
+                    EXPIRA: formState.EXPIRA.split('/')[0],
+                });
+            }
+        } else if (formState.EXPIRA.length > 5) {
+            setFormState({
+                ...formState,
+                EXPIRA: formState.EXPIRA.substring(0, 5),
+            });
+        }
+        console.log(formState);
+    }, [formState.EXPIRA]);
 
     return (
         <section
@@ -192,12 +208,14 @@ export const CartPage = () => {
 
                                                     <div className='form-outline form-white mb-4'>
                                                         <input
-                                                            type='text'
-                                                            id='typeText'
+                                                            type='tel'
+                                                            id='NUM_TARJETA'
                                                             className='form-control form-control-lg'
                                                             size={17}
+                                                            pattern='[0-9\s]{13,19}'
                                                             placeholder='xxxx xxxx xxxx xxxx'
                                                             minLength={19}
+                                                            autoComplete='cc-number'
                                                             maxLength={19}
                                                             name='NUM_TARJETA'
                                                             value={
@@ -220,22 +238,25 @@ export const CartPage = () => {
                                                         <div className='col-md-6'>
                                                             <div className='form-outline form-white'>
                                                                 <input
+                                                                    ref={
+                                                                        expireRef
+                                                                    }
                                                                     type='text'
                                                                     id='typeExp'
                                                                     className='form-control form-control-lg'
                                                                     placeholder='MM/YYYY'
+                                                                    pattern='\d*'
                                                                     size={7}
                                                                     // id='exp'
                                                                     minLength={
                                                                         7
                                                                     }
                                                                     maxLength={
-                                                                        7
+                                                                        5
                                                                     }
                                                                     name='EXPIRA'
                                                                     value={
-                                                                        formState.EXPIRA ||
-                                                                        ''
+                                                                        formState.EXPIRA
                                                                     }
                                                                     onChange={
                                                                         onInputChange
@@ -265,8 +286,7 @@ export const CartPage = () => {
                                                                     }
                                                                     name='CVV'
                                                                     value={
-                                                                        formState.CVV ||
-                                                                        ''
+                                                                        formState.CVV
                                                                     }
                                                                     onChange={
                                                                         onInputChange
@@ -315,7 +335,11 @@ export const CartPage = () => {
                                                 </div>
 
                                                 <button
-                                                    onClick={startShoppinCart}
+                                                    onClick={() =>
+                                                        startShoppinCart(
+                                                            formState
+                                                        )
+                                                    }
                                                     disabled={
                                                         products.length <= 0
                                                     }

@@ -12,16 +12,24 @@ const initialForm = {
     cuelloCamisa: '',
 } as TopShirtMeasure;
 export const MeasureTopShirt = () => {
-    const { startSaveMeasureShirtTop, startGetMeasureShirt, measureShirt } =
-        UseMeasureShirt();
-    useEffect(() => {
-        startGetMeasureShirt();
-    }, []);
+    const { startSaveMeasureShirtTop, measureShirt } = UseMeasureShirt();
 
-    const { formState, onInputChange } = UseForm(initialForm);
+    const { formState, onInputChange, setFormState } = UseForm(initialForm);
     useEffect(() => {
         startSaveMeasureShirtTop(formState);
     }, [formState]);
+
+    useEffect(() => {
+        setFormState({
+            ...formState,
+            pechocamisa: measureShirt?.medida?.CI_PECHO,
+            cinturaCamisa: measureShirt?.medida?.CI_CINTURA,
+            caderaCamisa: measureShirt?.medida?.CI_CADERA,
+            espaldaCamisa: measureShirt?.medida?.CI_ESPALDA,
+            hombroCamisa: measureShirt?.medida?.CI_HOMBRO,
+            cuelloCamisa: measureShirt?.medida?.CI_CUELLO,
+        });
+    }, [measureShirt]);
 
     return (
         <form>
@@ -33,12 +41,8 @@ export const MeasureTopShirt = () => {
                     type='number'
                     className='form-control'
                     id='pechocamisa'
-                    disabled={measureShirt.medida.CI_PECHO ? true : false}
-                    value={
-                        measureShirt.medida.CI_PECHO
-                            ? measureShirt.medida.CI_PECHO
-                            : formState.pechocamisa
-                    }
+                    disabled={measureShirt.medida?.CI_PECHO ? true : false}
+                    value={formState.pechocamisa}
                     onChange={onInputChange}
                     name='pechocamisa'
                     required
@@ -49,14 +53,10 @@ export const MeasureTopShirt = () => {
                     Cintura:
                 </label>
                 <input
-                    disabled={measureShirt.medida.CI_CINTURA ? true : false}
+                    disabled={measureShirt.medida?.CI_CINTURA ? true : false}
                     type='number'
                     onChange={onInputChange}
-                    value={
-                        measureShirt.medida.CI_CINTURA
-                            ? measureShirt.medida.CI_CINTURA
-                            : formState.cinturaCamisa
-                    }
+                    value={formState.cinturaCamisa}
                     className='form-control'
                     id='cinturacamisa'
                     name='cinturaCamisa'
@@ -68,14 +68,10 @@ export const MeasureTopShirt = () => {
                     Cadera:
                 </label>
                 <input
-                    disabled={measureShirt.medida.CI_CADERA ? true : false}
+                    disabled={measureShirt.medida?.CI_CADERA ? true : false}
                     type='number'
                     onChange={onInputChange}
-                    value={
-                        measureShirt.medida.CI_CADERA
-                            ? measureShirt.medida.CI_CADERA
-                            : formState.caderaCamisa
-                    }
+                    value={formState.caderaCamisa}
                     className='form-control'
                     id='caderacamisa'
                     name='caderaCamisa'
@@ -87,15 +83,11 @@ export const MeasureTopShirt = () => {
                     Espalda:
                 </label>
                 <input
-                    disabled={measureShirt.medida.CI_ESPALDA ? true : false}
+                    disabled={measureShirt.medida?.CI_ESPALDA ? true : false}
                     type='number'
                     className='form-control'
                     id='espaldaCamisa'
-                    value={
-                        measureShirt.medida.CI_ESPALDA
-                            ? measureShirt.medida.CI_ESPALDA
-                            : formState.espaldaCamisa
-                    }
+                    value={formState.espaldaCamisa}
                     onChange={onInputChange}
                     name='espaldaCamisa'
                     required
@@ -106,15 +98,11 @@ export const MeasureTopShirt = () => {
                     Hombro:
                 </label>
                 <input
-                    disabled={measureShirt.medida.CI_HOMBRO ? true : false}
+                    disabled={measureShirt.medida?.CI_HOMBRO ? true : false}
                     type='number'
                     className='form-control'
                     id='hombrocamisa'
-                    value={
-                        measureShirt.medida.CI_HOMBRO
-                            ? measureShirt.medida.CI_HOMBRO
-                            : formState.hombroCamisa
-                    }
+                    value={formState.hombroCamisa}
                     onChange={onInputChange}
                     name='hombroCamisa'
                     required
@@ -125,15 +113,11 @@ export const MeasureTopShirt = () => {
                     Cuello:
                 </label>
                 <input
-                    disabled={measureShirt.medida.CI_CUELLO ? true : false}
+                    disabled={measureShirt.medida?.CI_CUELLO ? true : false}
                     type='number'
                     className='form-control'
                     id='cuelloCamisa'
-                    value={
-                        measureShirt.medida.CI_CUELLO
-                            ? measureShirt.medida.CI_CUELLO
-                            : formState.cuelloCamisa
-                    }
+                    value={formState.cuelloCamisa}
                     onChange={onInputChange}
                     name='cuelloCamisa'
                     required

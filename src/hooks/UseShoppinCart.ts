@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useDispatch, useSelector } from 'react-redux';
 import { AxiosErrorData, ProductShop } from '../interfaces';
 import {
@@ -57,9 +58,24 @@ export const UseShoppinCart = () => {
             })
         );
     };
-    const startShoppinCart = async () => {
+    // voy a recivir un f
+    const startShoppinCart = async (form: any) => {
         if (status === 'not-authenticated') {
             return navigate('/auth/login');
+        }
+        if (
+            form.NUM_TARJETA === '' ||
+            form.NOMBRE === '' ||
+            form.EXPIRA === '' ||
+            form.CVV === ''
+        ) {
+            return Swal.fire({
+                icon: 'warning',
+                title: 'Debe completar los campos de la tarjeta',
+                text: 'Complete los campos para continuar',
+                showConfirmButton: true,
+                timer: 3000,
+            });
         }
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         const productShop = products.map((product: any) => {

@@ -2,12 +2,21 @@ import { useEffect } from 'react';
 import { UseForm, UseMeasureWaistcoat } from '../../hooks';
 
 export const MeasureLargeWaistcoat = () => {
-    const { formState, onInputChange } = UseForm();
+    const { formState, onInputChange, setFormState } = UseForm();
     const { startSaveMeasureWaistcoatLarge, measureWaistcoat } =
         UseMeasureWaistcoat();
+
     useEffect(() => {
         startSaveMeasureWaistcoatLarge(formState);
     }, [formState]);
+
+    useEffect(() => {
+        setFormState({
+            ...formState,
+            LargoTotalChaleco: measureWaistcoat?.medida?.CI_L_TOTAL,
+        });
+    }, [measureWaistcoat]);
+
     return (
         <form>
             <div className='mb-3'>
@@ -16,9 +25,11 @@ export const MeasureLargeWaistcoat = () => {
                 </label>
                 <input
                     onChange={onInputChange}
-                    disabled={measureWaistcoat.medida.CI_L_TOTAL ? true : false}
+                    disabled={
+                        measureWaistcoat.medida?.CI_L_TOTAL ? true : false
+                    }
                     value={
-                        measureWaistcoat.medida.CI_L_TOTAL ||
+                        measureWaistcoat.medida?.CI_L_TOTAL ||
                         formState.LargoTotalCamisa
                     }
                     type='number'

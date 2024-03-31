@@ -2,12 +2,23 @@ import { useEffect } from 'react';
 import { UseForm, UseMeasureWaistcoat } from '../../hooks';
 
 export const MeasureUpperWaistcoat = () => {
-    const { formState, onInputChange } = UseForm();
+    const { formState, onInputChange, setFormState } = UseForm();
     const { startSaveMeasureWaistcoatTop, measureWaistcoat } =
         UseMeasureWaistcoat();
+
     useEffect(() => {
         startSaveMeasureWaistcoatTop(formState);
     }, [formState]);
+
+    useEffect(() => {
+        setFormState({
+            ...formState,
+            pechoChaleco: measureWaistcoat?.medida?.CI_PECHO,
+            CinturaChaleco: measureWaistcoat?.medida?.CI_CINTURA,
+            CaderaChaleco: measureWaistcoat?.medida?.CI_CADERA,
+        });
+    }, [measureWaistcoat]);
+
     return (
         <form>
             <div className='mb-3'>
@@ -15,12 +26,9 @@ export const MeasureUpperWaistcoat = () => {
                     Pecho:
                 </label>
                 <input
-                    disabled={measureWaistcoat.medida.CI_PECHO ? true : false}
+                    disabled={measureWaistcoat.medida?.CI_PECHO ? true : false}
                     onChange={onInputChange}
-                    value={
-                        measureWaistcoat.medida.CI_PECHO ||
-                        formState.pechoChaleco
-                    }
+                    value={formState.pechoChaleco}
                     type='number'
                     className='form-control'
                     id='pechoChaleco'
@@ -33,12 +41,11 @@ export const MeasureUpperWaistcoat = () => {
                     Cintura:
                 </label>
                 <input
-                    disabled={measureWaistcoat.medida.CI_CINTURA ? true : false}
-                    onChange={onInputChange}
-                    value={
-                        measureWaistcoat.medida.CI_CINTURA ||
-                        formState.CinturaChaleco
+                    disabled={
+                        measureWaistcoat.medida?.CI_CINTURA ? true : false
                     }
+                    onChange={onInputChange}
+                    value={formState.CinturaChaleco}
                     type='number'
                     className='form-control'
                     id='CinturaChaleco'
@@ -51,12 +58,9 @@ export const MeasureUpperWaistcoat = () => {
                     Cadera:
                 </label>
                 <input
-                    disabled={measureWaistcoat.medida.CI_CADERA ? true : false}
+                    disabled={measureWaistcoat.medida?.CI_CADERA ? true : false}
                     onChange={onInputChange}
-                    value={
-                        measureWaistcoat.medida.CI_CADERA ||
-                        formState.espaldaCamisa
-                    }
+                    value={formState.CaderaChaleco}
                     type='number'
                     className='form-control'
                     id='CaderaChaleco'

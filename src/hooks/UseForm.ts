@@ -8,7 +8,8 @@ export const UseForm = (initialForm = {}) => {
         target,
     }:
         | React.ChangeEvent<HTMLInputElement>
-        | React.ChangeEvent<HTMLSelectElement>) => {
+        | React.ChangeEvent<HTMLSelectElement>
+        | React.ChangeEvent<HTMLTextAreaElement>) => {
         const { name, value } = target;
         setFormState({
             ...formState,

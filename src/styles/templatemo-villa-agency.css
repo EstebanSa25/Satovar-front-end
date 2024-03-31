@@ -2196,3 +2196,25 @@ body {
 .btn-nueva {
     margin: 2px 0 14px 0;
 }
+.wal2-confirm,
+.swal2-styled {
+    border: #f35525 !important;
+    background-color: #f35525 !important;
+    box-shadow: #f35525 !important;
+}
+html {
+    min-height: 100%;
+    position: relative;
+}
+body {
+    margin: 0;
+    margin-bottom: 150px;
+}
+footer {
+    background-color: black;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 40px;
+    color: white;
+}

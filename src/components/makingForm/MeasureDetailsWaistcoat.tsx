@@ -22,10 +22,10 @@ export const MeasureDetailsWaistcoat = () => {
                 </label>
                 <input
                     disabled={
-                        measureWaistcoat.medida.CV_DETALLES ? true : false
+                        measureWaistcoat.medida?.CV_DETALLES ? true : false
                     }
                     onChange={onChange}
-                    value={measureWaistcoat.medida.CV_DETALLES || formState}
+                    value={measureWaistcoat.medida?.CV_DETALLES || formState}
                     type='text'
                     className='form-control'
                     id='DetallesCamisa'

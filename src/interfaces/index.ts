@@ -14,3 +14,6 @@ export * from './User.interface';
 export * from './Product.interface';
 export * from './DasboardApi.interface';
 export * from './Orders.Api.interface';
+export * from './UserProfileApi.interface';
+export * from './PantMeasureApi.interface';
+export * from './MeasureSuitJacket.interface';

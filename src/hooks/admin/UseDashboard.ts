@@ -109,7 +109,6 @@ export const UseDashboard = () => {
             const { data } = await satovarApi.get<SuccessOrders>(
                 '/dashboard/complete-orders'
             );
-            console.log(data);
             setOrdersCompleted(data);
         } catch (error) {
             console.log(error);

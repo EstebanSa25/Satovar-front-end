@@ -8,6 +8,17 @@ const initialState = {
     measureWaistcoatTop: {},
     measureWaistcoatLarge: {},
     measureWaistcoatDetails: {},
+
+    //PANTALON
+    measurePantTop: {},
+    measurePantLarge: {},
+    measurePantDetails: {},
+
+    //Saco
+    measureSuitJacketTop: {},
+    measureSuitJacketLarge: {},
+    measureSuitJacketDetails: {},
+
     //API
     measureShirt: {
         medida: {
@@ -28,6 +39,8 @@ const initialState = {
             CV_DETALLES: null,
         },
     },
+    measurePant: {},
+    measureSuitJacket: {},
 };
 
 export const MeasureSlice = createSlice({
@@ -84,6 +97,30 @@ export const MeasureSlice = createSlice({
                 },
             };
         },
+        onCreateMeasurePantTop: (state, { payload }) => {
+            state.measurePantTop = payload;
+        },
+        onCreateMeasurePantLarge: (state, { payload }) => {
+            state.measurePantLarge = payload;
+        },
+        onCreateMeasurePantDetails: (state, { payload }) => {
+            state.measurePantDetails = payload;
+        },
+        onGetMeasurePant: (state, { payload }) => {
+            state.measurePant = payload;
+        },
+        onCreateMeasureSuitJacketTop: (state, { payload }) => {
+            state.measureSuitJacketTop = payload;
+        },
+        onCreateMeasureSuitJacketLarge: (state, { payload }) => {
+            state.measureSuitJacketLarge = payload;
+        },
+        onCreateMeasureSuitJacketDetails: (state, { payload }) => {
+            state.measureSuitJacketDetails = payload;
+        },
+        onGetMeasureSuitJacket: (state, { payload }) => {
+            state.measureSuitJacket = payload;
+        },
     },
 });
 
@@ -98,4 +135,12 @@ export const {
     onCreateMeasureWaistcoatTop,
     onCreateMeasureWaistcoatLarge,
     onCreateMeasureWaistcoatDetails,
+    onCreateMeasurePantTop,
+    onCreateMeasurePantLarge,
+    onCreateMeasurePantDetails,
+    onGetMeasurePant,
+    onCreateMeasureSuitJacketTop,
+    onCreateMeasureSuitJacketLarge,
+    onCreateMeasureSuitJacketDetails,
+    onGetMeasureSuitJacket,
 } = MeasureSlice.actions;

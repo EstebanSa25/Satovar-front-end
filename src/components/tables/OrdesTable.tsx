@@ -22,11 +22,13 @@ export const OrdesTable = () => {
         startGetAllOrders();
     }, []);
     useEffect(() => {
-        orders.forEach((order: OrderApiInterface) => {
-            setFormState({
-                ...formState,
-                [`Estado-${order.CI_ID_PEDIDO}`]: order.CI_ID_ESTADO.toString(),
+        setFormState((prevState) => {
+            const newState = { ...prevState };
+            orders.forEach((order: OrderApiInterface) => {
+                newState[`Estado-${order.CI_ID_PEDIDO}`] =
+                    order.CI_ID_ESTADO.toString();
             });
+            return newState;
         });
     }, [orders]);
 

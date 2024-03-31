@@ -1,8 +1,21 @@
-import { useParams } from 'react-router-dom';
+import { useEffect } from 'react';
+import { Link, Navigate, useParams } from 'react-router-dom';
+import { UseProfileUser } from '../../hooks';
 
 export const UserInfo = () => {
     const { id } = useParams();
-    console.log(id);
+
+    const {
+        startGetProfileUserInfo,
+        userInfo,
+        startGetProfileUserOrder,
+        userOrders,
+    } = UseProfileUser();
+    useEffect(() => {
+        startGetProfileUserInfo(id);
+        startGetProfileUserOrder(id);
+    }, []);
+    if (userInfo.userWithoutCLAVE === null) return <Navigate to='/pedidos' />;
     return (
         <div className='datos-usuario'>
             <div className='container-usuario text-center border'>
@@ -12,23 +25,32 @@ export const UserInfo = () => {
                 <div className='text-center'>
                     <div className='container'>
                         <h5>Nombre</h5>
-                        <p>Carlos Mendez Ruiz</p>
+                        <p>{userInfo.userWithoutCLAVE?.CV_NOMBRE}</p>
                         <h5>Cédula</h5>
-                        <p>5-8365-836</p>
+                        <p>{userInfo.userWithoutCLAVE?.CV_CEDULA}</p>
                         <h5>Correo eletrónico</h5>
-                        <p>CarlosMenR@hotmail.com</p>
+                        <p>{userInfo.userWithoutCLAVE?.CV_CORREO}</p>
                         <h5>Dirección</h5>
-                        <p>Cartago, Las Lomas, Calle 12-14, avenida 25.</p>
-                        <p>Casa color vino con porton negro, de 2 pisos</p>
+                        <p>{userInfo.userWithoutCLAVE?.CV_DIRECCION}</p>
                         <h5>Teléfono</h5>
-                        <p>7845-5436</p>
+                        <p>{userInfo.userWithoutCLAVE?.CV_TELEFONO}</p>
                         <h5>N. Pedido</h5>
-                        <p>
-                            <a href='perfil.html'>-93733040</a> / 20 marz. 2024
-                        </p>
-                        <p>
-                            <a href='pedido2.html'>-64972383</a> / 05 mayo 2024
-                        </p>
+                        {userOrders?.map((order) => (
+                            <p key={order.CI_ID_PEDIDO}>
+                                <Link to='perfil.html'>
+                                    -{order.CI_ID_PEDIDO}
+                                </Link>{' '}
+                                /{' '}
+                                {new Date(
+                                    order.T_COMPRA.CF_FECHA_PAGO
+                                ).toLocaleDateString('es-Es', {
+                                    weekday: 'long',
+                                    year: 'numeric',
+                                    month: 'long',
+                                    day: 'numeric',
+                                })}{' '}
+                            </p>
+                        ))}
                     </div>
                 </div>
             </div>
