@@ -52,6 +52,7 @@ export const UseAuth = () => {
             });
             Swal.fire('Verifica tu correo electronico para activar tu cuenta');
             onResetForm();
+            navigate('/');
         } catch (error) {
             const axiosError = error as AxiosError;
             const errorCode = axiosError.response?.status as number;
@@ -128,10 +129,24 @@ export const UseAuth = () => {
             dispatch(onLogin(user));
         } catch (error) {
             const axiosError = error as AxiosError;
+            const errorCode = axiosError.response?.status as number;
+            const errorString = axiosError.response?.data as AxiosErrorData;
             switch (axiosError.response?.status) {
                 case 404:
                     dispatch(onLoginGoogle(user));
                     navigate('/auth/registro');
+                    break;
+                case 401:
+                    ErrorSweetAlert(
+                        errorCode,
+                        'Error al iniciar sesion',
+                        errorString.error ===
+                            'Verifique su cuenta o contacte a un administrador'
+                            ? errorString.error
+                            : 'Su cuenta ya fue registrada ingrese con su correo y clave' ||
+                                  errorString.message ||
+                                  ''
+                    );
                     break;
             }
         }

@@ -5,8 +5,12 @@ import { useEffect } from 'react';
 export const UserPant = () => {
     const { id } = useParams();
     const { onInputChange, formState, setFormState } = UseForm();
-    const { measurePants, startGetMeasurePants, startSavePant } =
-        UseProfileUser();
+    const {
+        measurePants,
+        startGetMeasurePants,
+        startSavePant,
+        startUpdateMeasurePants,
+    } = UseProfileUser();
     useEffect(() => {
         startGetMeasurePants(id);
     }, [id]);
@@ -110,6 +114,13 @@ export const UserPant = () => {
             </div>
             <div className='botones m-auto'>
                 <button
+                    onClick={() =>
+                        startUpdateMeasurePants(
+                            formState,
+                            measurePants?.medida?.CI_ID_PANTALON,
+                            id
+                        )
+                    }
                     className={
                         !measurePants?.medida?.CI_ID_PANTALON
                             ? 'd-none'

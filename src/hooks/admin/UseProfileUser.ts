@@ -17,6 +17,7 @@ import axios, { AxiosError } from 'axios';
 import { ErrorSweetAlert } from '../../helpers';
 
 export const UseProfileUser = () => {
+    // #region Hooks
     const [userInfo, setUserInfo] = useState({} as UserProfileApiInterface);
     const [userOrders, setUserOrders] = useState(
         [] as UserOrdersApiInterface[]
@@ -34,7 +35,9 @@ export const UseProfileUser = () => {
         {} as PantMeasureInterfaceApi
     );
     const navigate = useNavigate();
+    // #endregion Hooks
 
+    // #region Metodos de obtener informacion de usuario
     const startGetProfileUserInfo = async (id: string | undefined) => {
         try {
             const { data } = await satovarApi.get<UserProfileApiInterface>(
@@ -99,6 +102,9 @@ export const UseProfileUser = () => {
             console.log(error);
         }
     };
+    // #endregion Metodos de obtener informacion de usuario
+
+    // #region Metodos de guardar medidas
     const startCreateMeasureShirt = async (
         form: any,
         id: string | undefined
@@ -250,6 +256,154 @@ export const UseProfileUser = () => {
             }
         }
     };
+    //#endregion Metodos de guardar medidas
+
+    // #region Metodos de actualizar medidas
+    const startUpdateMeasureShirt = async (
+        form: any,
+        id: number,
+        idUsuario: string | undefined
+    ) => {
+        try {
+            await satovarApi.put(`/measure/shirt/${+id}`, {
+                pecho: +form.PechoCamisa,
+                cintura: +form.CinturaCamisa,
+                cadera: +form.CaderaCamisa,
+                espalda: +form.EspaldaCamisa,
+                hombro: +form.HombroCamisa,
+                cuello: +form.CuelloCamisa,
+                largoManga: +form.L_mangaCamisa,
+                largoTotal: +form.L_totalCamisa,
+                brazo: +form.BrazoCamisa,
+                puno: +form.PunioCamisa,
+                detalles: form.DetalleCamisa,
+            });
+            startGetMeasureShirt(idUsuario);
+            Swal.fire({
+                icon: 'success',
+                title: 'Medida de camisa actualizada',
+                showConfirmButton: false,
+                timer: 1800,
+            });
+        } catch (error) {
+            const axiosError = error as AxiosError;
+            const errorCode = axiosError.response?.status as number;
+            const errorString = axiosError.response?.data as AxiosErrorData;
+            ErrorSweetAlert(
+                errorCode,
+                'Error al editar medida de camisa',
+                `${errorString.error || errorString.message || ''}`
+            );
+            console.log(error);
+        }
+    };
+    const startUpdateMeasureWaistcoat = async (
+        form: any,
+        id: number,
+        idUsuario: string | undefined
+    ) => {
+        try {
+            await satovarApi.put(`/measure/waistcoat/${+id}`, {
+                pecho: +form.PechoChaleco,
+                cintura: +form.CinturaChaleco,
+                cadera: +form.CaderaChaleco,
+                largoTotal: +form.L_totalChaleco,
+                detalles: form.DetalleChaleco,
+            });
+            startGetMeasureWaistcoat(idUsuario);
+            Swal.fire({
+                icon: 'success',
+                title: 'Medida de Chaleco actualizada',
+                showConfirmButton: false,
+                timer: 1800,
+            });
+        } catch (error) {
+            if (axios.isAxiosError(error)) {
+                const axiosError = error as AxiosError;
+                const errorCode = axiosError.response?.status as number;
+                const errorString = axiosError.response?.data as AxiosErrorData;
+                ErrorSweetAlert(
+                    errorCode,
+                    'Error al editar medida de chaleco',
+                    `${errorString.error || errorString.message || ''}`
+                );
+            }
+        }
+    };
+    const startUpdateMeasureSuitJacket = async (
+        form: any,
+        id: number,
+        idUsuario: string | undefined
+    ) => {
+        try {
+            await satovarApi.put(`/measure/suit-jacket/${+id}`, {
+                pecho: +form.PechoSaco,
+                cintura: +form.CinturaSaco,
+                cadera: +form.CaderaSaco,
+                espalda: +form.EspaldaSaco,
+                hombro: +form.HombroSaco,
+                largoManga: +form.L_mangaSaco,
+                largoTotal: +form.L_totalSaco,
+                brazo: +form.BrazoSaco,
+                puno: +form.PunioSaco,
+                detalles: form.DetalleSaco,
+            });
+            startGetMeasureSuitJacket(idUsuario);
+            Swal.fire({
+                icon: 'success',
+                title: 'Medida de Saco actualizada',
+                showConfirmButton: false,
+                timer: 1800,
+            });
+        } catch (error) {
+            if (axios.isAxiosError(error)) {
+                const axiosError = error as AxiosError;
+                const errorCode = axiosError.response?.status as number;
+                const errorString = axiosError.response?.data as AxiosErrorData;
+                ErrorSweetAlert(
+                    errorCode,
+                    'Error al editar medida de saco',
+                    `${errorString.error || errorString.message || ''}`
+                );
+            }
+        }
+    };
+    const startUpdateMeasurePants = async (
+        form: any,
+        id: number,
+        idUsuario: string | undefined
+    ) => {
+        try {
+            await satovarApi.put(`/measure/pant/${+id}`, {
+                cintura: +form.CinturaPantalon,
+                cadera: +form.CaderaPantalon,
+                tiro: +form.TiroPantalon,
+                rodilla: +form.RodillaPantalon,
+                ruedo: +form.RuedoPantalon,
+                largo: +form.LargoPantalon,
+                detalles: form.DetallePantalon,
+            });
+            startGetMeasurePants(idUsuario);
+            Swal.fire({
+                icon: 'success',
+                title: 'Medida de pantalon actualizada',
+                showConfirmButton: false,
+                timer: 1800,
+            });
+        } catch (error) {
+            if (axios.isAxiosError(error)) {
+                const axiosError = error as AxiosError;
+                const errorCode = axiosError.response?.status as number;
+                const errorString = axiosError.response?.data as AxiosErrorData;
+                ErrorSweetAlert(
+                    errorCode,
+                    'Error al editar medida de pantalon',
+                    `${errorString.error || errorString.message || ''}`
+                );
+            }
+        }
+    };
+    //#endregion Metodos de actualizar medidas
     return {
         //valores
         userInfo,
@@ -258,16 +412,22 @@ export const UseProfileUser = () => {
         measureWaistcoat,
         measureSuitJacket,
         measurePants,
-        //metodos
+        //metodos para obtener informacion de usuario
         startGetProfileUserInfo,
         startGetProfileUserOrder,
         startGetMeasureShirt,
         startGetMeasureWaistcoat,
         startGetMeasureSuitJacket,
         startGetMeasurePants,
+        //metodos de guardar medidas
         startCreateMeasureShirt,
         startSaveSuitJacket,
         startSavePant,
         CreateMeasureWaistcoat,
+        // metodos de actualizar medidas
+        startUpdateMeasureShirt,
+        startUpdateMeasureWaistcoat,
+        startUpdateMeasureSuitJacket,
+        startUpdateMeasurePants,
     };
 };

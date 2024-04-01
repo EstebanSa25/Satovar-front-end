@@ -20,10 +20,10 @@ export const MeasureDetailsShirt = () => {
                     Detalles Adicionales:
                 </label>
                 <textarea
-                    disabled={measureShirt.medida.CV_DETALLES ? true : false}
+                    disabled={measureShirt.medida?.CV_DETALLES ? true : false}
                     value={
-                        measureShirt.medida.CV_DETALLES
-                            ? measureShirt.medida.CV_DETALLES
+                        measureShirt.medida?.CV_DETALLES
+                            ? measureShirt.medida?.CV_DETALLES
                             : formState
                     }
                     onChange={onChange}

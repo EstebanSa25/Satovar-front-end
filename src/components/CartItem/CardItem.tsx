@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { UseProduct, UseShoppinCart } from '../../hooks';
 import { Product, C_TProductoXTalla } from '../../interfaces';
 import { ProductShop } from '../../interfaces/Product.interface';
@@ -11,22 +11,43 @@ export const CardItem = ({
     descripcion,
     cantidad,
 }: ProductShop) => {
-    const { startProductDelete, startAddSize } = UseShoppinCart();
+    const {
+        startProductDelete,
+        startAddSize,
+        products: cartProducts,
+        startCountProduct,
+    } = UseShoppinCart();
     const { products } = UseProduct();
     const [formState, setFormState] = useState(
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        products.find((product: ProductShop) => product.id === id)?.tallas[0]
-            ?.T_TALLA.CI_ID_TALLA || 1
+        products
+            .filter((product) => product.id === id)
+            .flatMap((product) =>
+                product.tallas
+                    .filter(
+                        (talla) =>
+                            talla.T_TALLA.CI_ID_TALLA ===
+                            product.tallas[0].T_TALLA.CI_ID_TALLA
+                    )
+                    .map((talla) => talla.T_TALLA.CI_ID_TALLA)
+            )[0]
     );
+
     const onChange = ({ target }: React.ChangeEvent<HTMLSelectElement>) => {
         const { value } = target;
-        setFormState(value);
+        setFormState(+value);
     };
-    startAddSize(id, +formState);
+    const [formCountState, setFormCountState] = useState(cantidad || 1);
+
+    const onChangeCount = ({ target }: React.ChangeEvent<HTMLInputElement>) => {
+        const { value } = target;
+        setFormCountState(parseInt(value));
+        startCountProduct(id, parseInt(value));
+    };
+    startAddSize(id, formState);
     return (
         <div className='card-body'>
-            <div className='d-flex justify-content-left  gap-5'>
-                <div className='d-flex flex-row  w-75 align-items-center'>
+            <div className='d-flex gap-5  justify-between align-items-center'>
+                <div className='d-flex flex-row w-25 align-items-center'>
                     <div>
                         <img
                             src={imagen}
@@ -38,7 +59,7 @@ export const CardItem = ({
                         />
                     </div>
                     <div className='ms-3 w-100'>
-                        <h5 className=' w-100 '>{nombre}</h5>
+                        <h4 className=' w-100 '>{nombre}</h4>
                         <p className='small mb-0'>{descripcion}</p>
                     </div>
                 </div>
@@ -46,7 +67,7 @@ export const CardItem = ({
                 <select
                     onChange={onChange}
                     value={formState}
-                    className='form-select w-25'
+                    className='form-select w-25 h-100  '
                     name={`talla${id}`}
                     id='talla'
                 >
@@ -63,20 +84,42 @@ export const CardItem = ({
                             : ``
                     )}
                 </select>
-                <div className='d-flex flex-row align-items-center'>
+                <div className='d-flex justify-between gap-5 flex-row align-items-center'>
                     <div
                         style={{
                             width: '50px',
                         }}
                     >
-                        <h5 className='fw-normal mb-0'>{cantidad}</h5>
+                        <input
+                            min={1}
+                            max={products
+                                .filter((product) => product.id === id)
+                                .flatMap((product) =>
+                                    product.tallas
+                                        .filter(
+                                            (talla) =>
+                                                talla.T_TALLA.CI_ID_TALLA ===
+                                                formState
+                                        )
+                                        .map((talla) => talla.CI_CANTIDAD)
+                                )
+                                .reduce(
+                                    (prev, current) => Math.max(prev, current),
+                                    0
+                                )}
+                            onChange={onChangeCount}
+                            name={`Cantidad-${id}`}
+                            type='number'
+                            value={formCountState}
+                            className='form-control'
+                        ></input>
                     </div>
                     <div
                         style={{
                             width: '80px',
                         }}
                     >
-                        <h5 className='mb-0'>${precio}</h5>
+                        <span className=''>${precio}</span>
                     </div>
                     <a
                         href='#!'

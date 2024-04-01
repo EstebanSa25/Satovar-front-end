@@ -174,7 +174,7 @@ export const RegisterProduct = () => {
                                     </div>
                                     <div className='mb-3 mt-3'>
                                         <label
-                                            // htmlFor='TallasRegistro'
+                                            htmlFor='TallasRegistro'
                                             className='form-label'
                                         >
                                             Tallas Disponibles:

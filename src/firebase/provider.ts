@@ -28,6 +28,7 @@ export const signInWithGoogle = async () => {
             phoneNumber,
         };
     } catch (error) {
+        console.log(error);
         const errorCode = (error as Error).name;
         const errorMessage = (error as Error).message;
         return {

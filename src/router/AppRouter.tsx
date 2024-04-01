@@ -17,6 +17,7 @@ import {
 } from '../pages';
 import { UseAuth } from '../hooks/UseAuth';
 import { useEffect } from 'react';
+import { InvoiceOrderPage } from '../pages/InvoiceOrderPage';
 export const AppRouter = () => {
     //Todo: Status db from redux
 
@@ -73,7 +74,10 @@ export const AppRouter = () => {
                                 path='/perfil/:id'
                                 element={<UserProfilePage />}
                             />
-
+                            <Route
+                                path='/pedido/:id'
+                                element={<InvoiceOrderPage />}
+                            />
                             <Route
                                 path='/*'
                                 element={<Navigate to={'/ventas'} />}

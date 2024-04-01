@@ -1,7 +1,6 @@
 import { Link } from 'react-router-dom';
 import { CardItem } from '../components/CartItem/CardItem';
-import { UseForm, UseShoppinCart } from '../hooks';
-import { ProductShop } from '../interfaces';
+import { UseForm, UseProduct, UseShoppinCart } from '../hooks';
 import { useEffect, useRef } from 'react';
 
 const initialForm = {
@@ -13,9 +12,11 @@ const initialForm = {
 export const CartPage = () => {
     const { products, startShoppinCart, starCalculateMount, subtotal, total } =
         UseShoppinCart();
+    const { startGetProduct } = UseProduct();
 
     const { onInputChange, formState, setFormState } = UseForm(initialForm);
     useEffect(() => {
+        startGetProduct();
         starCalculateMount();
     }, []);
     const expireRef = useRef<HTMLInputElement>(null);
@@ -40,6 +41,9 @@ export const CartPage = () => {
         }
         console.log(formState);
     }, [formState.EXPIRA]);
+    useEffect(() => {
+        localStorage.setItem('cart', JSON.stringify(products));
+    }, [products]);
 
     return (
         <section
@@ -111,23 +115,19 @@ export const CartPage = () => {
                                             {/* TODO:CARDS */}
                                         </div>
                                         <div className='card mb-3'>
-                                            {products.map(
-                                                (product: ProductShop) => (
-                                                    <CardItem
-                                                        key={product.id}
-                                                        id={product.id}
-                                                        nombre={product.nombre}
-                                                        precio={product.precio}
-                                                        imagen={product.imagen}
-                                                        descripcion={
-                                                            product.descripcion
-                                                        }
-                                                        cantidad={
-                                                            product.cantidad
-                                                        }
-                                                    ></CardItem>
-                                                )
-                                            )}
+                                            {products.map((product) => (
+                                                <CardItem
+                                                    key={product.id}
+                                                    id={product.id}
+                                                    nombre={product.nombre}
+                                                    precio={product.precio}
+                                                    imagen={product.imagen}
+                                                    descripcion={
+                                                        product.descripcion
+                                                    }
+                                                    cantidad={product.cantidad}
+                                                ></CardItem>
+                                            ))}
                                             {/* <div className='card-body'>
                                                 
                                             </div> */}

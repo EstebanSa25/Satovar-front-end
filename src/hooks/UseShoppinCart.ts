@@ -7,6 +7,7 @@ import {
     onAddSize,
     onBuyCart,
     onCalculateMount,
+    onCountProduct,
     onLoading,
 } from '../redux-store';
 import satovarApi from '../api/SatovarApi';
@@ -14,16 +15,23 @@ import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import { AxiosError } from 'axios';
 import { ErrorSweetAlert } from '../helpers';
-import { UseProduct } from '.';
-
+interface slice {
+    Cart: {
+        products: ProductShop[];
+        subtotal: number;
+        envio: number;
+        impuesto: number;
+        total: number;
+        isLoading: boolean;
+    };
+}
 export const UseShoppinCart = () => {
     const dispatch = useDispatch();
     const { products, subtotal, envio, impuesto, total, isLoading } =
         useSelector(
             // eslint-disable-next-line @typescript-eslint/no-explicit-any
-            (state: any) => state.Cart
+            (state: slice) => state.Cart
         );
-    const { startGetProduct } = UseProduct();
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const { status } = useSelector((state: any) => state.Auth);
     const navigate = useNavigate();
@@ -57,8 +65,11 @@ export const UseShoppinCart = () => {
                 impuesto: mount * 0.13,
             })
         );
+        localStorage.setItem('cart', JSON.stringify(products));
     };
-    // voy a recivir un f
+    const startCountProduct = (id: number, cantidad: number) => {
+        dispatch(onCountProduct({ id, cantidad }));
+    };
     const startShoppinCart = async (form: any) => {
         if (status === 'not-authenticated') {
             return navigate('/auth/login');
@@ -129,5 +140,6 @@ export const UseShoppinCart = () => {
         startAddSize,
         startShoppinCart,
         starCalculateMount,
+        startCountProduct,
     };
 };

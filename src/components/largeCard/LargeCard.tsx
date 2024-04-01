@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { RentProps } from '../../interfaces';
 import { UseShoppinCart } from '../../hooks';
+import { useEffect } from 'react';
 
 export const LargeCard = ({
     id,
@@ -10,7 +11,10 @@ export const LargeCard = ({
     price,
     image,
 }: RentProps) => {
-    const { startAddProduct } = UseShoppinCart();
+    const { startAddProduct, products } = UseShoppinCart();
+    useEffect(() => {
+        localStorage.setItem('cart', JSON.stringify(products));
+    }, [products]);
     return (
         <>
             <div className='col-lg-4 col-md-6'>

@@ -30,28 +30,27 @@ export const UpdateProduct = () => {
                 )?.CI_CANTIDAD || ''
             }`,
             'Cantidad M': `${
-                activeProduct.T_PRODUCTO_X_TALLA?.find((talla) =>
-                    talla.T_TALLA.CV_TALLA.includes('M')
+                activeProduct.T_PRODUCTO_X_TALLA?.find(
+                    (talla) => talla.T_TALLA.CV_TALLA === 'M'
                 )?.CI_CANTIDAD || ''
             }`,
             'Cantidad L': `${
-                activeProduct.T_PRODUCTO_X_TALLA?.find((talla) =>
-                    talla.T_TALLA.CV_TALLA.includes('L')
+                activeProduct.T_PRODUCTO_X_TALLA?.find(
+                    (talla) => talla.T_TALLA.CV_TALLA === 'L'
                 )?.CI_CANTIDAD || ''
             }`,
             'Cantidad XL': `${
-                activeProduct.T_PRODUCTO_X_TALLA?.find((talla) =>
-                    talla.T_TALLA.CV_TALLA.includes('XL')
+                activeProduct.T_PRODUCTO_X_TALLA?.find(
+                    (talla) => talla.T_TALLA.CV_TALLA === 'XL'
                 )?.CI_CANTIDAD || ''
             }`,
             'Cantidad XXL': `${
-                activeProduct.T_PRODUCTO_X_TALLA?.find((talla) =>
-                    talla.T_TALLA.CV_TALLA.includes('XXL')
+                activeProduct.T_PRODUCTO_X_TALLA?.find(
+                    (talla) => talla.T_TALLA.CV_TALLA === 'XXL'
                 )?.CI_CANTIDAD || ''
             }`,
         });
     }, [activeProduct]);
-
     const { formState, onInputChange, onResetForm, setFormState } = UseForm();
     const inputRef = useRef(null);
 

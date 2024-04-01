@@ -4,8 +4,12 @@ import { UseForm, UseProfileUser } from '../../hooks';
 
 export const UserMeasureShirt = () => {
     const { id } = useParams();
-    const { startGetMeasureShirt, measureShirt, startCreateMeasureShirt } =
-        UseProfileUser();
+    const {
+        startGetMeasureShirt,
+        measureShirt,
+        startCreateMeasureShirt,
+        startUpdateMeasureShirt,
+    } = UseProfileUser();
     const { onInputChange, formState, setFormState } = UseForm();
     useEffect(() => {
         startGetMeasureShirt(id);
@@ -156,6 +160,13 @@ export const UserMeasureShirt = () => {
             </div>
             <div className='botones m-auto'>
                 <button
+                    onClick={() =>
+                        startUpdateMeasureShirt(
+                            formState,
+                            measureShirt?.medida.CI_ID_CAMISA,
+                            id
+                        )
+                    }
                     className={
                         !measureShirt?.medida?.CI_ID_CAMISA
                             ? 'd-none'

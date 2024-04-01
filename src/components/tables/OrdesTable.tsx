@@ -54,7 +54,7 @@ export const OrdesTable = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {orders.map((order: OrderApiInterface) => (
+                        {orders?.map((order: OrderApiInterface) => (
                             <tr
                                 key={order.CI_ID_PEDIDO}
                                 className={ClassDateTable(
@@ -63,7 +63,7 @@ export const OrdesTable = () => {
                                 )}
                             >
                                 <td>
-                                    <Link to={`pedido/${order.CI_ID_PEDIDO}`}>
+                                    <Link to={`/pedido/${order.CI_ID_PEDIDO}`}>
                                         {order.CI_ID_PEDIDO}
                                     </Link>
                                 </td>

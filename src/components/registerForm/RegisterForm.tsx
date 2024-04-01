@@ -1,13 +1,14 @@
+import { useEffect } from 'react';
 import { UseForm } from '../../hooks';
 import { UseAuth } from '../../hooks/UseAuth';
 import { RegisterFormState } from '../../interfaces';
 export const RegisterForm = () => {
     const { userGoogle, startCreateUser } = UseAuth();
     const initialForm = {
-        Nombre: userGoogle?.Nombre || '',
-        Apellido1: userGoogle?.Apellido1 || '',
-        Apellido2: userGoogle?.Apellido2 || '',
-        Correo: userGoogle?.Correo || '',
+        Nombre: '',
+        Apellido1: '',
+        Apellido2: '',
+        Correo: '',
         Cedula: '',
         Direccion: '',
         Telefono: '',
@@ -17,8 +18,18 @@ export const RegisterForm = () => {
         formState = {} as typeof initialForm,
         onInputChange,
         onResetForm,
+        setFormState,
     } = UseForm(initialForm);
     // console.log(userGoogle);
+    useEffect(() => {
+        setFormState({
+            ...formState,
+            Nombre: userGoogle?.Nombre || '',
+            Apellido1: userGoogle?.Apellido1 || '',
+            Apellido2: userGoogle?.Apellido2 || '',
+            Correo: userGoogle?.Correo || '',
+        });
+    }, [userGoogle]);
 
     return (
         <form>

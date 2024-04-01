@@ -8,6 +8,7 @@ export const UserWaistcoat = () => {
         startGetMeasureWaistcoat,
         measureWaistcoat,
         CreateMeasureWaistcoat,
+        startUpdateMeasureWaistcoat,
     } = UseProfileUser();
     const { onInputChange, formState, setFormState } = UseForm();
     useEffect(() => {
@@ -89,6 +90,13 @@ export const UserWaistcoat = () => {
             </div>
             <div className='botones'>
                 <button
+                    onClick={() =>
+                        startUpdateMeasureWaistcoat(
+                            formState,
+                            measureWaistcoat?.medida?.CI_ID_CHALECO,
+                            id
+                        )
+                    }
                     className={
                         !measureWaistcoat?.medida?.CI_ID_CHALECO
                             ? 'd-none'

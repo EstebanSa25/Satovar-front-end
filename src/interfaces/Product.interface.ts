@@ -19,9 +19,17 @@ export interface Product {
     descripcion: string;
     cantidad: Cantidad;
     color: string;
-    tallas: [];
+    tallas: P_T_TALLA[];
     catalogo: CatalogoType | number;
     fecha?: Date;
+}
+interface P_T_TALLA {
+    T_TALLA: P_T_TALLA;
+    CI_CANTIDAD: number;
+}
+interface P_T_TALLA {
+    CI_ID_TALLA: number;
+    CV_TALLA: string;
 }
 export interface ProductAdd {
     Id?: number;

@@ -9,6 +9,7 @@ export const UserSuitJacket = () => {
         startGetMeasureSuitJacket,
         measureSuitJacket,
         startSaveSuitJacket,
+        startUpdateMeasureSuitJacket,
     } = UseProfileUser();
 
     useEffect(() => {
@@ -151,6 +152,13 @@ export const UserSuitJacket = () => {
             </div>
             <div className='botones m-auto'>
                 <button
+                    onClick={() =>
+                        startUpdateMeasureSuitJacket(
+                            formState,
+                            measureSuitJacket?.medida?.CI_ID_SACO,
+                            id
+                        )
+                    }
                     className={
                         !measureSuitJacket?.medida?.CI_ID_SACO
                             ? 'd-none'

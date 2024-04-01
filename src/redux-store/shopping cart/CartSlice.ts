@@ -1,15 +1,22 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 import { ProductShop } from '../../interfaces';
 
 const initialState = {
-    products: [] as ProductShop[],
+    products: localStorage.getItem('cart')
+        ? (Array.from(
+              JSON.parse(localStorage.getItem('cart') || '[]')
+          ) as ProductShop[])
+        : ([] as ProductShop[]),
     subtotal: 0 as number,
     envio: 0 as number,
     impuesto: 0 as number,
     total: 0 as number,
     isLoading: false as boolean,
 };
-
+interface ProductShopCount {
+    id: number;
+    cantidad: number;
+}
 export const CartSlice = createSlice({
     name: 'Cart',
     initialState,
@@ -33,6 +40,14 @@ export const CartSlice = createSlice({
             state.products = state.products.filter(
                 (product) => product.id !== payload
             );
+        },
+        onCountProduct: (state, action: PayloadAction<ProductShopCount>) => {
+            state.products = state.products.map((product) => {
+                if (product.id === action.payload.id) {
+                    product.cantidad = action.payload.cantidad;
+                }
+                return product;
+            });
         },
         onAddSize: (state, { payload }) => {
             state.products.map((product) => {
@@ -68,4 +83,5 @@ export const {
     onBuyCart,
     onCalculateMount,
     onLoading,
+    onCountProduct,
 } = CartSlice.actions;
