@@ -12,17 +12,22 @@ export const Card = ({
     color,
     tallas,
 }: Product) => {
-    const { startAddProduct, products } = UseShoppinCart();
+    const { startAddProduct, productscart: products } = UseShoppinCart();
     useEffect(() => {
         localStorage.setItem('cart', JSON.stringify(products));
     }, [products]);
-
     const [count, setCount] = useState(0);
+
     return (
         <div className='col-lg-4 col-md-6 align-self-center mb-30 properties-items col-md-6 tra'>
             <div className='item'>
                 <a href='#!'>
-                    <img src={imagen} alt={nombre} />
+                    <img
+                        width={'250px'}
+                        height={'250px'}
+                        src={imagen}
+                        alt={nombre}
+                    />
                 </a>
                 <span className='category'>{color}</span>
                 <h6>${precio}</h6>
@@ -49,14 +54,28 @@ export const Card = ({
                                         cantidad: 1,
                                     });
                             }}
-                            to=''
+                            to={
+                                (products
+                                    .map((product) => product.id)
+                                    .includes(id) &&
+                                    '/carrito') ||
+                                ''
+                            }
                         >
-                            <i className='fa fa-shopping-cart'>
+                            <i
+                                className={
+                                    (products
+                                        .map((product) => product.id)
+                                        .includes(id) &&
+                                        'fa fa-credit-card-alt') ||
+                                    'fa fa-shopping-cart'
+                                }
+                            >
                                 {' '}
                                 {count === 0 ? '' : ` ${count}`}
                             </i>
                             {products.map((product) => product.id).includes(id)
-                                ? 'Agregado'
+                                ? 'Agregado, ir al carrito'
                                 : 'Anadir al carrito'}
                         </Link>
                     </div>

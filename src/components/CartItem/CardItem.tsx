@@ -14,8 +14,9 @@ export const CardItem = ({
     const {
         startProductDelete,
         startAddSize,
-        products: cartProducts,
+        productscart: cartProducts,
         startCountProduct,
+        starCalculateMount,
     } = UseShoppinCart();
     const { products } = UseProduct();
     const [formState, setFormState] = useState(
@@ -44,10 +45,21 @@ export const CardItem = ({
         startCountProduct(id, parseInt(value));
     };
     startAddSize(id, formState);
+
+    useEffect(() => {
+        setFormCountState(1);
+    }, [formState]);
+    useEffect(() => {
+        starCalculateMount();
+    }, [formCountState]);
+    useEffect(() => {
+        starCalculateMount();
+    }, [cartProducts]);
+
     return (
         <div className='card-body'>
             <div className='d-flex gap-5  justify-between align-items-center'>
-                <div className='d-flex flex-row w-25 align-items-center'>
+                <div className='d-flex flex-row w-100 align-items-center'>
                     <div>
                         <img
                             src={imagen}
@@ -55,6 +67,7 @@ export const CardItem = ({
                             alt='Shopping item'
                             style={{
                                 width: '65px',
+                                height: '65px',
                             }}
                         />
                     </div>
@@ -67,7 +80,7 @@ export const CardItem = ({
                 <select
                     onChange={onChange}
                     value={formState}
-                    className='form-select w-25 h-100  '
+                    className='form-select w-50 h-100  '
                     name={`talla${id}`}
                     id='talla'
                 >
@@ -84,34 +97,49 @@ export const CardItem = ({
                             : ``
                     )}
                 </select>
-                <div className='d-flex justify-between gap-5 flex-row align-items-center'>
+                <div className='d-flex justify-content-md-around  gap-5 flex-row align-items-center'>
                     <div
                         style={{
-                            width: '50px',
+                            width: '80px',
                         }}
                     >
                         <input
                             min={1}
-                            max={products
-                                .filter((product) => product.id === id)
-                                .flatMap((product) =>
-                                    product.tallas
-                                        .filter(
-                                            (talla) =>
-                                                talla.T_TALLA.CI_ID_TALLA ===
-                                                formState
-                                        )
-                                        .map((talla) => talla.CI_CANTIDAD)
-                                )
-                                .reduce(
-                                    (prev, current) => Math.max(prev, current),
-                                    0
-                                )}
+                            max={
+                                formState === 6
+                                    ? 1
+                                    : products
+                                          .filter(
+                                              (product) => product.id === id
+                                          )
+                                          .flatMap((product) =>
+                                              product.tallas
+                                                  .filter(
+                                                      (talla) =>
+                                                          talla.T_TALLA
+                                                              .CI_ID_TALLA ===
+                                                          formState
+                                                  )
+                                                  .map(
+                                                      (talla) =>
+                                                          talla.CI_CANTIDAD
+                                                  )
+                                          )
+                                          .reduce(
+                                              (prev, current) =>
+                                                  Math.max(prev, current),
+                                              0
+                                          )
+                            }
                             onChange={onChangeCount}
                             name={`Cantidad-${id}`}
                             type='number'
                             value={formCountState}
-                            className='form-control'
+                            className={
+                                formState === 6
+                                    ? 'd-none'
+                                    : 'd-block form-control'
+                            }
                         ></input>
                     </div>
                     <div
@@ -128,7 +156,10 @@ export const CardItem = ({
                         }}
                     >
                         <i
-                            onClick={() => startProductDelete(id)}
+                            onClick={() => {
+                                setFormCountState(0);
+                                startProductDelete(id);
+                            }}
                             className='fas fa-trash-alt'
                         ></i>
                     </a>

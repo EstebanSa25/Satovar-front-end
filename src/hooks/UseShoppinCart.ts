@@ -40,6 +40,7 @@ export const UseShoppinCart = () => {
     };
     const startProductDelete = (id: number) => {
         dispatch(OnProductDelete(id));
+        starCalculateMount();
     };
     const startAddSize = (id: number, size: number) => {
         dispatch(onAddSize({ id, talla: size }));
@@ -55,8 +56,8 @@ export const UseShoppinCart = () => {
                 })
             );
         }
-        products.map((product: ProductShop) => {
-            mount += +product.precio;
+        products?.map((product: ProductShop) => {
+            mount += +(product.precio * product.cantidad);
         });
         dispatch(
             onCalculateMount({
@@ -128,7 +129,7 @@ export const UseShoppinCart = () => {
     };
     return {
         //Propiedades
-        products,
+        productscart: products,
         subtotal,
         envio,
         impuesto,

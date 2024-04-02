@@ -23,6 +23,21 @@ export interface Product {
     catalogo: CatalogoType | number;
     fecha?: Date;
 }
+
+export interface ProductBuy {
+    id: number;
+    nombre: string;
+    precio: number;
+    imagen: string;
+    descripcion: string;
+    cantidad: Cantidad;
+    color: string;
+    tallas: P_T_TALLA[];
+    catalogo: CatalogoType | number;
+    fecha?: Date;
+    count: number;
+    setCountCart: () => void;
+}
 interface P_T_TALLA {
     T_TALLA: P_T_TALLA;
     CI_CANTIDAD: number;

@@ -129,7 +129,7 @@ export const UserPant = () => {
                     type='button'
                     name='Editar'
                 >
-                    Editar
+                    Actualizar
                 </button>
                 <button
                     onClick={() => startSavePant(formState, id)}
@@ -141,7 +141,7 @@ export const UserPant = () => {
                     type='button'
                     name='Guardar'
                 >
-                    Guardar
+                    Crear
                 </button>
             </div>
         </div>

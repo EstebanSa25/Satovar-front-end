@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { UseForm } from '../../hooks';
 import { UseAuth } from '../../hooks/UseAuth';
 import { RegisterFormState } from '../../interfaces';
+import { Link, Navigate, useNavigate } from 'react-router-dom';
 export const RegisterForm = () => {
     const { userGoogle, startCreateUser } = UseAuth();
     const initialForm = {
@@ -30,6 +31,7 @@ export const RegisterForm = () => {
             Correo: userGoogle?.Correo || '',
         });
     }, [userGoogle]);
+    const navigate = useNavigate();
 
     return (
         <form>
@@ -157,29 +159,38 @@ export const RegisterForm = () => {
                     Contraseña
                 </label>
             </div>
+            <div className=' m-auto d-flex justify-content-center align-items-center  flex-column w-25'>
+                <button
+                    onClick={(e) =>
+                        startCreateUser(
+                            {
+                                Nombre: formState.Nombre,
+                                Apellido1: formState.Apellido1,
+                                Apellido2: formState.Apellido2,
+                                Cedula: formState.Cedula,
+                                Correo: formState.Correo,
+                                Direccion: formState.Direccion,
+                                Telefono: formState.Telefono,
+                                Clave: formState.Clave,
+                            },
+                            e,
+                            onResetForm
+                        )
+                    }
+                    type='submit'
+                    className='btn btn-secondary btn-block mb-4'
+                >
+                    Registrar
+                </button>
 
-            <button
-                onClick={(e) =>
-                    startCreateUser(
-                        {
-                            Nombre: formState.Nombre,
-                            Apellido1: formState.Apellido1,
-                            Apellido2: formState.Apellido2,
-                            Cedula: formState.Cedula,
-                            Correo: formState.Correo,
-                            Direccion: formState.Direccion,
-                            Telefono: formState.Telefono,
-                            Clave: formState.Clave,
-                        },
-                        e,
-                        onResetForm
-                    )
-                }
-                type='submit'
-                className='btn btn-secondary btn-block mb-4'
-            >
-                Registrar
-            </button>
+                <button
+                    onClick={() => navigate(-1)}
+                    className='btn btn-secondary btn-block'
+                >
+                    Atras
+                </button>
+            </div>
+
             {/* <!-- Register buttons --> */}
         </form>
     );

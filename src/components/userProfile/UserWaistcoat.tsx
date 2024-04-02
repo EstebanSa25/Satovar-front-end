@@ -105,7 +105,7 @@ export const UserWaistcoat = () => {
                     type='button'
                     name='Editar'
                 >
-                    Editar
+                    Actualizar
                 </button>
                 <button
                     onClick={() => CreateMeasureWaistcoat(formState, id)}
@@ -117,7 +117,7 @@ export const UserWaistcoat = () => {
                     type='button'
                     name='Guardar'
                 >
-                    Guardar
+                    Crear
                 </button>
             </div>
         </div>

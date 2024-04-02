@@ -29,10 +29,12 @@ export const EchartsPieRose = ({ data, title }: ChartPropPie) => {
             },
             series: [
                 {
+                    startAngle: 180,
+                    endAngle: 360,
                     name: 'Nightingale Chart',
                     type: 'pie',
-                    radius: [50, 250],
-                    center: ['50%', '50%'],
+                    // radius: [50, 250],
+                    // center: ['50%', '50%'],
                     roseType: 'area',
                     itemStyle: {
                         borderRadius: 8,

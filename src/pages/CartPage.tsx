@@ -10,8 +10,13 @@ const initialForm = {
     CVV: '',
 };
 export const CartPage = () => {
-    const { products, startShoppinCart, starCalculateMount, subtotal, total } =
-        UseShoppinCart();
+    const {
+        productscart: products,
+        startShoppinCart,
+        starCalculateMount,
+        subtotal,
+        total,
+    } = UseShoppinCart();
     const { startGetProduct } = UseProduct();
 
     const { onInputChange, formState, setFormState } = UseForm(initialForm);
@@ -78,40 +83,40 @@ export const CartPage = () => {
                                                     su carrito de compras
                                                 </p>
                                             </div>
-                                            <div className='dropdown'>
-                                                <button
-                                                    type='button'
-                                                    className='btn btn-primary dropdown-toggle'
-                                                    style={{
-                                                        backgroundColor:
-                                                            '#F35525',
-                                                        border: '#F35525',
-                                                    }}
-                                                    data-toggle='dropdown'
-                                                >
-                                                    Filtrar por
-                                                </button>
-                                                <div className='dropdown-menu'>
-                                                    <a
-                                                        className='dropdown-item'
-                                                        href='#'
-                                                    >
-                                                        Precio
-                                                    </a>
-                                                    <a
-                                                        className='dropdown-item'
-                                                        href='#'
-                                                    >
-                                                        Cantidad
-                                                    </a>
-                                                    <a
-                                                        className='dropdown-item'
-                                                        href='#'
-                                                    >
-                                                        Nombre
-                                                    </a>
-                                                </div>
-                                            </div>
+                                            {/* /Sumale 3 dias a la fecha actual */}
+                                            <input
+                                                name='FECHA_ENTREGA'
+                                                min={`${
+                                                    new Date(
+                                                        new Date().getTime() +
+                                                            3 *
+                                                                24 *
+                                                                60 *
+                                                                60 *
+                                                                1000
+                                                    )
+                                                        .toISOString()
+                                                        .split('T')[0]
+                                                }`}
+                                                max={`${
+                                                    new Date(
+                                                        new Date().getFullYear(),
+                                                        new Date().getMonth() +
+                                                            5,
+                                                        0
+                                                    )
+                                                        .toISOString()
+                                                        .split('T')[0]
+                                                }`}
+                                                type='date'
+                                                placeholder='Fecha de entrega'
+                                                className='btn btn-primary '
+                                                style={{
+                                                    backgroundColor: '#F35525',
+                                                    border: '#F35525',
+                                                }}
+                                            />
+
                                             {/* TODO:CARDS */}
                                         </div>
                                         <div className='card mb-3'>

@@ -105,7 +105,6 @@ export const UseProductCrud = () => {
                     }
                 })
                 .filter(Boolean) as AddTalla[];
-
             const estilos = Object.keys(form).filter((key) =>
                 key.startsWith('style-')
             );
@@ -141,6 +140,7 @@ export const UseProductCrud = () => {
                     );
                     dispatch(onUpdateProductCrud(data));
                     inputRef.current?.click();
+                    startGetProductsAll();
                     Swal.fire({
                         title: 'Producto editado',
                         icon: 'success',
@@ -181,6 +181,7 @@ export const UseProductCrud = () => {
                     );
                     inputRef.current?.click();
                     dispatch(onUpdateProductCrud(data));
+                    startGetProductsAll();
                     Swal.fire({
                         title: 'Producto editado',
                         icon: 'success',
@@ -242,7 +243,6 @@ export const UseProductCrud = () => {
                     }
                 })
                 .filter(Boolean) as AddTalla[];
-
             const estilos = Object.keys(product).filter((key) =>
                 key.startsWith('style-')
             );
@@ -281,6 +281,7 @@ export const UseProductCrud = () => {
                     dispatch(onSetActiveProduct(data));
                     onResetForm();
                     inputRef.current?.click();
+                    startGetProductsAll();
                     Swal.fire({
                         title: 'Producto creado',
                         icon: 'success',
@@ -319,7 +320,6 @@ export const UseProductCrud = () => {
                 title: 'Producto activado',
                 icon: 'success',
             });
-            startGetProductsAll();
         } catch (error) {
             const axiosError = error as AxiosError;
             const errorCode = axiosError.response?.status as number;
@@ -334,11 +334,11 @@ export const UseProductCrud = () => {
     const startDeleteProduct = async (id: number) => {
         try {
             await satovarApi.delete(`/Products/delete/${id}`);
+            startGetProductsAll();
             Swal.fire({
                 title: 'Producto eliminado',
                 icon: 'success',
             });
-            startGetProductsAll();
         } catch (error) {
             const axiosError = error as AxiosError;
             const errorCode = axiosError.response?.status as number;

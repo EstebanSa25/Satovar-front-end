@@ -11,10 +11,24 @@ export const UseForm = (initialForm = {}) => {
         | React.ChangeEvent<HTMLSelectElement>
         | React.ChangeEvent<HTMLTextAreaElement>) => {
         const { name, value } = target;
-        setFormState({
-            ...formState,
-            [name]: value,
-        });
+        if (target.type !== 'checkbox') {
+            setFormState({
+                ...formState,
+                [name]: value,
+            });
+        }
+        if (target.type === 'checkbox' && target instanceof HTMLInputElement) {
+            if (target.checked) {
+                setFormState({
+                    ...formState,
+                    [name]: value,
+                });
+            }
+            if (!target.checked) {
+                const { [name]: deletedKey, ...newFormState } = formState;
+                setFormState(newFormState);
+            }
+        }
     };
     const onResetForm = () => {
         setFormState(initialForm);

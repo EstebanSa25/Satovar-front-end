@@ -65,10 +65,17 @@ export const CartSlice = createSlice({
             state.total = 0;
         },
         onCalculateMount: (state, { payload }) => {
-            state.subtotal = payload.subtotal;
-            state.envio = payload.envio;
-            state.impuesto = payload.impuesto;
-            state.total = state.subtotal + state.envio + state.impuesto;
+            if (state.products.length === 0) {
+                state.subtotal = 0;
+                state.envio = 0;
+                state.impuesto = 0;
+                state.total = 0;
+            } else {
+                state.subtotal = payload.subtotal;
+                state.envio = payload.envio;
+                state.impuesto = payload.impuesto;
+                state.total = state.subtotal + state.envio + state.impuesto;
+            }
         },
         onLoading: (state, { payload }) => {
             state.isLoading = payload;

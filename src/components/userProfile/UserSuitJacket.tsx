@@ -167,7 +167,7 @@ export const UserSuitJacket = () => {
                     type='button'
                     name='Editar'
                 >
-                    Editar
+                    Actualizar
                 </button>
                 <button
                     onClick={() => startSaveSuitJacket(formState, id)}
@@ -179,7 +179,7 @@ export const UserSuitJacket = () => {
                     type='button'
                     name='Guardar'
                 >
-                    Guardar
+                    Crear
                 </button>
             </div>
         </div>

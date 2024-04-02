@@ -1,7 +1,6 @@
-import { useEffect } from 'react';
+import { useEffect, useMemo } from 'react';
 import { UseProductCrud } from '../hooks';
 import { RegisterProduct, UpdateProduct } from '../components';
-
 export const ProductCreatePage = () => {
     const {
         startGetProductsAll,
@@ -11,9 +10,10 @@ export const ProductCreatePage = () => {
         startDeleteProduct,
         startActiveProduct,
     } = UseProductCrud();
+
     useEffect(() => {
         startGetProductsAll();
-    }, [products]);
+    }, []);
 
     return (
         <>
@@ -34,6 +34,7 @@ export const ProductCreatePage = () => {
                 <table className='table table-bordered grocery-crud-table table-hover'>
                     <thead>
                         <tr>
+                            <th>Foto</th>
                             <th>Nombre</th>
                             <th>Precio</th>
                             <th>Tela</th>
@@ -45,6 +46,14 @@ export const ProductCreatePage = () => {
                     <tbody>
                         {products.map((product) => (
                             <tr key={product.CI_ID_PRODUCTO}>
+                                <td>
+                                    <img
+                                        width={100}
+                                        height={100}
+                                        src={product.CV_FOTO}
+                                        alt={product.CV_NOMBRE}
+                                    />
+                                </td>
                                 <td>{product.CV_NOMBRE}</td>
                                 <td>{product.CD_PRECIO}</td>
                                 <td>{product.T_TELA?.CV_NOMBRE} </td>
@@ -67,9 +76,10 @@ export const ProductCreatePage = () => {
                                         className='btn btn-dark'
                                         data-toggle='modal'
                                         data-target='#update-product'
-                                        onClick={() =>
-                                            startSetActiveProduct(product)
-                                        }
+                                        onClick={() => {
+                                            startResetProductActive();
+                                            startSetActiveProduct(product);
+                                        }}
                                     >
                                         Editar
                                     </button>

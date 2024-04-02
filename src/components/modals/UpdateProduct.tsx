@@ -11,49 +11,50 @@ export const UpdateProduct = () => {
         fabric = [],
         activeProduct,
         startGetEditProduct,
+        startResetProductActive,
     } = UseProductCrud();
     useEffect(() => {
         startGetInfoProduct();
-    }, []);
+    }, [activeProduct]);
     const refFile = useRef<HTMLInputElement>(null);
+    const { onInputChange, onResetForm, formState, setFormState } = UseForm();
     useEffect(() => {
+        onResetForm();
         setFormState({
+            ...formState,
             Nombre: activeProduct?.CV_NOMBRE || '',
             FotoProductoUpdate: '',
-            Categoria: `${activeProduct.T_CATEGORIA?.CI_ID_CATEGORIA}`,
-            Tela: `${activeProduct.T_TELA?.CI_ID_TELA}`,
+            Categoria: activeProduct?.T_CATEGORIA?.CI_ID_CATEGORIA.toString(),
+            Tela: `${activeProduct?.T_TELA?.CI_ID_TELA}`,
             Precio: activeProduct?.CD_PRECIO,
-            Catalogo: `${activeProduct.T_CATALOGO?.CI_ID_CATALOGO}`,
-            'Cantidad S': `${
-                activeProduct.T_PRODUCTO_X_TALLA?.find((talla) =>
-                    talla.T_TALLA.CV_TALLA.includes('S')
-                )?.CI_CANTIDAD || ''
-            }`,
-            'Cantidad M': `${
-                activeProduct.T_PRODUCTO_X_TALLA?.find(
-                    (talla) => talla.T_TALLA.CV_TALLA === 'M'
-                )?.CI_CANTIDAD || ''
-            }`,
-            'Cantidad L': `${
-                activeProduct.T_PRODUCTO_X_TALLA?.find(
-                    (talla) => talla.T_TALLA.CV_TALLA === 'L'
-                )?.CI_CANTIDAD || ''
-            }`,
-            'Cantidad XL': `${
-                activeProduct.T_PRODUCTO_X_TALLA?.find(
-                    (talla) => talla.T_TALLA.CV_TALLA === 'XL'
-                )?.CI_CANTIDAD || ''
-            }`,
-            'Cantidad XXL': `${
-                activeProduct.T_PRODUCTO_X_TALLA?.find(
-                    (talla) => talla.T_TALLA.CV_TALLA === 'XXL'
-                )?.CI_CANTIDAD || ''
-            }`,
+            Catalogo: `${activeProduct?.T_CATALOGO?.CI_ID_CATALOGO}`,
+            ...activeProduct.T_PRODUCTO_X_TALLA?.reduce((acc, talla) => {
+                acc[`Cantidad ${talla.T_TALLA.CV_TALLA}`] =
+                    talla.CI_CANTIDAD.toString();
+                return acc;
+            }, {} as { [key: string]: string }),
+            ...activeProduct.T_ESTILO_X_PRODUCTO?.reduce((acc, estilo) => {
+                acc[`style-${estilo.T_ESTILO.CV_DESCRIPCION}`] =
+                    estilo.T_ESTILO.CI_ID_ESTILO.toString();
+                return acc;
+            }, {} as { [key: string]: string }),
         });
+        document
+            .querySelectorAll<HTMLInputElement>('input[type=checkbox]')
+            .forEach((check) => {
+                activeProduct.T_ESTILO_X_PRODUCTO?.forEach((estilo) => {
+                    if (
+                        check.value === estilo.T_ESTILO.CI_ID_ESTILO.toString()
+                    ) {
+                        check.checked = true;
+                    } else {
+                        check.checked = false;
+                    }
+                });
+            });
     }, [activeProduct]);
-    const { formState, onInputChange, onResetForm, setFormState } = UseForm();
-    const inputRef = useRef(null);
 
+    const inputRef = useRef(null);
     return (
         <div
             className='modal fade w-100 m-0'
@@ -73,6 +74,7 @@ export const UpdateProduct = () => {
                             Actualizar producto
                         </h5>
                         <button
+                            onClick={startResetProductActive}
                             ref={inputRef}
                             type='button'
                             className='btn-close'
@@ -171,15 +173,6 @@ export const UpdateProduct = () => {
                                             <>
                                                 <label key={est.CI_ID_ESTILO}>
                                                     <input
-                                                        checked={
-                                                            activeProduct.T_ESTILO_X_PRODUCTO?.find(
-                                                                (estilo) =>
-                                                                    estilo
-                                                                        .T_ESTILO
-                                                                        .CI_ID_ESTILO ===
-                                                                    est.CI_ID_ESTILO
-                                                            ) !== null
-                                                        }
                                                         onChange={onInputChange}
                                                         // onChange={onInputChange}
                                                         type='checkbox'
@@ -226,7 +219,9 @@ export const UpdateProduct = () => {
                                             <>
                                                 <div key={talla.CI_ID_TALLA}>
                                                     <label>
-                                                        {talla.CV_TALLA}
+                                                        {talla.CI_ID_TALLA === 6
+                                                            ? ''
+                                                            : talla.CV_TALLA}
                                                     </label>
                                                     <input
                                                         onChange={onInputChange}
@@ -239,7 +234,12 @@ export const UpdateProduct = () => {
                                                         style={{
                                                             marginLeft: '20px',
                                                         }}
-                                                        className='cantidad-talla p-2'
+                                                        className={
+                                                            talla.CI_ID_TALLA ===
+                                                            6
+                                                                ? 'd-none'
+                                                                : 'cantidad-talla p-2'
+                                                        }
                                                         placeholder=''
                                                         name={`Cantidad ${talla.CV_TALLA}`}
                                                     />
@@ -274,7 +274,7 @@ export const UpdateProduct = () => {
                                         </label>
                                         <select
                                             value={formState.Catalogo}
-                                            name='CatalogoActualizado'
+                                            name='Catalogo'
                                             onChange={onInputChange}
                                         >
                                             <option value={2}>Alquiler</option>

@@ -175,7 +175,7 @@ export const UserMeasureShirt = () => {
                     type='button'
                     name='Editar'
                 >
-                    Editar
+                    Actualizar
                 </button>
                 <button
                     onClick={() => startCreateMeasureShirt(formState, id)}
@@ -187,7 +187,7 @@ export const UserMeasureShirt = () => {
                     type='button'
                     name='Guardar'
                 >
-                    Guardar
+                    Crear
                 </button>
             </div>
         </div>

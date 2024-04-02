@@ -2,39 +2,62 @@
 import { useEffect, useRef } from 'react';
 import { UseForm, UseProductCrud } from '../../hooks';
 const initialForm = {
-    'Cantidad L': '',
-    'Cantidad M': '',
-    'Cantidad S': '',
-    'Cantidad XL': '',
-    'Cantidad XXL': '',
     Catalogo: 1,
     Categoria: 1,
     Foto: '',
     Nombre: '',
     Precio: '',
     Tela: 1,
-    'style-Des': '',
+    StyleInitial: false,
+    'Cantidad PROPIA': '999999999',
 };
 
 export const RegisterProduct = () => {
+    const { formState, onInputChange, onResetForm, setFormState } =
+        UseForm(initialForm);
     const {
         startGetInfoProduct,
-        size = [],
-        category = [],
-        style = [],
-        fabric = [],
-
-        activeProduct,
+        size,
+        category,
+        style,
+        fabric,
         startCreateProduct,
+        products,
     } = UseProductCrud();
+
+    useEffect(() => {
+        onResetForm();
+        setFormState({
+            ...formState,
+            Nombre: '',
+            FotoProductoUpdate: '',
+            Categoria: `${category?.at(0)?.CI_ID_CATEGORIA}`,
+            Tela: `${fabric?.at(0)?.CI_ID_TELA}`,
+            Precio: '',
+            Catalogo: `${1}`,
+            ...size?.reduce((acc, talla) => {
+                if (talla?.CI_ID_TALLA === 6) {
+                    acc[`Cantidad ${talla?.CV_TALLA}`] = `'99999999'`;
+                } else {
+                    acc[`Cantidad ${talla?.CV_TALLA}`] = '';
+                }
+                return acc;
+            }, {} as { [key: string]: string }),
+        });
+        document
+            .querySelectorAll<HTMLInputElement>('input[type=checkbox]')
+            .forEach((check) => {
+                check.checked = false;
+            });
+    }, [products]);
+    const ref = useRef(null);
+    const refEstilo = useRef<HTMLInputElement>(null);
     useEffect(() => {
         startGetInfoProduct();
     }, []);
-    const { formState, onInputChange, onResetForm } = UseForm(initialForm);
-    const ref = useRef(null);
     return (
         <div
-            className='modal fade p-5'
+            className='modal fade'
             id='register-product'
             tabIndex={-1}
             role='dialog'
@@ -117,10 +140,10 @@ export const RegisterProduct = () => {
                                         >
                                             {category.map((cat) => (
                                                 <option
-                                                    value={cat.CI_ID_CATEGORIA}
-                                                    key={cat.CI_ID_CATEGORIA}
+                                                    value={cat?.CI_ID_CATEGORIA}
+                                                    key={cat?.CI_ID_CATEGORIA}
                                                 >
-                                                    {cat.CV_DESCRIPCION}
+                                                    {cat?.CV_DESCRIPCION}
                                                 </option>
                                             ))}
                                         </select>
@@ -135,16 +158,18 @@ export const RegisterProduct = () => {
                                         <br />
                                         {style.map((est) => (
                                             <>
-                                                <label key={est.CI_ID_ESTILO}>
+                                                <label key={est?.CI_ID_ESTILO}>
                                                     <input
+                                                        ref={refEstilo}
                                                         onChange={onInputChange}
-                                                        // onChange={onInputChange}
                                                         type='checkbox'
-                                                        name={`style-${est.CV_DESCRIPCION}`}
-                                                        id={`style-${est.CV_DESCRIPCION}`}
-                                                        value={est.CI_ID_ESTILO}
+                                                        name={`style-${est?.CV_DESCRIPCION}`}
+                                                        id={`style-${est?.CV_DESCRIPCION}`}
+                                                        value={
+                                                            est?.CI_ID_ESTILO
+                                                        }
                                                     />{' '}
-                                                    {est.CV_DESCRIPCION}
+                                                    {est?.CV_DESCRIPCION}
                                                 </label>
                                                 <br />
                                             </>
@@ -164,10 +189,10 @@ export const RegisterProduct = () => {
                                         >
                                             {fabric.map((fab) => (
                                                 <option
-                                                    value={fab.CI_ID_TELA}
-                                                    key={fab.CI_ID_TELA}
+                                                    value={fab?.CI_ID_TELA}
+                                                    key={fab?.CI_ID_TELA}
                                                 >
-                                                    {fab.CV_NOMBRE}
+                                                    {fab?.CV_NOMBRE}
                                                 </option>
                                             ))}
                                         </select>
@@ -182,25 +207,32 @@ export const RegisterProduct = () => {
                                         <br />
                                         {size.map((talla) => (
                                             <>
-                                                <div key={talla.CI_ID_TALLA}>
+                                                <div key={talla?.CI_ID_TALLA}>
                                                     <label>
-                                                        {talla.CV_TALLA}
+                                                        {talla.CI_ID_TALLA === 6
+                                                            ? ''
+                                                            : talla?.CV_TALLA}
                                                     </label>
                                                     <input
-                                                        id={`Cantidad ${talla.CV_TALLA}`}
+                                                        id={`Cantidad ${talla?.CV_TALLA}`}
                                                         onChange={onInputChange}
                                                         value={
                                                             formState[
-                                                                `Cantidad ${talla.CV_TALLA}`
+                                                                `Cantidad ${talla?.CV_TALLA}`
                                                             ]
                                                         }
                                                         type='text'
                                                         style={{
                                                             marginLeft: '20px',
                                                         }}
-                                                        className='cantidad-talla p-2'
+                                                        className={
+                                                            talla.CI_ID_TALLA ===
+                                                            6
+                                                                ? 'd-none'
+                                                                : 'cantidad-talla p-2'
+                                                        }
                                                         placeholder=''
-                                                        name={`Cantidad ${talla.CV_TALLA}`}
+                                                        name={`Cantidad ${talla?.CV_TALLA}`}
                                                     />
                                                     <br />
                                                 </div>
@@ -243,18 +275,13 @@ export const RegisterProduct = () => {
                                     </div>
 
                                     <button
-                                        onClick={
-                                            activeProduct.CI_ID_PRODUCTO !==
-                                            undefined
-                                                ? () => console.log('object')
-                                                : () => {
-                                                      startCreateProduct(
-                                                          formState,
-                                                          onResetForm,
-                                                          ref
-                                                      );
-                                                  }
-                                        }
+                                        onClick={() => {
+                                            startCreateProduct(
+                                                formState,
+                                                onResetForm,
+                                                ref
+                                            );
+                                        }}
                                         type='submit'
                                         className='btn btn-primary '
                                         style={{

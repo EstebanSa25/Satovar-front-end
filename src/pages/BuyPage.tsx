@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { Card, Filter, SimpleBanner } from '../components';
 import { UseProduct } from '../hooks';
 import { CatalogoType, Product } from '../interfaces';

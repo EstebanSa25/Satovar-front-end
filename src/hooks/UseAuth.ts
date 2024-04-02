@@ -67,6 +67,7 @@ export const UseAuth = () => {
         }
     };
     const startLogin = async (email: string, password: string, e: any) => {
+        logoutFireBase();
         e.preventDefault();
         if (email.trim() === '' || password.trim() === '') {
             const campos = validarCamposVacios({ email, password });
@@ -102,6 +103,7 @@ export const UseAuth = () => {
         }
     };
     const startGoogleSignIn = async () => {
+        logoutFireBase();
         const result = await signInWithGoogle();
         if (!result.ok) return dispatch(onLogout('Error al iniciar sesion'));
         const { displayName, email, uid, phoneNumber } = result;

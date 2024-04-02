@@ -11,7 +11,7 @@ export const LargeCard = ({
     price,
     image,
 }: RentProps) => {
-    const { startAddProduct, products } = UseShoppinCart();
+    const { startAddProduct, productscart: products } = UseShoppinCart();
     useEffect(() => {
         localStorage.setItem('cart', JSON.stringify(products));
     }, [products]);
