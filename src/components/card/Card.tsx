@@ -16,7 +16,6 @@ export const Card = ({
     useEffect(() => {
         localStorage.setItem('cart', JSON.stringify(products));
     }, [products]);
-    const [count, setCount] = useState(0);
 
     return (
         <div className='col-lg-4 col-md-6 align-self-center mb-30 properties-items col-md-6 tra'>
@@ -39,9 +38,6 @@ export const Card = ({
                     <div className='icon-button  '>
                         <Link
                             onClick={() => {
-                                !products
-                                    .map((product) => product.id)
-                                    .includes(id) && setCount(count + 1);
                                 !products
                                     .map((product) => product.id)
                                     .includes(id) &&
@@ -72,7 +68,6 @@ export const Card = ({
                                 }
                             >
                                 {' '}
-                                {count === 0 ? '' : ` ${count}`}
                             </i>
                             {products.map((product) => product.id).includes(id)
                                 ? 'Agregado, ir al carrito'

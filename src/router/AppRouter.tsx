@@ -13,6 +13,7 @@ import {
     RegisterPage,
     RentPage,
     SalesPage,
+    UserCrudPage,
     UserProfilePage,
 } from '../pages';
 import { UseAuth } from '../hooks/UseAuth';
@@ -78,6 +79,7 @@ export const AppRouter = () => {
                                 path='/pedido/:id'
                                 element={<InvoiceOrderPage />}
                             />
+                            <Route path='/usuario' element={<UserCrudPage />} />
                             <Route
                                 path='/*'
                                 element={<Navigate to={'/ventas'} />}

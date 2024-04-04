@@ -47,3 +47,4 @@ export * from './makingForm/MeasureUpperSuitJacket';
 export * from './makingForm/MeasureLargeSuitJacket';
 export * from './makingForm/MeasureDetailsSuitJacket';
 export * from './invoice/InvoiceOrder';
+export * from './tables/OrdesTablePending';

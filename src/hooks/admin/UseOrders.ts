@@ -17,10 +17,12 @@ export const UseOrders = () => {
             console.log(error);
         }
     };
-    const startUpdateStatusOrder = async (id: number) => {
+    const startUpdateStatusOrder = async (id: number, value: number) => {
         try {
-            await satovarApi.put(`/buy/products/${id}`);
-            dispatch(onChangeOrderStatus(id));
+            await satovarApi.put(`/buy/products/${id}`, {
+                Estado: value,
+            });
+            dispatch(onChangeOrderStatus({ id, estado: value }));
         } catch (error) {
             console.log(error);
         }

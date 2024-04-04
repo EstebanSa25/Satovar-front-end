@@ -10,3 +10,4 @@ export * from './SalesPage.tsx';
 export * from './OrdersPage.tsx';
 export * from './ProductCreatePage.tsx';
 export * from './UserProfilePage.tsx';
+export * from './UserCrudPage.tsx';

@@ -7,6 +7,11 @@ const initialState = {
 enum OrderState {
     Pendiente = 1,
     Completo = 2,
+    EnProceso = 3,
+}
+interface OrderStateInterface {
+    id: number;
+    estado: number;
 }
 
 export const OrderSlice = createSlice({
@@ -30,14 +35,13 @@ export const OrderSlice = createSlice({
                 }
             });
         },
-        onChangeOrderStatus: (state, action: PayloadAction<number>) => {
+        onChangeOrderStatus: (
+            state,
+            action: PayloadAction<OrderStateInterface>
+        ) => {
             state.orders = state.orders.map((order) => {
-                if (order.CI_ID_PEDIDO === action.payload) {
-                    if (order.CI_ID_ESTADO === OrderState.Pendiente) {
-                        order.CI_ID_ESTADO = OrderState.Completo;
-                    } else {
-                        order.CI_ID_ESTADO = OrderState.Pendiente;
-                    }
+                if (order.CI_ID_PEDIDO === action.payload.id) {
+                    order.CI_ID_ESTADO = action.payload.estado;
                 }
                 return order;
             });

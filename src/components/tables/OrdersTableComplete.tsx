@@ -2,9 +2,8 @@ import { useEffect } from 'react';
 import { UseForm, UseOrders } from '../../hooks';
 import { OrderApiInterface } from '../../interfaces';
 import { Link } from 'react-router-dom';
-import { ClassDateTable } from '../../helpers';
 
-export const OrdesTable = () => {
+export const OrdersTableComplete = () => {
     const { orders, startGetAllOrders, startUpdateStatusOrder } = UseOrders();
     const { formState, setFormState } = UseForm();
     const onInputChange = (
@@ -31,39 +30,29 @@ export const OrdesTable = () => {
             return newState;
         });
     }, [orders]);
-
     return (
-        <div className='pedidos '>
-            <div className='container mt-3'>
-                <h2>Lista de Pedidos</h2>
-                <hr />
-            </div>
-            <div className=' mt-3 scrollable-container'>
-                <table className='table'>
+        <div className='col'>
+            <div className='container mt-2 border tabla-terminado'>
+                <div className='text-center'>
+                    <h2>Pedidos Terminados</h2>
+                    <hr />
+                </div>
+                <table className='table table-striped'>
                     <thead>
                         <tr>
-                            <th>N. Pedido</th>
+                            <th>N.Pedido</th>
                             <th>Cédula</th>
-                            <th>Nombre</th>
-                            <th>Apellido</th>
-                            <th>Teléfono</th>
                             <th>Lugar</th>
-                            <th>Total</th>
+                            <th>Teléfono</th>
                             <th>Fecha Entrega</th>
-                            <th>Estado</th>
+                            <th>Estado </th>
                         </tr>
                     </thead>
                     <tbody>
                         {orders?.map(
                             (order: OrderApiInterface) =>
-                                order.CI_ID_ESTADO === 1 && (
-                                    <tr
-                                        key={order.CI_ID_PEDIDO}
-                                        className={ClassDateTable(
-                                            order.T_COMPRA.T_DETALLE_COMPRA[0]
-                                                .CF_FECHA_ENTREGA
-                                        )}
-                                    >
+                                order.CI_ID_ESTADO === 2 && (
+                                    <tr>
                                         <td>
                                             <Link
                                                 to={`/pedido/${order.CI_ID_PEDIDO}`}
@@ -83,31 +72,20 @@ export const OrdesTable = () => {
                                             </Link>
                                         </td>
                                         <td>
-                                            {order.T_COMPRA.T_USUARIO.CV_NOMBRE}
-                                        </td>
-                                        <td>
-                                            {
-                                                order.T_COMPRA.T_USUARIO
-                                                    .CV_APELLIDO1
-                                            }
-                                        </td>
-                                        <td>
-                                            {
-                                                order.T_COMPRA.T_USUARIO
-                                                    .CV_TELEFONO
-                                            }
-                                        </td>
-                                        <td>
                                             {
                                                 order.T_COMPRA.T_USUARIO
                                                     .CV_DIRECCION
                                             }
                                         </td>
-                                        <td>₡ {order.T_COMPRA.CD_TOTAL}</td>
                                         <td>
-                                            {order.T_COMPRA?.T_DETALLE_COMPRA[0].CF_FECHA_ENTREGA.split(
-                                                'T'
-                                            )[0] || 'No hay fecha'}
+                                            {order.T_COMPRA.T_USUARIO.CV_NOMBRE}
+                                        </td>
+                                        <td>
+                                            {order.T_COMPRA.T_DETALLE_COMPRA.at(
+                                                0
+                                            )
+                                                ?.CF_FECHA_ENTREGA.split('T')
+                                                .at(0)}
                                         </td>
                                         <td>
                                             <select

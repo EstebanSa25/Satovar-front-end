@@ -1,7 +1,7 @@
 import { useEffect, useMemo } from 'react';
 import { UseProductCrud } from '../hooks';
 import { RegisterProduct, UpdateProduct } from '../components';
-export const ProductCreatePage = () => {
+export const UserCrudPage = () => {
     const {
         startGetProductsAll,
         products,
@@ -19,7 +19,7 @@ export const ProductCreatePage = () => {
         <>
             <div className='container'>
                 <div className='title-box'>
-                    <h1>Gestión de productos</h1>
+                    <h1>Gestión de usuarios</h1>
                 </div>
                 <button
                     onClick={() => startResetProductActive()}
@@ -28,18 +28,20 @@ export const ProductCreatePage = () => {
                     data-toggle='modal'
                     data-target='#register-product'
                 >
-                    <b>+</b> Añadir producto
+                    <b>+</b> Añadir Usuario
                 </button>
 
                 <table className='table table-bordered grocery-crud-table table-hover'>
                     <thead>
                         <tr>
-                            <th>Foto</th>
                             <th>Nombre</th>
-                            <th>Precio</th>
-                            <th>Tela</th>
-                            <th>Catalogo</th>
-                            <th>Categoria</th>
+                            <th>Primer Apellido</th>
+                            <th>Segundo Apellido</th>
+                            <th>Cedula</th>
+                            <th>Correo</th>
+                            <th>Direccion</th>
+                            <th>Telefono</th>
+                            <th>Rol</th>
                             <th>Estado</th>
                         </tr>
                     </thead>

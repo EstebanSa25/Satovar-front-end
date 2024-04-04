@@ -57,9 +57,28 @@ export const LargeCard = ({
                                         cantidad: 1,
                                     })
                                 }
-                                to=''
+                                to={
+                                    (products
+                                        .map((product) => product.id)
+                                        .includes(id) &&
+                                        '/carrito') ||
+                                    ''
+                                }
                             >
-                                <i className='fa fa-shopping-cart'></i> Alquilar
+                                <i
+                                    className={
+                                        (products
+                                            .map((product) => product.id)
+                                            .includes(id) &&
+                                            'fa fa-credit-card-alt') ||
+                                        'fa fa-shopping-cart'
+                                    }
+                                ></i>{' '}
+                                {products
+                                    .map((product) => product.id)
+                                    .includes(id)
+                                    ? 'Agregado, ir al carrito'
+                                    : 'Anadir al carrito'}
                             </Link>
                         </div>
                     ) : (
