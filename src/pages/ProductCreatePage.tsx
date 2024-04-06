@@ -1,4 +1,4 @@
-import { useEffect, useMemo } from 'react';
+import { useEffect } from 'react';
 import { UseProductCrud } from '../hooks';
 import { RegisterProduct, UpdateProduct } from '../components';
 export const ProductCreatePage = () => {
@@ -44,24 +44,24 @@ export const ProductCreatePage = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {products.map((product) => (
+                        {products?.map((product) => (
                             <tr key={product.CI_ID_PRODUCTO}>
                                 <td>
                                     <img
                                         width={100}
                                         height={100}
-                                        src={product.CV_FOTO}
-                                        alt={product.CV_NOMBRE}
+                                        src={product?.CV_FOTO}
+                                        alt={product?.CV_NOMBRE}
                                     />
                                 </td>
-                                <td>{product.CV_NOMBRE}</td>
-                                <td>{product.CD_PRECIO}</td>
-                                <td>{product.T_TELA?.CV_NOMBRE} </td>
-                                <td>{product.T_CATALOGO.CV_DESCRIPCION} </td>
-                                <td>{product.T_CATEGORIA.CV_DESCRIPCION} </td>
+                                <td>{product?.CV_NOMBRE}</td>
+                                <td>{product?.CD_PRECIO}</td>
+                                <td>{product?.T_TELA?.CV_NOMBRE} </td>
+                                <td>{product?.T_CATALOGO.CV_DESCRIPCION} </td>
+                                <td>{product?.T_CATEGORIA.CV_DESCRIPCION} </td>
                                 <td
                                     className={
-                                        product.CB_ESTADO === true
+                                        product?.CB_ESTADO === true
                                             ? 'text-success'
                                             : 'text-danger'
                                     }
@@ -85,14 +85,14 @@ export const ProductCreatePage = () => {
                                     </button>
                                     <button
                                         onClick={
-                                            product.CB_ESTADO === true
+                                            product?.CB_ESTADO === true
                                                 ? () =>
                                                       startDeleteProduct(
-                                                          product.CI_ID_PRODUCTO
+                                                          product?.CI_ID_PRODUCTO
                                                       )
                                                 : () =>
                                                       startActiveProduct(
-                                                          product.CI_ID_PRODUCTO
+                                                          product?.CI_ID_PRODUCTO
                                                       )
                                         }
                                         className='btn btn-secondary  m-1'

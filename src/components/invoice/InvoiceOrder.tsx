@@ -2,108 +2,178 @@ import './invoices.scss';
 export const InvoiceOrder = () => {
     return (
         <>
-            <div className='mx-auto p-16' style={{ maxWidth: '800px' }}>
-                <div className='flex items-center justify-between mb-8 px-3'>
-                    <div>
-                        <span className='text-2xl'>Example Invoice #</span>:
-                        0001-2019
-                        <br />
-                        <span>Date</span>: January 1st 2019
-                        <br />
-                    </div>
-                    <div className='text-right'>
-                        <img
-                            src='https://www.stenvdb.be/assets/img/email-signature.png'
-                            alt='Company Logo'
-                        />
-                    </div>
+            <div className='container-fluid'>
+                <div id='bill-display'>
+                    <table className='table table-bordered'>
+                        <caption className='text-center'>
+                            RETAIL INVOICE{' '}
+                            <small className='pull-right'>(original)</small>
+                        </caption>
+                        <tr>
+                            <td colSpan={3} rowSpan={3}>
+                                <div className='box-title'>
+                                    ROKADNATH TRADERS
+                                </div>
+                                <div className='box-content'>
+                                    GF-2. Shiv Prasad Complex,
+                                    <br />
+                                    Mangal Bazar,
+                                    <br />
+                                    Vadodara-390006.
+                                    <br />
+                                    Ph: 0265-2561202
+                                    <br />
+                                    M: 9601683578 / 9879962148
+                                </div>
+                            </td>
+                            <td colSpan={2}>
+                                <div className='box-title'>Invoice No</div>
+                                <div className='box-content'>452</div>
+                            </td>
+                            <td colSpan={2}>
+                                <div className='box-title'>Dated</div>
+                                <div className='box-content'>10-08-2016</div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colSpan={2}>
+                                <div className='box-title'>Delivery Note</div>
+                                <div className='box-content'>967</div>
+                            </td>
+                            <td colSpan={2}>
+                                <div className='box-title'>Mode of Payment</div>
+                                <div className='box-content'></div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colSpan={2}>
+                                <div className='box-title'>
+                                    Dispatch Document
+                                </div>
+                                <div className='box-content'></div>
+                            </td>
+                            <td colSpan={2}>
+                                <div className='box-title'>Dated</div>
+                                <div className='box-content'>10-08-2016</div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colSpan={3} rowSpan={3}>
+                                <div className='box-title'>Buyer</div>
+                                <div className='box-content'>
+                                    <b>Maulik Darji</b>
+                                    <br />
+                                    Vadodara.
+                                    <br />
+                                    M: 9898979796
+                                </div>
+                            </td>
+                            <td colSpan={4}>
+                                <div className='box-title'>
+                                    Terms of Delivery
+                                </div>
+                                <div className='box-content'></div>
+                            </td>
+                        </tr>
+                        <tr></tr>
+                        <tr></tr>
+                        <tr className='heading-row v-row'>
+                            <td>
+                                Sr
+                                <br />
+                                No.
+                            </td>
+                            <td>Description of goods</td>
+                            <td>HSN Code</td>
+                            <td>Quantity</td>
+                            <td>Rate</td>
+                            <td>per</td>
+                            <td>Amount</td>
+                        </tr>
+                        <tr className='v-row'>
+                            <td>1</td>
+                            <td>Metal Screw Ph Combination</td>
+                            <td></td>
+                            <td className='text-right'>237.00 Kgs</td>
+                            <td className='text-right'>110.00</td>
+                            <td>Kg</td>
+                            <td className='text-right'>26070.00</td>
+                        </tr>
+                        <tr className='v-row'>
+                            <td>1</td>
+                            <td>Metal Screw Ph Combination</td>
+                            <td></td>
+                            <td className='text-right'>237.00 Kgs</td>
+                            <td className='text-right'>110.00</td>
+                            <td>Kg</td>
+                            <td className='text-right'>26070.00</td>
+                        </tr>
+                        <tr className='v-row'>
+                            <td>1</td>
+                            <td>Metal Screw Ph Combination</td>
+                            <td></td>
+                            <td className='text-right'>237.00 Kgs</td>
+                            <td className='text-right'>110.00</td>
+                            <td>Kg</td>
+                            <td className='text-right'>26070.00</td>
+                        </tr>
+                        <tr className='total-row v-row'>
+                            <td colSpan={3} className='text-right'>
+                                Total
+                            </td>
+                            <td className='text-right'>711.00 Kgs</td>
+                            <td></td>
+                            <td></td>
+                            <td className='text-right'>78210.00</td>
+                        </tr>
+                        <tr>
+                            <td colSpan={3}>
+                                <div className='box-content'>
+                                    Amount Chargeable(in words)
+                                </div>
+                                <div className='box-title'>
+                                    Seventy Eight Thousands Two Hundred Ten Rs
+                                    Only
+                                </div>
+                            </td>
+                            <td colSpan={4}></td>
+                        </tr>
+                        <tr>
+                            <td colSpan={3}>
+                                Company's VAT TIN:{' '}
+                                <span id='comp-vat-tin'></span>
+                                <br />
+                                Company's CST No: <span id='comp-cst-no'></span>
+                                <br />
+                                BANK DETAILS: A/C NO: <br />
+                                IFSCODE: <br />
+                                Declaration:
+                                <br />
+                                We declare that this invoice shows the actual
+                                price of the goods described and that all
+                                particulars are true and correct.
+                            </td>
+                            <td colSpan={4}>
+                                <div className='box-title text-right'>
+                                    for ROKADNATH TRADERS
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colSpan={7} className='text-center'>
+                                SUBJECT TO VADODARA JURIDICTION
+                                <br />
+                                This is a Computer Generated Invoice.
+                            </td>
+                        </tr>
+                    </table>
                 </div>
-
-                <div className='flex justify-between mb-8 px-3'>
-                    <div>
-                        Pixel &amp; Tonic
-                        <br />
-                        919 NW Bond St. Ste 203
-                        <br />
-                        Bend, OR 97703 USA
-                        <br />
-                        hello@pixelandtonic.com
-                        <br />
-                        +1 855-700-5115
-                    </div>
-                    <div className='text-right'>
-                        Company Name
-                        <br />
-                        Street 12
-                        <br />
-                        10000 City
-                        <br />
-                        hello@yoursite.com
-                    </div>
-                </div>
-
-                <div className='border border-t-2 border-gray-200 mb-8 px-3'></div>
-
-                <div className='mb-8 px-3'>
-                    <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                        Vivamus aliquam vestibulum elit, id rutrum sem lobortis
-                        eget. In a massa et leo vehicula dapibus. In convallis
-                        ut nisi ut vestibulum. Integer non feugiat tellus.
-                        Nullam id ex suscipit, volutpat sapien tristique,
-                        porttitor sapien.
-                    </p>
-                </div>
-
-                <div className='flex justify-between mb-4 bg-gray-200 px-3 py-2'>
-                    <div>Development</div>
-                    <div className='text-right font-medium'>1200 EUR</div>
-                </div>
-                <div className='flex justify-between mb-4 bg-gray-200 px-3 py-2'>
-                    <div>Design</div>
-                    <div className='text-right font-medium'>800 EUR</div>
-                </div>
-                <div className='flex justify-between mb-4 bg-gray-200 px-3 py-2'>
-                    <div>Licensing</div>
-                    <div className='text-right font-medium'>300 EUR</div>
-                </div>
-
-                <div className='flex justify-between items-center mb-2 px-3'>
-                    <div className='text-2xl leading-none'>
-                        <span className=''>Total</span>:
-                    </div>
-                    <div className='text-2xl text-right font-medium'>
-                        2300 EUR
-                    </div>
-                </div>
-
-                <div className='flex mb-8 justify-end px-3'>
-                    <div className='text-right w-1/2 px-0 leading-tight'>
-                        <small className='text-xs'>
-                            Nullam auctor, tellus sit amet eleifend interdum,
-                            quam nisl luctus quam, a tincidunt nisi eros ac dui.
-                            Curabitur leo ipsum, bibendum sit amet suscipit sed,
-                            gravida non lectus. Nunc porttitor lacus sapien, nec
-                            congue quam cursus nec. Quisque vel vehicula ipsum.
-                            Donec condimentum dolor est, ut interdum augue
-                            blandit luctus.{' '}
-                        </small>
-                    </div>
-                </div>
-
-                <div className='mb-8 px-3'>
-                    <span>To be paid before</span> Februari 1st 2019 on{' '}
-                    <b className='underline font-bold'>BE71 0961 2345 6769</b>{' '}
-                    specifying the invoice #
-                </div>
-
-                <div className='mb-8 text-4xl text-center px-3'>
-                    <span>Thank you!</span>
-                </div>
-
-                <div className='text-center text-sm px-3'>
-                    hello@yourdomain.com ∖ www.yourdomain.com
-                </div>
+                <button
+                    className='btn btn-default .print-btn'
+                    onClick={() => window.print()}
+                >
+                    Print Invoice
+                </button>
             </div>
         </>
     );

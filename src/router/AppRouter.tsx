@@ -5,6 +5,7 @@ import {
     BuyPage,
     CartPage,
     Contact,
+    FabricPageCrud,
     HomePage,
     LoginPage,
     MakingPage,
@@ -80,6 +81,7 @@ export const AppRouter = () => {
                                 element={<InvoiceOrderPage />}
                             />
                             <Route path='/usuario' element={<UserCrudPage />} />
+                            <Route path='/tela' element={<FabricPageCrud />} />
                             <Route
                                 path='/*'
                                 element={<Navigate to={'/ventas'} />}

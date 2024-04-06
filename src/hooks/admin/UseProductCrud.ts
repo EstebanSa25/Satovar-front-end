@@ -11,6 +11,7 @@ import satovarApi from '../../api/SatovarApi';
 import {
     onActiveProductCrud,
     onAddProductCrud,
+    onDeleteProductCrud,
     onGetProductCrud,
     onResetActiveProductCrud,
     onSetActiveProduct,
@@ -48,6 +49,9 @@ export interface Category {
 export interface Fabric {
     CI_ID_TELA: number;
     CV_NOMBRE: string;
+    CV_FOTO: string;
+    CD_PRECIO: string;
+    CB_ESTADO: boolean;
 }
 export interface Style {
     CI_ID_ESTILO: number;
@@ -62,7 +66,6 @@ export const UseProductCrud = () => {
     const [category, setCategory] = useState([] as Category[]);
     const [fabric, setFabric] = useState([] as Fabric[]);
     const [style, setStyle] = useState([] as Style[]);
-    const [edit, setEdit] = useState(false);
     const reader = new FileReader();
 
     const startGetProductsAll = async () => {
@@ -79,7 +82,8 @@ export const UseProductCrud = () => {
         );
         setCategory(categoryApi.categories);
         const { data: fabricApi } = await satovarApi.get<Fabric[]>('/fabric');
-        setFabric(fabricApi);
+        const fabricTrue = fabricApi.filter((fabric) => fabric.CB_ESTADO);
+        setFabric(fabricTrue);
         const { data: styleApi } = await satovarApi.get<Style[]>('/style');
         setStyle(styleApi);
     };
@@ -316,6 +320,7 @@ export const UseProductCrud = () => {
             await satovarApi.put(`/Products/update/${id}`, {
                 Estado: true,
             });
+            startGetProductsAll();
             Swal.fire({
                 title: 'Producto activado',
                 icon: 'success',
@@ -334,7 +339,8 @@ export const UseProductCrud = () => {
     const startDeleteProduct = async (id: number) => {
         try {
             await satovarApi.delete(`/Products/delete/${id}`);
-            startGetProductsAll();
+            dispatch(onDeleteProductCrud(id));
+            // startGetProductsAll();
             Swal.fire({
                 title: 'Producto eliminado',
                 icon: 'success',
@@ -360,7 +366,6 @@ export const UseProductCrud = () => {
         category,
         fabric,
         style,
-        edit,
         //Metodos
         startGetProductsAll,
         startGetInfoProduct,

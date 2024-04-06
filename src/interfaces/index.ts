@@ -17,3 +17,4 @@ export * from './Orders.Api.interface';
 export * from './UserProfileApi.interface';
 export * from './PantMeasureApi.interface';
 export * from './MeasureSuitJacket.interface';
+export * from './UserCrudApi.interface';

@@ -1,23 +1,19 @@
-.invoice {
-    background: #fff;
-    width: 100%;
-    padding: 50px;
+.box-title {
+    font-weight: bold;
 }
-
-.logo {
-    width: 2.5cm;
+.heading-row td {
+    font-weight: bold;
+    text-align: center;
+    border-bottom: solid 1px red;
 }
-
-.document-type {
-    text-align: right;
-    color: #444;
+.total-row td {
+    font-weight: bold;
 }
-
-.conditions {
-    font-size: 0.7em;
-    color: #666;
+.v-row td {
+    border: none;
 }
-
-.bottom-page {
-    font-size: 0.7em;
+@media print {
+    button .print-btn {
+        display: none;
+    }
 }

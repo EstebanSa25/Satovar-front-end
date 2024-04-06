@@ -72,9 +72,12 @@ export const productSliceCrud = createSlice({
             state.isLoading = false;
         },
         onDeleteProductCrud: (state, action: PayloadAction<number>) => {
-            state.products = state.products.filter(
-                (product) => product.CI_ID_PRODUCTO !== action.payload
-            );
+            state.products = state.products.map((product) => {
+                if (product.CI_ID_PRODUCTO === action.payload) {
+                    product.CB_ESTADO = !product.CB_ESTADO;
+                }
+                return product;
+            });
             state.isLoading = false;
         },
         onActiveProductCrud: (

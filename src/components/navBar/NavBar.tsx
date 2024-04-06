@@ -30,6 +30,7 @@ export const NavBar = () => {
                     <NavBarItem url='/pedidos' title='Pedidos'></NavBarItem>
                     <NavBarItem url='/producto' title='Productos'></NavBarItem>
                     <NavBarItem url='/usuario' title='Usuarios'></NavBarItem>
+                    <NavBarItem url='/tela' title='Telas'></NavBarItem>
                 </>
             )}
 

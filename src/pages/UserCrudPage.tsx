@@ -1,18 +1,17 @@
-import { useEffect, useMemo } from 'react';
-import { UseProductCrud } from '../hooks';
-import { RegisterProduct, UpdateProduct } from '../components';
+import { useEffect } from 'react';
+import { UseUsersCrud } from '../hooks';
+import { Rol } from '../interfaces';
+import { RegisterUser, UpdateUser } from '../components';
 export const UserCrudPage = () => {
     const {
-        startGetProductsAll,
-        products,
-        startSetActiveProduct,
-        startResetProductActive,
-        startDeleteProduct,
-        startActiveProduct,
-    } = UseProductCrud();
-
+        Users,
+        startGetAllUsers,
+        startResetActiveUser,
+        startDeleteUser,
+        startSetActiveUser,
+    } = UseUsersCrud();
     useEffect(() => {
-        startGetProductsAll();
+        startGetAllUsers();
     }, []);
 
     return (
@@ -22,11 +21,11 @@ export const UserCrudPage = () => {
                     <h1>Gestión de usuarios</h1>
                 </div>
                 <button
-                    onClick={() => startResetProductActive()}
+                    onClick={() => startResetActiveUser()}
                     type='button'
                     className='btn btn-dark'
                     data-toggle='modal'
-                    data-target='#register-product'
+                    data-target='#register-user'
                 >
                     <b>+</b> Añadir Usuario
                 </button>
@@ -46,29 +45,28 @@ export const UserCrudPage = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {products.map((product) => (
-                            <tr key={product.CI_ID_PRODUCTO}>
+                        {Users?.map((user) => (
+                            <tr key={user.CI_ID_USUARIO}>
+                                <td>{user.CV_NOMBRE}</td>
+                                <td>{user.CV_APELLIDO1}</td>
+                                <td>{user.CV_APELLIDO2}</td>
+                                <td>{user.CV_CEDULA}</td>
+                                <td>{user.CV_CORREO} </td>
+                                <td>{user.CV_DIRECCION} </td>
+                                <td>{user.CV_TELEFONO} </td>
                                 <td>
-                                    <img
-                                        width={100}
-                                        height={100}
-                                        src={product.CV_FOTO}
-                                        alt={product.CV_NOMBRE}
-                                    />
+                                    {user.CI_ID_ROL === Rol.Administrador
+                                        ? 'Administrador'
+                                        : 'Cliente'}{' '}
                                 </td>
-                                <td>{product.CV_NOMBRE}</td>
-                                <td>{product.CD_PRECIO}</td>
-                                <td>{product.T_TELA?.CV_NOMBRE} </td>
-                                <td>{product.T_CATALOGO.CV_DESCRIPCION} </td>
-                                <td>{product.T_CATEGORIA.CV_DESCRIPCION} </td>
                                 <td
                                     className={
-                                        product.CB_ESTADO === true
+                                        user.CB_ESTADO === true
                                             ? 'text-success'
                                             : 'text-danger'
                                     }
                                 >
-                                    {product.CB_ESTADO === true
+                                    {user.CB_ESTADO === true
                                         ? 'Activo'
                                         : 'Inactivo'}{' '}
                                 </td>
@@ -77,29 +75,21 @@ export const UserCrudPage = () => {
                                         type='button'
                                         className='btn btn-dark'
                                         data-toggle='modal'
-                                        data-target='#update-product'
+                                        data-target='#update-user'
                                         onClick={() => {
-                                            startResetProductActive();
-                                            startSetActiveProduct(product);
+                                            startResetActiveUser();
+                                            startSetActiveUser(user);
                                         }}
                                     >
                                         Editar
                                     </button>
                                     <button
-                                        onClick={
-                                            product.CB_ESTADO === true
-                                                ? () =>
-                                                      startDeleteProduct(
-                                                          product.CI_ID_PRODUCTO
-                                                      )
-                                                : () =>
-                                                      startActiveProduct(
-                                                          product.CI_ID_PRODUCTO
-                                                      )
+                                        onClick={() =>
+                                            startDeleteUser(user?.CI_ID_USUARIO)
                                         }
                                         className='btn btn-secondary  m-1'
                                     >
-                                        {product.CB_ESTADO === false
+                                        {user?.CB_ESTADO === false
                                             ? 'Activar'
                                             : 'Desactivar'}
                                     </button>{' '}
@@ -109,9 +99,8 @@ export const UserCrudPage = () => {
                     </tbody>
                 </table>
             </div>
-
-            <RegisterProduct />
-            <UpdateProduct />
+            <RegisterUser />
+            <UpdateUser />
         </>
     );
 };

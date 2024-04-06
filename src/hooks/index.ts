@@ -7,6 +7,8 @@ export * from './UseMeasureWaistcoat';
 export * from './admin/UseProductCrud';
 export * from './admin/UseDashboard';
 export * from './admin/UseOrders';
+export * from './admin/UseUsersCrud';
 export * from './admin/UseProfileUser';
 export * from './UseMeasurePant';
 export * from './UseMeasureSuitJacket';
+export * from './admin/UseFabricCrud';
