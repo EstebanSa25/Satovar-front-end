@@ -1,0 +1,29 @@
+.cover {
+    &:hover {
+        transform: perspective(250px) rotateX(10deg) translateY(-5%)
+            translateZ(0);
+    }
+    &::before {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        background-image: linear-gradient(
+            to bottom,
+            transparent 10%,
+            rgba(188, 77, 43, 0.6) 90%,
+            rgba(168, 79, 50, 0.6) 95%
+        );
+        opacity: 0;
+        transition: all;
+    }
+    &:hover::before {
+        opacity: 1;
+    }
+    &:hover .title {
+        font-size: 2em;
+        transform: translateY(0);
+    }
+}

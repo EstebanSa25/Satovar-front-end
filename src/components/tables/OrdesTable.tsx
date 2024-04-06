@@ -58,54 +58,57 @@ export const OrdesTable = () => {
                             (order: OrderApiInterface) =>
                                 order.CI_ID_ESTADO === 1 && (
                                     <tr
-                                        key={order.CI_ID_PEDIDO}
+                                        key={order?.CI_ID_PEDIDO}
                                         className={ClassDateTable(
-                                            order.T_COMPRA.T_DETALLE_COMPRA[0]
-                                                .CF_FECHA_ENTREGA
+                                            order.T_COMPRA?.T_DETALLE_COMPRA[0]
+                                                ?.CF_FECHA_ENTREGA
                                         )}
                                     >
                                         <td>
                                             <Link
-                                                to={`/pedido/${order.CI_ID_PEDIDO}`}
+                                                to={`/pedido/${order?.CI_ID_PEDIDO}`}
                                             >
-                                                {order.CI_ID_PEDIDO}
+                                                {order?.CI_ID_PEDIDO}
                                             </Link>
                                         </td>
                                         <td>
                                             <Link
-                                                to={`/perfil/${order.T_COMPRA.T_USUARIO.CV_CEDULA}`}
+                                                to={`/perfil/${order?.T_COMPRA?.T_USUARIO.CV_CEDULA}`}
                                                 className='enlace-perfil'
                                             >
                                                 {
-                                                    order.T_COMPRA.T_USUARIO
+                                                    order?.T_COMPRA?.T_USUARIO
                                                         .CV_CEDULA
                                                 }
                                             </Link>
                                         </td>
                                         <td>
-                                            {order.T_COMPRA.T_USUARIO.CV_NOMBRE}
+                                            {
+                                                order?.T_COMPRA?.T_USUARIO
+                                                    ?.CV_NOMBRE
+                                            }
                                         </td>
                                         <td>
                                             {
-                                                order.T_COMPRA.T_USUARIO
+                                                order?.T_COMPRA?.T_USUARIO
                                                     .CV_APELLIDO1
                                             }
                                         </td>
                                         <td>
                                             {
-                                                order.T_COMPRA.T_USUARIO
+                                                order?.T_COMPRA?.T_USUARIO
                                                     .CV_TELEFONO
                                             }
                                         </td>
                                         <td>
                                             {
-                                                order.T_COMPRA.T_USUARIO
+                                                order?.T_COMPRA?.T_USUARIO
                                                     .CV_DIRECCION
                                             }
                                         </td>
-                                        <td>₡ {order.T_COMPRA.CD_TOTAL}</td>
+                                        <td>₡ {order?.T_COMPRA?.CD_TOTAL}</td>
                                         <td>
-                                            {order.T_COMPRA?.T_DETALLE_COMPRA[0].CF_FECHA_ENTREGA.split(
+                                            {order?.T_COMPRA?.T_DETALLE_COMPRA[0]?.CF_FECHA_ENTREGA.split(
                                                 'T'
                                             )[0] || 'No hay fecha'}
                                         </td>
@@ -117,12 +120,12 @@ export const OrdesTable = () => {
                                                         order.CI_ID_PEDIDO
                                                     )
                                                 }
-                                                name={`Estado-${order.CI_ID_PEDIDO}`}
-                                                id={`Estado-${order.CI_ID_PEDIDO}`}
+                                                name={`Estado-${order?.CI_ID_PEDIDO}`}
+                                                id={`Estado-${order?.CI_ID_PEDIDO}`}
                                                 // onChange={handleChange}
                                                 value={
                                                     formState[
-                                                        `Estado-${order.CI_ID_PEDIDO}`
+                                                        `Estado-${order?.CI_ID_PEDIDO}`
                                                     ]
                                                 }
                                             >

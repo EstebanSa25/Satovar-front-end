@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { UseUsersCrud } from '../hooks';
 import { Rol } from '../interfaces';
 import { RegisterUser, UpdateUser } from '../components';
+import { Link } from 'react-router-dom';
 export const UserCrudPage = () => {
     const {
         Users,
@@ -46,11 +47,18 @@ export const UserCrudPage = () => {
                     </thead>
                     <tbody>
                         {Users?.map((user) => (
-                            <tr key={user.CI_ID_USUARIO}>
+                            <tr
+                                className='animate__animated animate__fadeIn'
+                                key={user.CI_ID_USUARIO}
+                            >
                                 <td>{user.CV_NOMBRE}</td>
                                 <td>{user.CV_APELLIDO1}</td>
                                 <td>{user.CV_APELLIDO2}</td>
-                                <td>{user.CV_CEDULA}</td>
+                                <td>
+                                    <Link to={`/perfil/${user.CV_CEDULA}`}>
+                                        {user.CV_CEDULA}
+                                    </Link>{' '}
+                                </td>
                                 <td>{user.CV_CORREO} </td>
                                 <td>{user.CV_DIRECCION} </td>
                                 <td>{user.CV_TELEFONO} </td>

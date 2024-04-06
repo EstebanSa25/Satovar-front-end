@@ -11,7 +11,7 @@ export const UserProfilePage = () => {
         <>
             <UserInfo />
             <div className='datos-medidas'>
-                <div className='row container-medidas border'>
+                <div className='row container-medidas border animate__animated animate__fadeIn '>
                     <UserMeasureShirt />
                     <UserSuitJacket />
                     <UserPant />

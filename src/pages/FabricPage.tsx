@@ -41,7 +41,10 @@ export const FabricPageCrud = () => {
                     </thead>
                     <tbody>
                         {Fabrics?.map((fabric) => (
-                            <tr key={fabric.CI_ID_TELA}>
+                            <tr
+                                className='animate__animated animate__fadeIn'
+                                key={fabric.CI_ID_TELA}
+                            >
                                 <td>
                                     <img
                                         width={'20px'}

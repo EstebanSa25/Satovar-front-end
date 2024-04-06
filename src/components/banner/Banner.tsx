@@ -18,7 +18,7 @@ export const Banner = () => {
                 aria-hidden='true'
             ></i>
 
-            <div className='banner__copy'>
+            <div className='banner__copy '>
                 <span className='category'>
                     Boda, <em className='bold-Orange'>{categoria}</em>
                 </span>

@@ -17,7 +17,7 @@ export const ProductCreatePage = () => {
 
     return (
         <>
-            <div className='container'>
+            <div className='container '>
                 <div className='title-box'>
                     <h1>Gestión de productos</h1>
                 </div>
@@ -31,7 +31,7 @@ export const ProductCreatePage = () => {
                     <b>+</b> Añadir producto
                 </button>
 
-                <table className='table table-bordered grocery-crud-table table-hover'>
+                <table className='table table-bordered grocery-crud-table table-hover '>
                     <thead>
                         <tr>
                             <th>Foto</th>
@@ -45,7 +45,10 @@ export const ProductCreatePage = () => {
                     </thead>
                     <tbody>
                         {products?.map((product) => (
-                            <tr key={product.CI_ID_PRODUCTO}>
+                            <tr
+                                className='animate__animated animate__fadeIn'
+                                key={product.CI_ID_PRODUCTO}
+                            >
                                 <td>
                                     <img
                                         width={100}
