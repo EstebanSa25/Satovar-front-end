@@ -321,10 +321,6 @@ export const UseProductCrud = () => {
                 Estado: true,
             });
             startGetProductsAll();
-            Swal.fire({
-                title: 'Producto activado',
-                icon: 'success',
-            });
         } catch (error) {
             const axiosError = error as AxiosError;
             const errorCode = axiosError.response?.status as number;
@@ -341,10 +337,6 @@ export const UseProductCrud = () => {
             await satovarApi.delete(`/Products/delete/${id}`);
             dispatch(onDeleteProductCrud(id));
             // startGetProductsAll();
-            Swal.fire({
-                title: 'Producto eliminado',
-                icon: 'success',
-            });
         } catch (error) {
             const axiosError = error as AxiosError;
             const errorCode = axiosError.response?.status as number;

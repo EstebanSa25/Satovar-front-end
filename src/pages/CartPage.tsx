@@ -8,6 +8,7 @@ const initialForm = {
     NUM_TARJETA: '',
     EXPIRA: '',
     CVV: '',
+    FECHA_ENTREGA: '',
 };
 export const CartPage = () => {
     const {
@@ -49,7 +50,7 @@ export const CartPage = () => {
     useEffect(() => {
         localStorage.setItem('cart', JSON.stringify(products));
     }, [products]);
-
+    console.log(formState);
     return (
         <section
             className='h-100 h-custom animate__animated animate__fadeIn'
@@ -85,6 +86,8 @@ export const CartPage = () => {
                                             </div>
                                             {/* /Sumale 3 dias a la fecha actual */}
                                             <input
+                                                onChange={onInputChange}
+                                                value={formState.FECHA_ENTREGA}
                                                 name='FECHA_ENTREGA'
                                                 min={`${
                                                     new Date(

@@ -3,13 +3,13 @@ import { useEffect, useRef } from 'react';
 import { UseForm, UseProductCrud } from '../../hooks';
 const initialForm = {
     Catalogo: 1,
-    Categoria: 1,
+    Categoria: '1',
     Foto: '',
     Nombre: '',
     Precio: '',
-    Tela: 1,
+    Tela: '1',
     StyleInitial: false,
-    'Cantidad PROPIA': '999999999',
+    'Cantidad PROPIAS': '999999999',
 };
 
 export const RegisterProduct = () => {
@@ -31,12 +31,12 @@ export const RegisterProduct = () => {
             ...formState,
             Nombre: '',
             FotoProductoUpdate: '',
-            Categoria: `${category?.at(0)?.CI_ID_CATEGORIA}`,
+            Categoria: `${category?.at(0)?.CI_ID_CATEGORIA || 1}`,
             Tela: `${fabric?.at(0)?.CI_ID_TELA}`,
             Precio: '',
             Catalogo: `${1}`,
             ...size?.reduce((acc, talla) => {
-                if (talla?.CI_ID_TALLA === 6) {
+                if (+talla?.CI_ID_TALLA === 6) {
                     acc[`Cantidad ${talla?.CV_TALLA}`] = `'99999999'`;
                 } else {
                     acc[`Cantidad ${talla?.CV_TALLA}`] = '';

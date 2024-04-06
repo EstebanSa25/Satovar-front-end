@@ -89,6 +89,15 @@ export const UseShoppinCart = () => {
                 timer: 3000,
             });
         }
+        if (form.FECHA_ENTREGA === '' || form.FECHA_ENTREGA === null) {
+            return Swal.fire({
+                icon: 'warning',
+                title: 'Debe completar la fecha de entrega',
+                text: 'Complete los campos para continuar',
+                showConfirmButton: true,
+                timer: 3000,
+            });
+        }
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         const productShop = products.map((product: any) => {
             return {
@@ -102,6 +111,7 @@ export const UseShoppinCart = () => {
             await satovarApi.post('/buy/products', {
                 subtotal: subtotal,
                 impuestos: impuesto,
+                fecha_pago: new Date(form.FECHA_ENTREGA),
                 descuentos: 0,
                 total: total,
                 productos: productShop,
