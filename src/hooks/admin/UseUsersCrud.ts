@@ -11,7 +11,11 @@ import {
 import { Rol } from '../../interfaces/User.interface';
 import satovarApi from '../../api/SatovarApi';
 import { AxiosError } from 'axios';
-import { EncryptData, ErrorSweetAlert } from '../../helpers';
+import {
+    EncryptData,
+    ErrorSweetAlert,
+    validarFormatoCorreo,
+} from '../../helpers';
 import Swal from 'sweetalert2';
 
 export const UseUsersCrud = () => {
@@ -33,8 +37,16 @@ export const UseUsersCrud = () => {
         inputRef: React.RefObject<HTMLElement>
     ) => {
         try {
+            if (!validarFormatoCorreo(form.Correo)) {
+                return ErrorSweetAlert(
+                    0,
+                    'Correo invalido',
+                    'Verifique su correo electronico e intente de nuevo'
+                );
+            }
             if (+form.Rol === Rol.Administrador) {
-                await satovarApi.post('/auth/create/admin', form);
+                const encryptedData = EncryptData(form);
+                await satovarApi.post('/auth/create/admin', { encryptedData });
                 // dispatch(onCreateUsers(form));
                 startGetAllUsers();
                 Swal.fire({
@@ -45,7 +57,8 @@ export const UseUsersCrud = () => {
                 onResetForm();
                 inputRef.current?.click();
             } else {
-                await satovarApi.post('/auth/create', form);
+                const encryptedData = EncryptData(form);
+                await satovarApi.post('/auth/create', { encryptedData });
                 // dispatch(onCreateUsers(form));
                 startGetAllUsers();
                 Swal.fire({

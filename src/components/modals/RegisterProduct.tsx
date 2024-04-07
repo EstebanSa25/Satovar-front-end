@@ -44,6 +44,7 @@ export const RegisterProduct = () => {
                 return acc;
             }, {} as { [key: string]: string }),
         });
+        onResetForm();
         document
             .querySelectorAll<HTMLInputElement>('input[type=checkbox]')
             .forEach((check) => {

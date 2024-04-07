@@ -142,7 +142,7 @@ export const RegisterUser = () => {
                                         <input
                                             onChange={onInputChange}
                                             value={formState.Correo}
-                                            type='text'
+                                            type='email'
                                             className='form-control'
                                             id='Correo'
                                             placeholder='Correo electronico'

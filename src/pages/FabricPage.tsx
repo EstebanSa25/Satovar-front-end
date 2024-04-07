@@ -17,7 +17,7 @@ export const FabricPageCrud = () => {
         <>
             <div className='container'>
                 <div className='title-box'>
-                    <h1>Gestión de telas</h1>
+                    <h1>Mantenimiento de telas</h1>
                 </div>
                 <button
                     onClick={() => startResetActiveFabric()}

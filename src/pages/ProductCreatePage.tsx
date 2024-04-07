@@ -19,7 +19,7 @@ export const ProductCreatePage = () => {
         <>
             <div className='container '>
                 <div className='title-box'>
-                    <h1>Gestión de productos</h1>
+                    <h1>Mantenimiento de productos</h1>
                 </div>
                 <button
                     onClick={() => startResetProductActive()}

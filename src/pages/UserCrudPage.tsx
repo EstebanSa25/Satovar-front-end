@@ -19,7 +19,7 @@ export const UserCrudPage = () => {
         <>
             <div className='container'>
                 <div className='title-box'>
-                    <h1>Gestión de usuarios</h1>
+                    <h1>Mantenimiento de usuarios</h1>
                 </div>
                 <button
                     onClick={() => startResetActiveUser()}
