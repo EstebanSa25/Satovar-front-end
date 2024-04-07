@@ -11,6 +11,7 @@ import {
 import satovarApi from '../api/SatovarApi';
 import Swal from 'sweetalert2';
 import { AxiosErrorData, RegisterForm } from '../interfaces';
+import { EncryptData } from '../helpers';
 import {
     CampoVacioSweetAlert,
     ErrorSweetAlert,
@@ -29,12 +30,12 @@ export const UseAuth = () => {
         (state: any) => state.Auth
     );
     const startCreateUser = async (
-        user: RegisterForm,
+        userRegister: RegisterForm,
         e: any,
         onResetForm: () => void
     ) => {
         e.preventDefault();
-        if (!validarFormatoCorreo(user.Correo)) {
+        if (!validarFormatoCorreo(userRegister.Correo)) {
             return ErrorSweetAlert(
                 0,
                 'Correo invalido',
@@ -42,13 +43,16 @@ export const UseAuth = () => {
             );
         }
         if (userGoogle) {
-            user.Clave = userGoogle.GoogleId;
+            userRegister.Clave = userGoogle.GoogleId;
         }
-        const campos = validarCamposVacios(user);
+        const campos = validarCamposVacios(userRegister);
         if (campos) return CampoVacioSweetAlert('con el registro');
+
         try {
+            const data = EncryptData(userRegister);
+            console.log(data);
             await satovarApi.post('/auth/create', {
-                ...user,
+                encryptedData: data,
             });
             Swal.fire('Verifica tu correo electronico para activar tu cuenta');
             onResetForm();
@@ -58,7 +62,7 @@ export const UseAuth = () => {
             const errorCode = axiosError.response?.status as number;
             const errorString = axiosError.response?.data as AxiosErrorData;
 
-            // console.log(error?.toJSON().error);
+            console.log(error);
             ErrorSweetAlert(
                 errorCode,
                 'Error al crear usuario',
@@ -75,9 +79,10 @@ export const UseAuth = () => {
         }
         dispatch(onChecking());
         try {
+            const UserLogin = { correo: email, clave: password };
+            const encryptedData = EncryptData(UserLogin);
             const { data } = await satovarApi.post('/auth/login', {
-                correo: email,
-                clave: password,
+                encryptedData,
             });
             const { token, user } = data;
             localStorage.setItem('token', token);
@@ -117,9 +122,10 @@ export const UseAuth = () => {
             GoogleId: uid,
         };
         try {
+            const UserLogin = { correo: email, clave: uid };
+            const encryptedData = EncryptData(UserLogin);
             const { data } = await satovarApi.post('/auth/login', {
-                correo: email,
-                clave: uid,
+                encryptedData,
             });
             const { token, user } = data;
             localStorage.setItem('token', token);

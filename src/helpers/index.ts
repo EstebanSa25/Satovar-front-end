@@ -7,3 +7,4 @@ export * from './SweetAlert';
 export * from './ValidarCorreo';
 export * from './IsAxiosError';
 export * from './ClassDateTable';
+export * from './EncryptData';

@@ -8,9 +8,8 @@ import {
     onChangeFabricState,
     onGetAllFabric,
     onResetActiveFabric,
-    onUpdateFabric,
 } from '../../redux-store/admin/fabric/FabricCrudSlice';
-import { ErrorSweetAlert } from '../../helpers';
+import { EncryptData, ErrorSweetAlert } from '../../helpers';
 import { AxiosError } from 'axios';
 import Swal from 'sweetalert2';
 
@@ -50,9 +49,12 @@ export const UseFabricCrud = () => {
             reader.onload = async function () {
                 const base64 = reader.result as string;
                 try {
-                    const { data } = await satovarApi.post('/fabric/create', {
+                    const encryptedData = EncryptData({
                         ...form,
                         Foto: base64,
+                    });
+                    await satovarApi.post('/fabric/create', {
+                        encryptedData,
                     });
 
                     onResetForm();
@@ -114,9 +116,14 @@ export const UseFabricCrud = () => {
                 form.FotoActualizar === null ||
                 form.FotoActualizar === ''
             ) {
-                await satovarApi.put<Fabric>(`/fabric/${id}`, {
+                const encryptedData = EncryptData({
                     ...form,
                     Foto: undefined,
+                });
+                const EncriptedId = EncryptData({ Id: id });
+                const EncriptedChange = EncriptedId.replace(/\//g, '-');
+                await satovarApi.put<Fabric>(`/fabric/${EncriptedChange}`, {
+                    encryptedData,
                 });
                 startGetAllFabric();
 
@@ -131,13 +138,15 @@ export const UseFabricCrud = () => {
             reader.onload = async function () {
                 const base64 = reader.result as string;
                 try {
-                    const { data } = await satovarApi.put<Fabric>(
-                        `/fabric/${id}`,
-                        {
-                            ...form,
-                            Foto: base64 || '',
-                        }
-                    );
+                    const encryptedData = EncryptData({
+                        ...form,
+                        Foto: base64 || '',
+                    });
+                    const EncriptedId = EncryptData({ Id: id });
+                    const EncriptedChange = EncriptedId.replace(/\//g, '-');
+                    await satovarApi.put<Fabric>(`/fabric/${EncriptedChange}`, {
+                        encryptedData,
+                    });
                     onResetForm();
                     inputRef.current?.click();
                     startGetAllFabric();
@@ -171,7 +180,9 @@ export const UseFabricCrud = () => {
     };
     const startDeleteFabric = async (id: number) => {
         try {
-            await satovarApi.put(`/fabric/state/${id}`);
+            const EncriptedId = EncryptData({ Id: id });
+            const EncriptedChange = EncriptedId.replace(/\//g, '-');
+            await satovarApi.put(`/fabric/state/${EncriptedChange}`);
             dispatch(onChangeFabricState(id));
             startGetAllFabric();
         } catch (error) {

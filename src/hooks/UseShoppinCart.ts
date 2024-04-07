@@ -14,7 +14,7 @@ import satovarApi from '../api/SatovarApi';
 import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import { AxiosError } from 'axios';
-import { ErrorSweetAlert } from '../helpers';
+import { EncryptData, ErrorSweetAlert } from '../helpers';
 interface slice {
     Cart: {
         products: ProductShop[];
@@ -107,14 +107,18 @@ export const UseShoppinCart = () => {
             };
         });
         try {
-            dispatch(onLoading(true));
-            await satovarApi.post('/buy/products', {
+            const data = {
                 subtotal: subtotal,
                 impuestos: impuesto,
                 fecha_pago: new Date(form.FECHA_ENTREGA),
                 descuentos: 0,
                 total: total,
                 productos: productShop,
+            };
+            const encryptedData = EncryptData(data);
+            dispatch(onLoading(true));
+            await satovarApi.post('/buy/products', {
+                encryptedData,
             });
             dispatch(onLoading(false));
             navigate('/');

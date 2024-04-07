@@ -11,7 +11,7 @@ import {
 import { Rol } from '../../interfaces/User.interface';
 import satovarApi from '../../api/SatovarApi';
 import { AxiosError } from 'axios';
-import { ErrorSweetAlert } from '../../helpers';
+import { EncryptData, ErrorSweetAlert } from '../../helpers';
 import Swal from 'sweetalert2';
 
 export const UseUsersCrud = () => {
@@ -84,9 +84,14 @@ export const UseUsersCrud = () => {
         id: number
     ) => {
         try {
+            const encryptedData = EncryptData(form);
+            const EncriptedId = EncryptData({ Id: id });
+            const EncriptedChange = EncriptedId.replace(/\//g, '-');
             const { data } = await satovarApi.put<UserCrud>(
-                `/auth/${id}`,
-                form
+                `/auth/${EncriptedChange}`,
+                {
+                    encryptedData,
+                }
             );
             inputRef.current?.click();
             dispatch(onUpdateUser(data));
@@ -109,18 +114,24 @@ export const UseUsersCrud = () => {
         }
     };
     const startDeleteUser = async (id: number) => {
+        const EncriptedId = await EncryptData({ Id: id });
+        const EncriptedChange = EncriptedId.replace(/\//g, '-');
         try {
-            await satovarApi.put(`/auth/state/${id}`);
+            await satovarApi.put(`/auth/state/${EncriptedChange}`);
             dispatch(onChangeUserState(id));
             startGetAllUsers();
         } catch (error) {
+            console.log(error);
             const axiosError = error as AxiosError;
             const errorCode = axiosError.response?.status as number;
             const errorString = axiosError.response?.data as AxiosErrorData;
             ErrorSweetAlert(
                 errorCode,
                 'Error al cambiar estado de usuario',
-                errorString.error || errorString.message || ''
+                errorString.error ||
+                    errorString.message ||
+                    errorString.Error ||
+                    ''
             );
         }
     };

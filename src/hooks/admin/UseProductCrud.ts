@@ -19,7 +19,7 @@ import {
 } from '../../redux-store';
 import { useState } from 'react';
 import { AxiosError } from 'axios';
-import { ErrorSweetAlert } from '../../helpers';
+import { EncryptData, ErrorSweetAlert } from '../../helpers';
 import Swal from 'sweetalert2';
 
 interface IState {
@@ -136,10 +136,15 @@ export const UseProductCrud = () => {
                     Tela: parseInt(form.Tela) || 1,
                 } as ProductAdd;
                 try {
+                    const encryptedData = EncryptData(productAdd);
+                    const EncriptedId = EncryptData({
+                        Id: activeProduct.CI_ID_PRODUCTO,
+                    });
+                    const EncriptedChange = EncriptedId.replace(/\//g, '-');
                     const { data } = await satovarApi.put<ProductInterfaceCRUD>(
-                        `/Products/update/${activeProduct.CI_ID_PRODUCTO}`,
+                        `/Products/update/${EncriptedChange}`,
                         {
-                            ...productAdd,
+                            encryptedData,
                         }
                     );
                     dispatch(onUpdateProductCrud(data));
@@ -176,11 +181,16 @@ export const UseProductCrud = () => {
                     Estilos: sylesArray.length > 0 ? sylesArray : '',
                     Tela: parseInt(form.Tela) || 1,
                 } as ProductAdd;
+                const encryptedData = EncryptData(productAdd);
+                const EncriptedId = EncryptData({
+                    Id: activeProduct.CI_ID_PRODUCTO,
+                });
+                const EncriptedChange = EncriptedId.replace(/\//g, '-');
                 try {
                     const { data } = await satovarApi.put<ProductInterfaceCRUD>(
-                        `/Products/update/${activeProduct.CI_ID_PRODUCTO}`,
+                        `/Products/update/${EncriptedChange}`,
                         {
-                            ...productAdd,
+                            encryptedData,
                         }
                     );
                     inputRef.current?.click();
@@ -273,12 +283,14 @@ export const UseProductCrud = () => {
                     Estilos: sylesArray.length > 0 ? sylesArray : '',
                     Tela: parseInt(product.Tela) || 1,
                 } as ProductAdd;
+
                 try {
+                    const encryptedData = EncryptData(productAdd);
                     const { data } =
                         await satovarApi.post<ProductInterfaceCRUD>(
                             '/Products/create',
                             {
-                                ...productAdd,
+                                encryptedData,
                             }
                         );
                     dispatch(onAddProductCrud(data));
@@ -317,8 +329,11 @@ export const UseProductCrud = () => {
     };
     const startActiveProduct = async (id: number) => {
         try {
-            await satovarApi.put(`/Products/update/${id}`, {
-                Estado: true,
+            const encryptedData = EncryptData({ Estado: true });
+            const EncriptedId = EncryptData({ Id: id });
+            const EncriptedChange = EncriptedId.replace(/\//g, '-');
+            await satovarApi.put(`/Products/update/${EncriptedChange}`, {
+                encryptedData,
             });
             startGetProductsAll();
         } catch (error) {
@@ -334,10 +349,13 @@ export const UseProductCrud = () => {
     };
     const startDeleteProduct = async (id: number) => {
         try {
-            await satovarApi.delete(`/Products/delete/${id}`);
+            const EncriptedId = EncryptData({ Id: id });
+            const EncriptedChange = EncriptedId.replace(/\//g, '-');
+            await satovarApi.delete(`/Products/delete/${EncriptedChange}`);
             dispatch(onDeleteProductCrud(id));
             // startGetProductsAll();
         } catch (error) {
+            console.log(error);
             const axiosError = error as AxiosError;
             const errorCode = axiosError.response?.status as number;
             const errorString = axiosError.response?.data as AxiosErrorData;
