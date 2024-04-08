@@ -1,5 +1,6 @@
+import { Link } from 'react-router-dom';
 import { Button } from '..';
-import { UseForm } from '../../hooks';
+import { UseForgotPassword, UseForm } from '../../hooks';
 import { UseAuth } from '../../hooks/UseAuth';
 import { FormProperties, FormProps } from '../../interfaces';
 
@@ -8,6 +9,7 @@ export const FormItem = ({ input, button, children = null }: FormProps) => {
     const { startLogin, startGoogleSignIn } = UseAuth();
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const { email = '', password = '' } = formState as any;
+    const { startSendEmail } = UseForgotPassword();
     return (
         <>
             <form>
@@ -36,7 +38,6 @@ export const FormItem = ({ input, button, children = null }: FormProps) => {
                 <br />
                 <div className='text-center'>
                     <p>o ingrese con:</p>
-
                     <button
                         onClick={startGoogleSignIn}
                         type='button'
@@ -45,8 +46,12 @@ export const FormItem = ({ input, button, children = null }: FormProps) => {
                         <i className='fab fa-google'></i>
                     </button>
                 </div>
+
                 {children}
             </form>
+            <button onClick={startSendEmail} className=' btn btn-link'>
+                ¿Olvidaste tu contraseña?
+            </button>
         </>
     );
 };

@@ -20,7 +20,12 @@ export const LargeCard = ({
             <div className='col-lg-4 col-md-6'>
                 <div className='item'>
                     <a href='property-details.html'>
-                        <img src={image} alt={title} />
+                        <img
+                            width={'250px'}
+                            height={'250px'}
+                            src={image}
+                            alt={title}
+                        />
                     </a>
                     <span className='category'>{category}</span>
                     <h6>₡ {price}</h6>

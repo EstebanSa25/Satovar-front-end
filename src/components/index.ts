@@ -52,3 +52,4 @@ export * from './modals/RegisterUser';
 export * from './modals/UpdateUser';
 export * from './modals/RegisterFabric';
 export * from './modals/UpdateFabric';
+export * from './ForgotPassword/ForgotPasswordForm';

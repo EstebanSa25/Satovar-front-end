@@ -198,7 +198,7 @@ export const RegisterProduct = () => {
                                             ))}
                                         </select>
                                     </div>
-                                    <div className='mb-3 mt-3'>
+                                    <div className='mb-3 mt-3 d-flex  flex-column '>
                                         <label
                                             htmlFor='TallasRegistro'
                                             className='form-label'
@@ -206,10 +206,15 @@ export const RegisterProduct = () => {
                                             Tallas Disponibles:
                                         </label>
                                         <br />
+
                                         {size.map((talla) => (
                                             <>
                                                 <div key={talla?.CI_ID_TALLA}>
-                                                    <label>
+                                                    <label
+                                                        style={{
+                                                            width: '50px',
+                                                        }}
+                                                    >
                                                         {talla.CI_ID_TALLA === 6
                                                             ? ''
                                                             : talla?.CV_TALLA}
@@ -223,14 +228,12 @@ export const RegisterProduct = () => {
                                                             ]
                                                         }
                                                         type='text'
-                                                        style={{
-                                                            marginLeft: '20px',
-                                                        }}
+                                                        style={{}}
                                                         className={
                                                             talla.CI_ID_TALLA ===
                                                             6
                                                                 ? 'd-none'
-                                                                : 'cantidad-talla p-2'
+                                                                : 'cantidad-talla p-2  justify-content-end '
                                                         }
                                                         placeholder=''
                                                         name={`Cantidad ${talla?.CV_TALLA}`}

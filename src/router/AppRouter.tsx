@@ -6,6 +6,7 @@ import {
     CartPage,
     Contact,
     FabricPageCrud,
+    ForgotPasswordPage,
     HomePage,
     LoginPage,
     MakingPage,
@@ -89,6 +90,10 @@ export const AppRouter = () => {
                         </>
                     )
                 }
+                <Route
+                    path='/forgot/password/:token'
+                    element={<ForgotPasswordPage />}
+                />
                 <Route path='/*' element={<HomePage />} />
             </Routes>
         </Layout>

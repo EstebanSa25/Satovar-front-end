@@ -43,7 +43,7 @@ export const UseAuth = () => {
             );
         }
         if (userGoogle) {
-            userRegister.Clave = userGoogle.GoogleId;
+            userRegister.Clave = `${userGoogle.GoogleId}$`;
         }
         const campos = validarCamposVacios(userRegister);
         if (campos) return CampoVacioSweetAlert('con el registro');
@@ -73,6 +73,12 @@ export const UseAuth = () => {
     const startLogin = async (email: string, password: string, e: any) => {
         logoutFireBase();
         e.preventDefault();
+        if (!validarFormatoCorreo(email))
+            return ErrorSweetAlert(
+                0,
+                'Correo invalido',
+                'Verifique su correo electronico e intente de nuevo'
+            );
         if (email.trim() === '' || password.trim() === '') {
             const campos = validarCamposVacios({ email, password });
             if (campos) return CampoVacioSweetAlert('con el inicio de sesión');
@@ -122,7 +128,7 @@ export const UseAuth = () => {
             GoogleId: uid,
         };
         try {
-            const UserLogin = { correo: email, clave: uid };
+            const UserLogin = { correo: email, clave: `${uid}$` };
             const encryptedData = EncryptData(UserLogin);
             const { data } = await satovarApi.post('/auth/login', {
                 encryptedData,

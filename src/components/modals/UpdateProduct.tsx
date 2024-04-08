@@ -218,7 +218,11 @@ export const UpdateProduct = () => {
                                         {size.map((talla) => (
                                             <>
                                                 <div key={talla.CI_ID_TALLA}>
-                                                    <label>
+                                                    <label
+                                                        style={{
+                                                            width: '50px',
+                                                        }}
+                                                    >
                                                         {talla.CI_ID_TALLA === 6
                                                             ? ''
                                                             : talla.CV_TALLA}

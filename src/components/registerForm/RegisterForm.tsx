@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { UseForm } from '../../hooks';
 import { UseAuth } from '../../hooks/UseAuth';
 import { RegisterFormState } from '../../interfaces';
-import { Link, Navigate, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 export const RegisterForm = () => {
     const { userGoogle, startCreateUser } = UseAuth();
     const initialForm = {

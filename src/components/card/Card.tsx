@@ -29,7 +29,7 @@ export const Card = ({
                     />
                 </a>
                 <span className='category'>{color}</span>
-                <h6>${precio}</h6>
+                <h6>₡{precio}</h6>
                 <h4>
                     <a href='property-details.html'>{nombre} </a>
                 </h4>

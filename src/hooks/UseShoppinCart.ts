@@ -86,7 +86,6 @@ export const UseShoppinCart = () => {
                 title: 'Debe completar los campos de la tarjeta',
                 text: 'Complete los campos para continuar',
                 showConfirmButton: true,
-                timer: 3000,
             });
         }
         if (form.FECHA_ENTREGA === '' || form.FECHA_ENTREGA === null) {
@@ -95,7 +94,6 @@ export const UseShoppinCart = () => {
                 title: 'Debe completar la fecha de entrega',
                 text: 'Complete los campos para continuar',
                 showConfirmButton: true,
-                timer: 3000,
             });
         }
         // eslint-disable-next-line @typescript-eslint/no-explicit-any

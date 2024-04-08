@@ -12,3 +12,4 @@ export * from './ProductCreatePage.tsx';
 export * from './UserProfilePage.tsx';
 export * from './UserCrudPage.tsx';
 export * from './FabricPage.tsx';
+export * from './ForgotPasswordPage.tsx';

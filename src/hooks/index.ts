@@ -13,3 +13,4 @@ export * from './UseMeasurePant';
 export * from './UseMeasureSuitJacket';
 export * from './admin/UseFabricCrud';
 export * from './admin/UseInvoice';
+export * from './UseForgotPassword';

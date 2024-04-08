@@ -147,7 +147,7 @@ export const CardItem = ({
                             width: '80px',
                         }}
                     >
-                        <span className=''>${precio}</span>
+                        <span className=''>₡ {precio}</span>
                     </div>
                     <a
                         href='#!'
