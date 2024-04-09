@@ -108,7 +108,7 @@ export const UserPant = () => {
                     typeof='text'
                     className='form-control'
                     id='pwd'
-                    placeholder='Estilo Tradicional'
+                    placeholder='Estilo tradicional'
                     name='DetallePantalon'
                 ></textarea>
             </div>

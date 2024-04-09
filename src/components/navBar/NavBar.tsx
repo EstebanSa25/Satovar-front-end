@@ -15,11 +15,11 @@ export const NavBar = () => {
                     <NavBarItem url='/alquiler' title='Alquiler'></NavBarItem>
                     <NavBarItem
                         url='/confeccion'
-                        title='Confeccion'
+                        title='Confección'
                     ></NavBarItem>
                     <NavBarItem
                         url='/contacto'
-                        title='Contactenos'
+                        title='Contáctenos'
                     ></NavBarItem>
                     <NavBarItem url='/carrito' title='Carrito'></NavBarItem>
                 </>

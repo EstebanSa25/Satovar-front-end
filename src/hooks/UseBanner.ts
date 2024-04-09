@@ -3,7 +3,7 @@ const images = [
     {
         imagen: '/src/assets/images/traje-para-eventos-de-noche-re.jpg',
         categoria: 'Smoking',
-        titulo: 'Satovar ¡Por qué la primera impresión es la que vale!',
+        titulo: 'Satovar ¡Porque la primera impresión es la que vale!',
     },
     {
         imagen: '/src/assets/images/photo-boda-re.jpg',

@@ -4,7 +4,7 @@ export const inputLogin = [
     {
         type: InputType.email,
         id: 'email',
-        label: 'Direccion de correo',
+        label: 'Dirección de correo',
         style: '',
     },
     {

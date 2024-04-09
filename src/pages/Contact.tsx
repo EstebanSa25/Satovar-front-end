@@ -5,7 +5,7 @@ export const Contact = () => {
     return (
         <>
             <div className='animate__animated animate__fadeIn'>
-                <SimpleBanner Title='Contactenos' />
+                <SimpleBanner Title='Contáctenos' />
                 <div className='contact-page section'>
                     <div className='container'>
                         <div className='row'>
@@ -36,7 +36,7 @@ export const Contact = () => {
                                             <h6>
                                                 506-0000-8655
                                                 <br />
-                                                <span>Numero de telefono</span>
+                                                <span>Número de teléfono</span>
                                             </h6>
                                         </div>
                                     </div>

@@ -48,7 +48,7 @@ export const UseMeasureWaistcoat = () => {
             });
             Swal.fire({
                 icon: 'success',
-                title: 'Medida de Chaleco guardada',
+                title: 'Medida de chaleco guardada',
                 showConfirmButton: false,
                 timer: 1800,
             });

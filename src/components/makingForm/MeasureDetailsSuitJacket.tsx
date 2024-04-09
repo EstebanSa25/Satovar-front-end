@@ -20,7 +20,7 @@ export const MeasureDetailsSuitJacket = () => {
         <form>
             <div className='mb-3'>
                 <label htmlFor='DetallesSaco' className='form-label'>
-                    Detalles Adicionales:
+                    Detalles adicionales:
                 </label>
                 <textarea
                     disabled={measureSuitJacket?.CV_DETALLES !== undefined}

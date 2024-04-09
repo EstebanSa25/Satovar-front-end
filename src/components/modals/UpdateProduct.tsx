@@ -212,7 +212,7 @@ export const UpdateProduct = () => {
                                             htmlFor='TallasActualizadas'
                                             className='form-label'
                                         >
-                                            Tallas Disponibles:
+                                            Tallas disponibles:
                                         </label>
                                         <br />
                                         {size.map((talla) => (
@@ -271,6 +271,7 @@ export const UpdateProduct = () => {
                                     </div>
                                     <div className='mb-3'>
                                         <label
+                                            style={{ marginRight: '10px' }}
                                             htmlFor='Catalogo'
                                             className='form-label'
                                         >

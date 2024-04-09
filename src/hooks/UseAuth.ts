@@ -11,7 +11,7 @@ import {
 import satovarApi from '../api/SatovarApi';
 import Swal from 'sweetalert2';
 import { AxiosErrorData, RegisterForm } from '../interfaces';
-import { EncryptData } from '../helpers';
+import { EncryptData, decryptData } from '../helpers';
 import {
     CampoVacioSweetAlert,
     ErrorSweetAlert,
@@ -38,8 +38,8 @@ export const UseAuth = () => {
         if (!validarFormatoCorreo(userRegister.Correo)) {
             return ErrorSweetAlert(
                 0,
-                'Correo invalido',
-                'Verifique su correo electronico e intente de nuevo'
+                'Correo electrónico inválido',
+                'Verifique su correo electrónico e intente de nuevo'
             );
         }
         if (userGoogle) {
@@ -54,7 +54,7 @@ export const UseAuth = () => {
             await satovarApi.post('/auth/create', {
                 encryptedData: data,
             });
-            Swal.fire('Verifica tu correo electronico para activar tu cuenta');
+            Swal.fire('Verifica tu correo electrónico para activar tu cuenta');
             onResetForm();
             navigate('/');
         } catch (error) {
@@ -70,14 +70,18 @@ export const UseAuth = () => {
             );
         }
     };
+    interface loginAuth {
+        token: string;
+        user: any;
+    }
     const startLogin = async (email: string, password: string, e: any) => {
         logoutFireBase();
         e.preventDefault();
         if (!validarFormatoCorreo(email))
             return ErrorSweetAlert(
                 0,
-                'Correo invalido',
-                'Verifique su correo electronico e intente de nuevo'
+                'Correo inválido',
+                'Verifique su correo electrónico e intente de nuevo'
             );
         if (email.trim() === '' || password.trim() === '') {
             const campos = validarCamposVacios({ email, password });
@@ -90,7 +94,10 @@ export const UseAuth = () => {
             const { data } = await satovarApi.post('/auth/login', {
                 encryptedData,
             });
-            const { token, user } = data;
+            const { encryptData } = data;
+            const decipher = decryptData<loginAuth>(encryptData);
+            const state: loginAuth = decipher.data || ({} as loginAuth);
+            const { token, user } = state;
             localStorage.setItem('token', token);
             localStorage.setItem(
                 'token-init-date',
@@ -105,7 +112,7 @@ export const UseAuth = () => {
             dispatch(onLogout('Credenciales incorrectas'));
             ErrorSweetAlert(
                 errorCode,
-                'Error al iniciar sesion',
+                'Error al iniciar sesión',
                 errorString.error || errorString.message || ''
             );
             setTimeout(() => {
@@ -133,7 +140,10 @@ export const UseAuth = () => {
             const { data } = await satovarApi.post('/auth/login', {
                 encryptedData,
             });
-            const { token, user } = data;
+            const { encryptData } = data;
+            const decipher = decryptData<loginAuth>(encryptData);
+            const state: loginAuth = decipher.data || ({} as loginAuth);
+            const { token, user } = state;
             localStorage.setItem('token', token);
             localStorage.setItem(
                 'token-init-date',
@@ -153,7 +163,7 @@ export const UseAuth = () => {
                 case 401:
                     ErrorSweetAlert(
                         errorCode,
-                        'Error al iniciar sesion',
+                        'Error al iniciar sesión',
                         errorString.error ===
                             'Verifique su cuenta o contacte a un administrador'
                             ? errorString.error

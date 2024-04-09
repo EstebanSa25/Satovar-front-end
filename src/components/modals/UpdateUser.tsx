@@ -110,7 +110,7 @@ export const UpdateUser = () => {
                                             htmlFor='Apellido2'
                                             className='form-label'
                                         >
-                                            Segundo Apellido:
+                                            Segundo apellido:
                                         </label>
                                         <input
                                             value={formState.Apellido2}
@@ -128,7 +128,7 @@ export const UpdateUser = () => {
                                             htmlFor='TelaRegistro'
                                             className='form-label'
                                         >
-                                            Cedula:
+                                            Cédula:
                                         </label>
                                         <input
                                             value={formState.Cedula}
@@ -146,7 +146,7 @@ export const UpdateUser = () => {
                                             htmlFor='Correo'
                                             className='form-label'
                                         >
-                                            Correo:
+                                            Correo electrónico:
                                         </label>
                                         <input
                                             onChange={onInputChange}
@@ -163,7 +163,7 @@ export const UpdateUser = () => {
                                             htmlFor='Direccion'
                                             className='form-label'
                                         >
-                                            Direccion:
+                                            Dirección:
                                         </label>
                                         <input
                                             onChange={onInputChange}
@@ -180,7 +180,7 @@ export const UpdateUser = () => {
                                             htmlFor='Telefono'
                                             className='form-label'
                                         >
-                                            Telefono:
+                                            Teléfono:
                                         </label>
                                         <input
                                             onChange={onInputChange}

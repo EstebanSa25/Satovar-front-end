@@ -21,7 +21,7 @@ export const Form = ({ input, button, title, children }: FormProps) => {
                             >
                                 <div className='card-body py-5 px-md-5'>
                                     <h2 className='fw-bold mb-5'>
-                                        SATOVAR {title}
+                                        SATOVAR <br></br> <br></br> {title}
                                     </h2>
                                     <FormItem
                                         input={input}

@@ -35,16 +35,15 @@ export const RegisterProduct = () => {
             Tela: `${fabric?.at(0)?.CI_ID_TELA}`,
             Precio: '',
             Catalogo: `${1}`,
-            ...size?.reduce((acc, talla) => {
+            ...size.reduce((acc, talla) => {
                 if (+talla?.CI_ID_TALLA === 6) {
-                    acc[`Cantidad ${talla?.CV_TALLA}`] = `'99999999'`;
+                    acc[`Cantidad ${talla?.CV_TALLA}`] = '99999999';
                 } else {
                     acc[`Cantidad ${talla?.CV_TALLA}`] = '';
                 }
                 return acc;
             }, {} as { [key: string]: string }),
         });
-        onResetForm();
         document
             .querySelectorAll<HTMLInputElement>('input[type=checkbox]')
             .forEach((check) => {
@@ -203,7 +202,7 @@ export const RegisterProduct = () => {
                                             htmlFor='TallasRegistro'
                                             className='form-label'
                                         >
-                                            Tallas Disponibles:
+                                            Tallas disponibles:
                                         </label>
                                         <br />
 
@@ -262,6 +261,7 @@ export const RegisterProduct = () => {
                                     </div>
                                     <div className='mb-3'>
                                         <label
+                                            style={{ marginRight: '2px' }}
                                             htmlFor='CatalogoRegistro'
                                             className='form-label'
                                         >

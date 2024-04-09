@@ -187,7 +187,7 @@ export const RegisterForm = () => {
                     onClick={() => navigate(-1)}
                     className='btn btn-secondary btn-block'
                 >
-                    Atras
+                    Atrás
                 </button>
             </div>
 

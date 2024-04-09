@@ -19,7 +19,7 @@ export const MeasureDetailsPant = () => {
         <form>
             <div className='mb-3'>
                 <label htmlFor='DetallesPantalon' className='form-label'>
-                    Detalles Adicionales:
+                    Detalles adicionales:
                 </label>
                 <textarea
                     disabled={measurePant?.CV_DETALLES !== undefined}

@@ -38,8 +38,8 @@ export const ProductCreatePage = () => {
                             <th>Nombre</th>
                             <th>Precio</th>
                             <th>Tela</th>
-                            <th>Catalogo</th>
-                            <th>Categoria</th>
+                            <th>Catálogo</th>
+                            <th>Categoría</th>
                             <th>Estado</th>
                         </tr>
                     </thead>

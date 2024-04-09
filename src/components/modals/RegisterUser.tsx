@@ -101,7 +101,7 @@ export const RegisterUser = () => {
                                             htmlFor='Apellido2'
                                             className='form-label'
                                         >
-                                            Segundo Apellido:
+                                            Segundo apellido:
                                         </label>
                                         <input
                                             value={formState.Apellido2}
@@ -119,7 +119,7 @@ export const RegisterUser = () => {
                                             htmlFor='TelaRegistro'
                                             className='form-label'
                                         >
-                                            Cedula:
+                                            Cédula:
                                         </label>
                                         <input
                                             value={formState.Cedula}
@@ -127,7 +127,7 @@ export const RegisterUser = () => {
                                             type='text'
                                             className='form-control'
                                             id='Cedula'
-                                            placeholder='Cedula'
+                                            placeholder='Cédula'
                                             name='Cedula'
                                         />
                                     </div>
@@ -137,7 +137,7 @@ export const RegisterUser = () => {
                                             htmlFor='Correo'
                                             className='form-label'
                                         >
-                                            Correo:
+                                            Correo electrónico:
                                         </label>
                                         <input
                                             onChange={onInputChange}
@@ -145,7 +145,7 @@ export const RegisterUser = () => {
                                             type='email'
                                             className='form-control'
                                             id='Correo'
-                                            placeholder='Correo electronico'
+                                            placeholder='Correo electrónico'
                                             name='Correo'
                                         />
                                     </div>
@@ -154,7 +154,7 @@ export const RegisterUser = () => {
                                             htmlFor='Direccion'
                                             className='form-label'
                                         >
-                                            Direccion:
+                                            Dirección:
                                         </label>
                                         <input
                                             onChange={onInputChange}
@@ -162,7 +162,7 @@ export const RegisterUser = () => {
                                             type='text'
                                             className='form-control'
                                             id='Direccion'
-                                            placeholder='Direccion'
+                                            placeholder='Dirección'
                                             name='Direccion'
                                         />
                                     </div>
@@ -171,7 +171,7 @@ export const RegisterUser = () => {
                                             htmlFor='Telefono'
                                             className='form-label'
                                         >
-                                            Telefono:
+                                            Teléfono:
                                         </label>
                                         <input
                                             onChange={onInputChange}
@@ -179,7 +179,7 @@ export const RegisterUser = () => {
                                             type='text'
                                             className='form-control'
                                             id='Telefono'
-                                            placeholder='Telefono'
+                                            placeholder='Teléfono'
                                             name='Telefono'
                                         />
                                     </div>

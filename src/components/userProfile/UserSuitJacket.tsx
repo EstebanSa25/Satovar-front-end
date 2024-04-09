@@ -38,7 +38,7 @@ export const UserSuitJacket = () => {
                 <h2>Saco</h2>
             </div>
             <div className='input-group'>
-                <span className='input-group-text'>pecho</span>
+                <span className='input-group-text'>Pecho</span>
                 <input
                     onChange={onInputChange}
                     value={formState.PechoSaco}
@@ -93,7 +93,7 @@ export const UserSuitJacket = () => {
                 />
             </div>
             <div className='input-group'>
-                <span className='input-group-text'>L.Manga</span>
+                <span className='input-group-text'>L. Manga</span>
                 <input
                     onChange={onInputChange}
                     value={formState.L_mangaSaco}

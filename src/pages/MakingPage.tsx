@@ -180,8 +180,8 @@ export const MakingPage = () => {
                                                                 aria-controls='collapsTopPant'
                                                             >
                                                                 Medidas
-                                                                Superiores
-                                                                Camisa
+                                                                superiores
+                                                                camisa
                                                             </button>
                                                         </h2>
                                                         <div
@@ -208,7 +208,7 @@ export const MakingPage = () => {
                                                                 aria-expanded='true'
                                                                 aria-controls='collapseLengthPant'
                                                             >
-                                                                Medidas de largo
+                                                                Medidas largo
                                                                 camisa
                                                             </button>
                                                         </h2>
@@ -237,8 +237,8 @@ export const MakingPage = () => {
                                                                 aria-controls='collapseLengthPant'
                                                             >
                                                                 Detalles
-                                                                Adicionales
-                                                                Camisa
+                                                                adicionales
+                                                                camisa
                                                             </button>
                                                         </h2>
                                                         <div
@@ -295,7 +295,7 @@ export const MakingPage = () => {
                                                             <span></span>
                                                         </li>
                                                         <li>
-                                                            Estilo versatil{' '}
+                                                            Estilo versátil{' '}
                                                             <span></span>
                                                         </li>
                                                         <li>
@@ -332,8 +332,8 @@ export const MakingPage = () => {
                                                                 aria-controls='collapsTopPant'
                                                             >
                                                                 Medidas
-                                                                Superiores
-                                                                Chaleco
+                                                                superiores
+                                                                chaleco
                                                             </button>
                                                         </h2>
                                                         <div
@@ -361,7 +361,7 @@ export const MakingPage = () => {
                                                                 aria-expanded='true'
                                                                 aria-controls='collapseLengthPant'
                                                             >
-                                                                Medidas de largo
+                                                                Medidas largo
                                                                 chaleco
                                                             </button>
                                                         </h2>
@@ -391,8 +391,8 @@ export const MakingPage = () => {
                                                                 aria-controls='collapseLengthPant'
                                                             >
                                                                 Detalles
-                                                                Adicionales
-                                                                Chaleco
+                                                                adicionales
+                                                                chaleco
                                                             </button>
                                                         </h2>
                                                         <div
@@ -442,11 +442,12 @@ export const MakingPage = () => {
                                                 <div className='info-table'>
                                                     <ul>
                                                         <li>
-                                                            Elegancia a medida{' '}
-                                                            <span></span>
+                                                            Elegancia a la
+                                                            medida <span></span>
                                                         </li>
                                                         <li>
-                                                            Telas premium
+                                                            Telas de primera
+                                                            calidad
                                                             <span></span>
                                                         </li>
                                                         <li>
@@ -488,8 +489,8 @@ export const MakingPage = () => {
                                                                 aria-controls='collapsTopPant'
                                                             >
                                                                 Medidas
-                                                                Superiores
-                                                                Pantalón
+                                                                superiores
+                                                                pantalón
                                                             </button>
                                                         </h2>
                                                         <div
@@ -517,8 +518,8 @@ export const MakingPage = () => {
                                                                 aria-expanded='true'
                                                                 aria-controls='collapseLengthPant'
                                                             >
-                                                                Medidas de largo
-                                                                de pantalón
+                                                                Medidas largo
+                                                                pantalón
                                                             </button>
                                                         </h2>
                                                         <div
@@ -547,8 +548,8 @@ export const MakingPage = () => {
                                                                 aria-controls='collapseLengthPant'
                                                             >
                                                                 Detalles
-                                                                Adicionales
-                                                                Pantalón
+                                                                adicionales
+                                                                pantalón
                                                             </button>
                                                         </h2>
                                                         <div
@@ -598,11 +599,12 @@ export const MakingPage = () => {
                                                 <div className='info-table'>
                                                     <ul>
                                                         <li>
-                                                            Elegancia a medida{' '}
-                                                            <span></span>
+                                                            Elegancia a la
+                                                            medida <span></span>
                                                         </li>
                                                         <li>
-                                                            Telas premium
+                                                            Telas de primera
+                                                            calidad
                                                             <span></span>
                                                         </li>
                                                         <li>
@@ -645,7 +647,7 @@ export const MakingPage = () => {
                                                                 aria-controls='collapsTopPant'
                                                             >
                                                                 Medidas
-                                                                Superiores Saco
+                                                                superiores saco
                                                             </button>
                                                         </h2>
                                                         <div
@@ -673,8 +675,8 @@ export const MakingPage = () => {
                                                                 aria-expanded='true'
                                                                 aria-controls='collapseLengthPant'
                                                             >
-                                                                Medidas de largo
-                                                                de saco
+                                                                Medidas largo
+                                                                saco
                                                             </button>
                                                         </h2>
                                                         <div
@@ -703,7 +705,7 @@ export const MakingPage = () => {
                                                                 aria-controls='collapseLengthPant'
                                                             >
                                                                 Detalles
-                                                                Adicionales Saco
+                                                                adicionales saco
                                                             </button>
                                                         </h2>
                                                         <div

@@ -69,7 +69,7 @@ export const CartPage = () => {
                                                 className='text-body'
                                             >
                                                 <i className='fas fa-long-arrow-alt-left me-2'></i>
-                                                Seguir Comprando
+                                                Seguir comprando
                                             </Link>
                                         </h5>
                                         <hr />
@@ -77,7 +77,7 @@ export const CartPage = () => {
                                         <div className='d-flex justify-content-between align-items-center mb-4'>
                                             <div>
                                                 <p className='mb-1'>
-                                                    Carrito de Compras
+                                                    Carrito de compras
                                                 </p>
                                                 <p className='mb-0'>
                                                     Usted tiene 0 elementos en
@@ -152,7 +152,7 @@ export const CartPage = () => {
                                             >
                                                 <div className='d-flex justify-content-between align-items-center mb-4'>
                                                     <h5 className='mb-0'>
-                                                        Detalles de tarjeta
+                                                        Detalles de la tarjeta
                                                     </h5>
                                                 </div>
 
@@ -203,13 +203,13 @@ export const CartPage = () => {
                                                                 ''
                                                             }
                                                             name='NOMBRE'
-                                                            placeholder='Nombre Completo'
+                                                            placeholder='Nombre completo'
                                                         />
                                                         <label
                                                             className='form-label'
                                                             htmlFor='typeName'
                                                         >
-                                                            Propietario de
+                                                            Propietario de la
                                                             tarjeta
                                                         </label>
                                                     </div>
@@ -238,7 +238,7 @@ export const CartPage = () => {
                                                             className='form-label'
                                                             htmlFor='typeText'
                                                         >
-                                                            Numero de tarjeta
+                                                            Número de la tarjeta
                                                         </label>
                                                     </div>
 
@@ -304,7 +304,7 @@ export const CartPage = () => {
                                                                     className='form-label'
                                                                     htmlFor='typeText'
                                                                 >
-                                                                    Cvv
+                                                                    CVV
                                                                 </label>
                                                             </div>
                                                         </div>
@@ -335,7 +335,7 @@ export const CartPage = () => {
 
                                                 <div className='d-flex justify-content-between mb-4'>
                                                     <p className='mb-2'>
-                                                        Total(Incl. impuestos)
+                                                        Total (Incl. impuestos)
                                                     </p>
                                                     <p className='mb-2'>
                                                         ₡{total}

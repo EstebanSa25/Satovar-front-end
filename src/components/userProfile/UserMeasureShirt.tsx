@@ -34,7 +34,7 @@ export const UserMeasureShirt = () => {
     return (
         <div className='col-md-2 border med-camisa'>
             <div className='titulo-cont-medidas text-center'>
-                <h2>camisa</h2>
+                <h2>Camisa</h2>
             </div>
             <div className='input-group'>
                 <span className='input-group-text'>Pecho</span>
@@ -103,7 +103,7 @@ export const UserMeasureShirt = () => {
                 />
             </div>
             <div className='input-group'>
-                <span className='input-group-text'>L.Manga</span>
+                <span className='input-group-text'>L. Manga</span>
                 <input
                     onChange={onInputChange}
                     value={formState.L_mangaCamisa}
@@ -114,7 +114,7 @@ export const UserMeasureShirt = () => {
                 />
             </div>
             <div className='input-group'>
-                <span className='input-group-text'>L.Total</span>
+                <span className='input-group-text'>L. Total</span>
                 <input
                     onChange={onInputChange}
                     value={formState.L_totalCamisa}

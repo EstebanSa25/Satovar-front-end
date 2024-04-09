@@ -72,7 +72,7 @@ export const UseFabricCrud = () => {
                     console.log(error);
                     ErrorSweetAlert(
                         errorCode,
-                        'Error al crear tela',
+                        'Error al crear la tela',
                         errorString.error || errorString.message || ''
                     );
                 }
@@ -84,7 +84,7 @@ export const UseFabricCrud = () => {
             console.log(error);
             ErrorSweetAlert(
                 errorCode,
-                'Error al crear tela',
+                'Error al crear la tela',
                 errorString.error || errorString.message || ''
             );
             console.log(error);
@@ -162,7 +162,7 @@ export const UseFabricCrud = () => {
                     console.log(error);
                     ErrorSweetAlert(
                         errorCode,
-                        'Error al actualizar tela',
+                        'Error al actualizar la tela',
                         errorString.error || errorString.message || ''
                     );
                 }
@@ -173,7 +173,7 @@ export const UseFabricCrud = () => {
             const errorString = axiosError.response?.data as AxiosErrorData;
             ErrorSweetAlert(
                 errorCode,
-                'Error al actualizar tela',
+                'Error al actualizar la tela',
                 errorString.error || errorString.message || ''
             );
         }
@@ -191,7 +191,7 @@ export const UseFabricCrud = () => {
             const errorString = axiosError.response?.data as AxiosErrorData;
             ErrorSweetAlert(
                 errorCode,
-                'Error al cambiar estado de tela',
+                'Error al cambiar estado de la tela',
                 errorString.error || errorString.message || ''
             );
         }

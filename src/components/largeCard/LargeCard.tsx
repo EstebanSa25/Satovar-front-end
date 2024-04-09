@@ -34,7 +34,7 @@ export const LargeCard = ({
                     </h4>
                     <ul>
                         <li>
-                            Tallas Disponibles:{' '}
+                            Tallas disponibles:{' '}
                             <span>
                                 {sizes
                                     .map((size) => size.T_TALLA.CV_TALLA + ' ')
@@ -46,7 +46,7 @@ export const LargeCard = ({
                             Disponibilidad: <span>Verificar en tienda</span>
                         </li>
                         <li>
-                            Duración del Alquiler: <span>Fin de semana</span>
+                            Duración del alquiler: <span>Fin de semana</span>
                         </li>
                     </ul>
                     {sizes.length > 0 ? (
@@ -83,7 +83,7 @@ export const LargeCard = ({
                                     .map((product) => product.id)
                                     .includes(id)
                                     ? 'Agregado, ir al carrito'
-                                    : 'Anadir al carrito'}
+                                    : 'Añadir al carrito'}
                             </Link>
                         </div>
                     ) : (

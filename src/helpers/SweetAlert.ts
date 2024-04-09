@@ -2,7 +2,7 @@ import Swal from 'sweetalert2';
 
 export const CampoVacioSweetAlert = (text: string = '') => {
     return Swal.fire({
-        title: 'Campos vacios',
+        title: 'Campos vacíos',
         text: `Tienes que completar los campos para continuar ${text}`,
         icon: 'warning',
     });

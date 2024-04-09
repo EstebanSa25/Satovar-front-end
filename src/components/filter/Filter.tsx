@@ -9,7 +9,7 @@ export const Filter = () => {
             />
             <FilterItem Title='Saco' OnAction={() => console.log('prueba')} />
             <FilterItem
-                Title='Pantalon'
+                Title='Pantalón'
                 OnAction={() => console.log('prueba')}
             />
             <FilterItem Title='Camisa' OnAction={() => console.log('prueba')} />

@@ -84,7 +84,7 @@ export const UserWaistcoat = () => {
                     typeof='text'
                     className='form-control'
                     id='pwd'
-                    placeholder='Atras de tela y con fajita'
+                    placeholder='Atrás de tela y con faja'
                     name='DetalleChaleco'
                 ></textarea>
             </div>

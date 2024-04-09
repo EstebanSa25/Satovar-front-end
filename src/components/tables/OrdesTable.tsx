@@ -35,21 +35,21 @@ export const OrdesTable = () => {
     return (
         <div className='pedidos '>
             <div className='container mt-3'>
-                <h2>Lista de Pedidos</h2>
+                <h2>Lista de pedidos</h2>
                 <hr />
             </div>
             <div className=' mt-3 scrollable-container'>
                 <table className='table'>
                     <thead>
                         <tr>
-                            <th>N. Pedido</th>
+                            <th>N° Pedido</th>
                             <th>Cédula</th>
                             <th>Nombre</th>
                             <th>Apellido</th>
                             <th>Teléfono</th>
                             <th>Lugar</th>
                             <th>Total</th>
-                            <th>Fecha Entrega</th>
+                            <th>Fecha de entrega</th>
                             <th>Estado</th>
                         </tr>
                     </thead>

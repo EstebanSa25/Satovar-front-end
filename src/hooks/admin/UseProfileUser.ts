@@ -197,12 +197,12 @@ export const UseProfileUser = () => {
                 detalles: form.DetallePantalon || '',
             });
             if (!data.estado) {
-                throw new Error('Error al guardar la medida de pantalon');
+                throw new Error('Error al guardar la medida de pantalón');
             }
             startGetMeasurePants(id);
             Swal.fire({
                 icon: 'success',
-                title: 'Medida de pantalon guardada',
+                title: 'Medida de pantalón guardada',
                 showConfirmButton: false,
                 timer: 1800,
             });
@@ -239,7 +239,7 @@ export const UseProfileUser = () => {
             startGetMeasureWaistcoat(id);
             Swal.fire({
                 icon: 'success',
-                title: 'Medida de Chaleco guardada',
+                title: 'Medida de chaleco guardada',
                 showConfirmButton: false,
                 timer: 1800,
             });
@@ -313,7 +313,7 @@ export const UseProfileUser = () => {
             startGetMeasureWaistcoat(idUsuario);
             Swal.fire({
                 icon: 'success',
-                title: 'Medida de Chaleco actualizada',
+                title: 'Medida de chaleco actualizada',
                 showConfirmButton: false,
                 timer: 1800,
             });
@@ -351,7 +351,7 @@ export const UseProfileUser = () => {
             startGetMeasureSuitJacket(idUsuario);
             Swal.fire({
                 icon: 'success',
-                title: 'Medida de Saco actualizada',
+                title: 'Medida de saco actualizada',
                 showConfirmButton: false,
                 timer: 1800,
             });
@@ -386,7 +386,7 @@ export const UseProfileUser = () => {
             startGetMeasurePants(idUsuario);
             Swal.fire({
                 icon: 'success',
-                title: 'Medida de pantalon actualizada',
+                title: 'Medida de pantalón actualizada',
                 showConfirmButton: false,
                 timer: 1800,
             });

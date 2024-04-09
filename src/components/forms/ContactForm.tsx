@@ -23,7 +23,7 @@ export const ContactForm = () => {
                             name='email'
                             id='email'
                             pattern='[^ @]*@[^ @]*'
-                            placeholder='Tu E-mail...'
+                            placeholder='Tu e-mail...'
                             required
                         />
                     </fieldset>

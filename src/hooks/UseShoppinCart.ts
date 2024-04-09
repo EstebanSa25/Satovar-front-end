@@ -84,7 +84,7 @@ export const UseShoppinCart = () => {
             return Swal.fire({
                 icon: 'warning',
                 title: 'Debe completar los campos de la tarjeta',
-                text: 'Complete los campos para continuar',
+                text: 'Completé los campos para continuar',
                 showConfirmButton: true,
             });
         }
@@ -122,7 +122,7 @@ export const UseShoppinCart = () => {
             navigate('/');
             Swal.fire({
                 icon: 'success',
-                title: 'Compra realizada con exito',
+                title: 'Compra realizada con éxito',
                 text: 'Gracias por su compra',
                 showConfirmButton: true,
                 timer: 3000,

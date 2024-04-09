@@ -34,17 +34,17 @@ export const OrdersTableComplete = () => {
         <div className='col'>
             <div className='container mt-2 border tabla-terminado'>
                 <div className='text-center'>
-                    <h2>Pedidos Terminados</h2>
+                    <h2>Pedidos terminados</h2>
                     <hr />
                 </div>
                 <table className='table table-striped'>
                     <thead>
                         <tr>
-                            <th>N.Pedido</th>
+                            <th>N° Pedido</th>
                             <th>Cédula</th>
                             <th>Lugar</th>
                             <th>Teléfono</th>
-                            <th>Fecha Entrega</th>
+                            <th>Fecha de entrega</th>
                             <th>Estado </th>
                         </tr>
                     </thead>

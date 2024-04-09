@@ -41,7 +41,7 @@ export const SalesHeader = () => {
                     </div>
                     <div className='col-md-4 col-lg-3 item '>
                         <SalesHeaderItem
-                            Title='Pedidos Actuales'
+                            Title='Pedidos actuales'
                             valor={+ordersPending.CantidadPedidos}
                             icon={['fa fa-shopping-cart', 'fa fa-box']}
                         />

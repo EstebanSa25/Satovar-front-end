@@ -35,12 +35,12 @@ export const UserCrudPage = () => {
                     <thead>
                         <tr>
                             <th>Nombre</th>
-                            <th>Primer Apellido</th>
-                            <th>Segundo Apellido</th>
-                            <th>Cedula</th>
-                            <th>Correo</th>
-                            <th>Direccion</th>
-                            <th>Telefono</th>
+                            <th>Primer apellido</th>
+                            <th>Segundo apellido</th>
+                            <th>Cédula</th>
+                            <th>Correo electrónico</th>
+                            <th>Dirección</th>
+                            <th>Teléfono</th>
                             <th>Rol</th>
                             <th>Estado</th>
                         </tr>

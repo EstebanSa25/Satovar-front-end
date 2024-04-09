@@ -46,11 +46,11 @@ export const UseMeasurePant = () => {
                 detalles: measurePantDetails.DetallesPantalon || '',
             });
             if (!data.estado) {
-                throw new Error('Error al guardar la medida de pantalon');
+                throw new Error('Error al guardar la medida de pantalón');
             }
             Swal.fire({
                 icon: 'success',
-                title: 'Medida de pantalon guardada',
+                title: 'Medida de pantalón guardada',
                 showConfirmButton: false,
                 timer: 1800,
             });
@@ -61,7 +61,7 @@ export const UseMeasurePant = () => {
             const errorString = axiosError.response?.data as AxiosErrorData;
             ErrorSweetAlert(
                 errorCode,
-                'Error al crear medida de pantalon',
+                'Error al crear medida de pantalón',
                 `${
                     errorString.error ||
                     errorString.Error ||

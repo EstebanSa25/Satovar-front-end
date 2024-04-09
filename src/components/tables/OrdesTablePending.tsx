@@ -35,16 +35,16 @@ export const OrdesTablePending = () => {
     return (
         <div className='container mt-2 border tabla-proceso'>
             <div className='text-center'>
-                <h2>Pedidos en Progreso</h2>
+                <h2>Pedidos en progreso</h2>
                 <hr />
             </div>
             <table className='table table-striped'>
                 <thead>
                     <tr>
-                        <th>N.Pedido</th>
+                        <th>N° Pedido</th>
                         <th>Cédula</th>
                         <th>Télefono</th>
-                        <th>Fecha Entrega</th>
+                        <th>Fecha de entrega</th>
                         <th>Estado </th>
                     </tr>
                 </thead>

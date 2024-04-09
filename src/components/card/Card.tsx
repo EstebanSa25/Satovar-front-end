@@ -71,7 +71,7 @@ export const Card = ({
                             </i>
                             {products.map((product) => product.id).includes(id)
                                 ? 'Agregado, ir al carrito'
-                                : 'Anadir al carrito'}
+                                : 'Añadir al carrito'}
                         </Link>
                     </div>
                 ) : (

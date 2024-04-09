@@ -19,7 +19,7 @@ export const UserInfo = () => {
     return (
         <div className='datos-usuario'>
             <div className='container-usuario text-center border'>
-                <h1>DATOS USUARIO</h1>
+                <h1>Datos del usuario</h1>
             </div>
             <div className=' container'>
                 <div className='text-center'>
@@ -34,11 +34,11 @@ export const UserInfo = () => {
                         <p>{userInfo.userWithoutCLAVE?.CV_DIRECCION}</p>
                         <h5>Teléfono</h5>
                         <p>{userInfo.userWithoutCLAVE?.CV_TELEFONO}</p>
-                        <h5>N. Pedido</h5>
+                        <h5>N° Pedido</h5>
                         {userOrders?.map((order) => (
                             <p key={order.CI_ID_PEDIDO}>
                                 <Link to='perfil.html'>
-                                    -{order.CI_ID_PEDIDO}
+                                    Pedido#{order.CI_ID_PEDIDO}
                                 </Link>{' '}
                                 /{' '}
                                 {new Date(

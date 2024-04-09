@@ -18,7 +18,7 @@ export const MeasureDetailsWaistcoat = () => {
         <form>
             <div className='mb-3'>
                 <label htmlFor='DetallesCamisa' className='form-label'>
-                    Detalles Adicionales:
+                    Detalles adicionales:
                 </label>
                 <input
                     disabled={
