@@ -12,6 +12,7 @@ export const EchartsGeneric = ({ title, series, xAxis }: ChartProp) => {
         // Draw the chart
         myChart.setOption({
             title: {
+                left: 'center',
                 text: title,
             },
 

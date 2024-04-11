@@ -47,8 +47,8 @@ export const FabricPageCrud = () => {
                             >
                                 <td>
                                     <img
-                                        width={'20px'}
-                                        height={'20px'}
+                                        width={'60px'}
+                                        height={'60px'}
                                         src={fabric?.CV_FOTO}
                                         alt={fabric?.CV_NOMBRE}
                                     />

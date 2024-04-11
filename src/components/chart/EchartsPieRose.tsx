@@ -12,6 +12,7 @@ export const EchartsPieRose = ({ data, title }: ChartPropPie) => {
         // Draw the chart
         myChart.setOption({
             title: {
+                left: 'center',
                 text: title,
             },
             legend: {

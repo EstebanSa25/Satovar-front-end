@@ -12,6 +12,7 @@ export const EchartsPie = ({ data, title }: ChartPropPie) => {
         // Draw the chart
         myChart.setOption({
             title: {
+                left: 'center',
                 text: title,
             },
             tooltip: {

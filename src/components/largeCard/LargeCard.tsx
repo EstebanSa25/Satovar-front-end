@@ -3,6 +3,15 @@ import { RentProps } from '../../interfaces';
 import { UseShoppinCart } from '../../hooks';
 import { useEffect } from 'react';
 
+enum Tallas {
+    S = 1,
+    M = 2,
+    L = 3,
+    XL = 4,
+    XXL = 5,
+    PROPIAS = 6,
+}
+
 export const LargeCard = ({
     id,
     title,
@@ -15,6 +24,11 @@ export const LargeCard = ({
     useEffect(() => {
         localStorage.setItem('cart', JSON.stringify(products));
     }, [products]);
+
+    const tallasArray: string[] = Object.keys(Tallas).filter(
+        (key) => !isNaN(Tallas[key])
+    );
+
     return (
         <>
             <div className='col-lg-4 col-md-6'>
@@ -36,9 +50,16 @@ export const LargeCard = ({
                         <li>
                             Tallas disponibles:{' '}
                             <span>
-                                {sizes
-                                    .map((size) => size.T_TALLA.CV_TALLA + ' ')
-                                    .join(' / ')}
+                                {tallasArray?.map((size, index) =>
+                                    sizes?.find(
+                                        (x) => x?.T_TALLA.CV_TALLA == size
+                                    ) !== undefined
+                                        ? size +
+                                          (index === tallasArray.length - 1
+                                              ? ''
+                                              : ' / ')
+                                        : ''
+                                )}
                             </span>
                         </li>
 

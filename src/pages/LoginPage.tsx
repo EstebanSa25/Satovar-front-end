@@ -13,7 +13,7 @@ export const LoginPage = () => {
             <Form
                 input={inputLogin}
                 button={buttonLogin}
-                title={'Inicio sesion'}
+                title={'Inicio sesión'}
                 children={
                     <Button
                         title='Registrarse'
