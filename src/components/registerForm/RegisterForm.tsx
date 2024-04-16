@@ -64,7 +64,7 @@ export const RegisterForm = () => {
                         name='Apellido1'
                     />
                     <label className='form-label' htmlFor='apellido1'>
-                        Primer Apellido
+                        Primer apellido
                     </label>
                 </div>
                 {/* <!-- Segundo apellido --> */}
@@ -78,7 +78,7 @@ export const RegisterForm = () => {
                         name='Apellido2'
                     ></input>{' '}
                     <label className='form-label' htmlFor='apellido2'>
-                        Segundo Apellido
+                        Segundo apellido
                     </label>
                 </div>
             </div>

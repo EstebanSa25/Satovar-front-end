@@ -3279,7 +3279,7 @@ const Vs = ({ id: a, title: s, category: t, sizes: l, price: r, image: o }) => {
                                 e.jsx('label', {
                                     className: 'form-label',
                                     htmlFor: 'apellido1',
-                                    children: 'Primer Apellido',
+                                    children: 'Primer apellido',
                                 }),
                             ],
                         }),
@@ -3298,7 +3298,7 @@ const Vs = ({ id: a, title: s, category: t, sizes: l, price: r, image: o }) => {
                                 e.jsx('label', {
                                     className: 'form-label',
                                     htmlFor: 'apellido2',
-                                    children: 'Segundo Apellido',
+                                    children: 'Segundo apellido',
                                 }),
                             ],
                         }),
