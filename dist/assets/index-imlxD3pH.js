@@ -1006,12 +1006,12 @@ const Ds = new fa(),
     },
     je = [
         {
-            imagen: './assets/traje-para-eventos-de-noche-re.jpg',
+            imagen: '/assets/traje-para-eventos-de-noche-re.jpg',
             categoria: 'Smoking',
             titulo: 'Satovar ¡Porque la primera impresión es la que vale!',
         },
         {
-            imagen: './assets/photo-boda-re.jpg',
+            imagen: '/assets/photo-boda-re.jpg',
             categoria: 'Exterior',
             titulo: 'Siéntete bien en un día tan especial',
         },
@@ -2732,7 +2732,7 @@ const Ds = new fa(),
                             className: 'video-frame',
                             children: [
                                 e.jsx('img', {
-                                    src: 'src/assets/images/video-frame.jpg',
+                                    src: '/assets/video-frame.jpg',
                                     alt: '',
                                 }),
                                 e.jsx('a', {
@@ -3208,7 +3208,7 @@ const Vs = ({ id: a, title: s, category: t, sizes: l, price: r, image: o }) => {
             className: 'p-5 bg-image',
             style: {
                 backgroundImage:
-                    "url('/src/assets/images/measures-a-man-hand-for-clothes.jpg')",
+                    "url('/assets/measures-a-man-hand-for-clothes.jpg')",
                 height: '300px',
             },
         }),
@@ -8847,7 +8847,7 @@ const Vs = ({ id: a, title: s, category: t, sizes: l, price: r, image: o }) => {
                     e.jsxs('li', {
                         children: [
                             e.jsx('img', {
-                                src: 'src/assets/images/icons8-traje-formal-100.png',
+                                src: '/assets/icons8-traje-formal-100.png',
                                 alt: '',
                                 style: { maxWidth: '52px' },
                             }),
@@ -8866,7 +8866,7 @@ const Vs = ({ id: a, title: s, category: t, sizes: l, price: r, image: o }) => {
                     e.jsxs('li', {
                         children: [
                             e.jsx('img', {
-                                src: 'src/assets/images/icons8-coser-100.png',
+                                src: '/assets/icons8-coser-100.png',
                                 alt: '',
                                 style: { maxWidth: '52px' },
                             }),
@@ -8887,7 +8887,7 @@ const Vs = ({ id: a, title: s, category: t, sizes: l, price: r, image: o }) => {
                     e.jsxs('li', {
                         children: [
                             e.jsx('img', {
-                                src: 'src/assets/images/icons8-producto-exclusivo-96.png',
+                                src: '/assets/icons8-producto-exclusivo-96.png',
                                 alt: '',
                                 style: { maxWidth: '52px' },
                             }),
@@ -8922,13 +8922,13 @@ const Vs = ({ id: a, title: s, category: t, sizes: l, price: r, image: o }) => {
                                 className: 'left-image ',
                                 children: [
                                     e.jsx('img', {
-                                        src: 'src/assets/images/traje_vino.jpg',
+                                        src: '/assets/traje_vino.jpg',
                                         alt: '',
                                     }),
                                     e.jsx(B, {
                                         to: '/compra',
                                         children: e.jsx('img', {
-                                            src: 'src/assets/images/icons8-marca-de-verificación-de-instagram-96.png',
+                                            src: '/assets/icons8-marca-de-verificación-de-instagram-96.png',
                                             alt: '',
                                             style: {
                                                 maxWidth: '80px',
@@ -9327,7 +9327,7 @@ const Vs = ({ id: a, title: s, category: t, sizes: l, price: r, image: o }) => {
                                                                                 e.jsx(
                                                                                     'img',
                                                                                     {
-                                                                                        src: 'src/assets/images/camisa.jpg',
+                                                                                        src: '/assets/camisa.jpg',
                                                                                         alt: '',
                                                                                     }
                                                                                 ),
@@ -9687,7 +9687,7 @@ const Vs = ({ id: a, title: s, category: t, sizes: l, price: r, image: o }) => {
                                                                                 e.jsx(
                                                                                     'img',
                                                                                     {
-                                                                                        src: 'src/assets/images/chaleco.jpg',
+                                                                                        src: '/assets/chaleco.jpg',
                                                                                         alt: '',
                                                                                     }
                                                                                 ),
@@ -10046,7 +10046,7 @@ const Vs = ({ id: a, title: s, category: t, sizes: l, price: r, image: o }) => {
                                                                                 e.jsx(
                                                                                     'img',
                                                                                     {
-                                                                                        src: 'src/assets/images/pantalon.jpg',
+                                                                                        src: '/assets/pantalon.jpg',
                                                                                         alt: '',
                                                                                     }
                                                                                 ),
@@ -10405,7 +10405,7 @@ const Vs = ({ id: a, title: s, category: t, sizes: l, price: r, image: o }) => {
                                                                                 e.jsx(
                                                                                     'img',
                                                                                     {
-                                                                                        src: 'src/assets/images/saco3.jpg',
+                                                                                        src: '/assets/saco3.jpg',
                                                                                         alt: 'Camisa',
                                                                                     }
                                                                                 ),
@@ -11567,7 +11567,7 @@ const Vs = ({ id: a, title: s, category: t, sizes: l, price: r, image: o }) => {
                                                                     e.jsx(
                                                                         'img',
                                                                         {
-                                                                            src: '../src/assets/images/phone-icon.png',
+                                                                            src: 'assets/phone-icon.png',
                                                                             alt: '',
                                                                             style: {
                                                                                 maxWidth:
@@ -11610,7 +11610,7 @@ const Vs = ({ id: a, title: s, category: t, sizes: l, price: r, image: o }) => {
                                                                     e.jsx(
                                                                         'img',
                                                                         {
-                                                                            src: '../src/assets/images/email-icon.png',
+                                                                            src: '/assets/email-icon.png',
                                                                             alt: '',
                                                                             style: {
                                                                                 maxWidth:
