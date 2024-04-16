@@ -8887,7 +8887,7 @@ const Vs = ({ id: a, title: s, category: t, sizes: l, price: r, image: o }) => {
                     e.jsxs('li', {
                         children: [
                             e.jsx('img', {
-                                src: 'assets/icons8-producto-exclusivo-96.png',
+                                src: '/assets/icons8-producto-exclusivo-96.png',
                                 alt: '',
                                 style: { maxWidth: '52px' },
                             }),
