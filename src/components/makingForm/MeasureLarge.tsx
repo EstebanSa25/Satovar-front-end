@@ -1,6 +1,5 @@
 import { useEffect } from 'react';
 import { UseForm, UseMeasureShirt } from '../../hooks';
-import { use } from 'echarts/types/src/extension.js';
 
 export const MeasureLargeShirt = () => {
     const { formState, onInputChange, setFormState } = UseForm();

@@ -4,7 +4,6 @@ import {
     GoogleAuthProvider,
     signInWithEmailAndPassword,
     signInWithPopup,
-    signInWithRedirect,
     updateProfile,
 } from 'firebase/auth';
 

@@ -4,11 +4,7 @@ import { OrderApiInterface } from '../../../interfaces';
 const initialState = {
     orders: [] as OrderApiInterface[],
 };
-enum OrderState {
-    Pendiente = 1,
-    Completo = 2,
-    EnProceso = 3,
-}
+
 interface OrderStateInterface {
     id: number;
     estado: number;

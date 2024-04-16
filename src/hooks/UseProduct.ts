@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useDispatch, useSelector } from 'react-redux';
-import { Product, ProductInterfaceAPI, ProductShop } from '../interfaces';
+import { Product, ProductInterfaceAPI } from '../interfaces';
 import {
     onAddNewProduct,
     onCategoryActive,

@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { Product } from '../../interfaces';
-import { UseProduct, UseShoppinCart } from '../../hooks';
-import { useEffect, useState } from 'react';
+import { UseShoppinCart } from '../../hooks';
+import { useEffect } from 'react';
 
 export const Card = ({
     id,

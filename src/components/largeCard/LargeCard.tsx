@@ -24,11 +24,11 @@ export const LargeCard = ({
     useEffect(() => {
         localStorage.setItem('cart', JSON.stringify(products));
     }, [products]);
+    console.log(sizes);
 
     const tallasArray: string[] = Object.keys(Tallas).filter(
-        (key) => !isNaN(Tallas[key])
+        (key) => !isNaN(Number(Tallas[key as keyof typeof Tallas]))
     );
-
     return (
         <>
             <div className='col-lg-4 col-md-6'>
